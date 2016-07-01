@@ -39,6 +39,4 @@ gulp.task("WatchJs", function () {
 	gulp.watch([path.jsLV1,path.js], ["jsCompile"]);
 });
 
-
-
 gulp.task("transmission", ["SassCompile","jsCompile","WatchSass","WatchJs"]);
