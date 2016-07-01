@@ -888,15 +888,15 @@ Transmission.prototype =
 		if (torrents.length === 1)
 		{
 			var torrent = torrents[0],
-			    header = 'Remove ' + torrent.getName() + '?',
-			    message = 'Once removed, continuing the transfer will require the torrent file. Are you sure you want to remove it?';
-			dialog.confirm(header, message, 'Remove', 'transmission.removeTorrents', torrents);
+			    header = '移除 ' + torrent.getName() + '?',
+			    message = '移除后, 若要继续下载任务需提供种子文件. 你确定要移除吗？';
+			dialog.confirm(header, message, '移除', 'transmission.removeTorrents', torrents);
 		}
 		else
 		{
-			var header = 'Remove ' + torrents.length + ' transfers?',
-			    message = 'Once removed, continuing the transfers will require the torrent files. Are you sure you want to remove them?';
-			dialog.confirm(header, message, 'Remove', 'transmission.removeTorrents', torrents);
+			var header = '移除 ' + torrents.length + ' 传输任务?',
+			    message = '移除后, 若要继续下载任务需提供这些任务的种子文件. 你确定要移除它们吗？';
+			dialog.confirm(header, message, '移除', 'transmission.removeTorrents', torrents);
 		}
 	},
 
@@ -905,15 +905,15 @@ Transmission.prototype =
 		if (torrents.length === 1)
 		{
 			var torrent = torrents[0],
-			    header = 'Remove ' + torrent.getName() + ' and delete data?',
-			    message = 'All data downloaded for this torrent will be deleted. Are you sure you want to remove it?';
-			dialog.confirm(header, message, 'Remove', 'transmission.removeTorrentsAndData', torrents);
+			    header = '移除 ' + torrent.getName() + ' 并删除数据？',
+			    message = '所有使用此种子下载的数据将会被删除，你确定要移除吗？';
+			dialog.confirm(header, message, '移除', 'transmission.removeTorrentsAndData', torrents);
 		}
 		else
 		{
-			var header = 'Remove ' + torrents.length + ' transfers and delete data?',
-			    message = 'All data downloaded for these torrents will be deleted. Are you sure you want to remove them?';
-			dialog.confirm(header, message, 'Remove', 'transmission.removeTorrentsAndData', torrents);
+			var header = '移除选择的 ' + torrents.length + ' 个任务和已下载的数据吗？',
+			    message = '所有使用这些种子下载的数据都会被删除，你却定要移除他们吗？';
+			dialog.confirm(header, message, '移除', 'transmission.removeTorrentsAndData', torrents);
 		}
 	},
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,6 @@
     <link href="./images/favicon.ico" rel="icon"/>
     <link href="./images/favicon.png" rel="shortcut icon"/>
     <link rel="apple-touch-icon" href="./images/webclip-icon.png"/>
-
     <link rel="stylesheet" href="style/jqueryui/jqueryui-1.8.16.css" type="text/css" media="all"/>
     <link media="only screen and (max-device-width: 480px)" href="./style/transmission/mobile.css" type="text/css"
           rel="stylesheet"/>
@@ -20,6 +20,22 @@
     <!--[if IE 8]>
     <link media="screen" href="./style/transmission/common.css" type="text/css" rel="stylesheet"/>
     <![endif]-->
+    <script type="text/javascript" src="./javascript/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="./javascript/jquery/jqueryui-1.8.16.min.js"></script>
+    <script type="text/javascript" src="./javascript/jquery/jquery.transmenu.min.js"></script>
+    <script type="text/javascript" src="./javascript/jquery/jquery.contextmenu.min.js"></script>
+    <script type="text/javascript" src="./javascript/jquery/jquery.form.min.js"></script>
+    <script type="text/javascript" src="./javascript/jquery/json2.min.js"></script>
+    <script type="text/javascript" src="./javascript/common.js"></script>
+    <script type="text/javascript" src="./javascript/inspector.js"></script>
+    <script type="text/javascript" src="./javascript/prefs-dialog.js"></script>
+    <script type="text/javascript" src="./javascript/remote.js"></script>
+    <script type="text/javascript" src="./javascript/transmission.js"></script>
+    <script type="text/javascript" src="./javascript/torrent.js"></script>
+    <script type="text/javascript" src="./javascript/torrent-row.js"></script>
+    <script type="text/javascript" src="./javascript/file-row.js"></script>
+    <script type="text/javascript" src="./javascript/dialog.js"></script>
+    <script type="text/javascript" src="./javascript/formatter.js"></script>
     <title>Transmission 控制台</title>
 </head>
 <body id="transmission_body">
@@ -254,10 +270,10 @@
 
     <div id="inspector-tabs-wrapper">
         <div id="inspector-tabs">
-            <div class="inspector-tab selected" id="inspector-tab-info" title="Info"><a href="#info"><span class="icon-info-light"></span></a></div>
+            <div class="inspector-tab selected" id="inspector-tab-info" title="信息"><a href="#info"><span class="icon-info-light"></span></a></div>
             <div class="inspector-tab" id="inspector-tab-peers" title="Peers"><a href="#peers"><span class="icon-people"></span></a></div>
             <div class="inspector-tab" id="inspector-tab-trackers" title="Trackers"><a href="#trackers"><span class="icon-server"></span></a></div>
-            <div class="inspector-tab" id="inspector-tab-files" title="Files"><a href="#files"><span class="icon-checklist"></span></a></div>
+            <div class="inspector-tab" id="inspector-tab-files" title="文件"><a href="#files"><span class="icon-checklist"></span></a></div>
         </div><!-- inspector-tabs -->
     </div><!-- inspector-tabs-wrapper -->
 
@@ -366,8 +382,8 @@
         <div class="dialog_logo" id="dialog_logo"></div>
         <h2 class="dialog_heading" id="dialog_heading"></h2>
         <div class="dialog_message" id="dialog_message"></div>
-        <a href="#confirm" id="dialog_confirm_button">Confirm</a>
-        <a href="#cancel" id="dialog_cancel_button">Cancel</a>
+        <a href="#confirm" id="dialog_confirm_button">确认</a>
+        <a href="#cancel" id="dialog_cancel_button">取消</a>
     </div>
 </div>
 
@@ -427,25 +443,25 @@
     <div class="dialog_top_bar"></div>
     <div class="dialog_window">
         <div class="dialog_logo" id="upload_dialog_logo"></div>
-        <h2 class="dialog_heading">Upload Torrent Files</h2>
+        <h2 class="dialog_heading">上传种子文件</h2>
         <form action="#" method="post" id="torrent_upload_form"
               enctype="multipart/form-data" target="torrent_upload_frame">
             <div class="dialog_message">
-                <label for="torrent_upload_file">Please select a torrent file to upload:</label>
+                <label for="torrent_upload_file">请选择一个种子文件上传:</label>
                 <input type="file" name="torrent_files[]" id="torrent_upload_file" multiple="multiple"/>
-                <label for="torrent_upload_url">Or enter a URL:</label>
+                <label for="torrent_upload_url">或者输入一个URL:</label>
                 <input type="url" id="torrent_upload_url"/>
                 <input type="checkbox" id="torrent_auto_start"/>
-                <label for="torrent_auto_start" id="auto_start_label">Start when added</label>
+                <label for="torrent_auto_start" id="auto_start_label">上传种子后直接开始下载</label>
             </div>
-            <a href="#upload" id="upload_confirm_button">Upload</a>
-            <a href="#cancel" id="upload_cancel_button">Cancel</a>
+            <a href="#upload" id="upload_confirm_button">上传</a>
+            <a href="#cancel" id="upload_cancel_button">取消</a>
         </form>
     </div>
 </div>
 
 <div class="torrent_footer">
-    <ul id="settings_menu" title="Settings Menu">
+    <ul id="settings_menu" title="设置菜单">
         <li id="button">　
             <ul id="footer_super_menu">
                 <li id="about-button">关于Transmission</li>
@@ -514,9 +530,9 @@
             </ul>
         </li>
     </ul>
-    <div id="prefs-button" title="Edit Preferences..."><span class="icon-config"></span></div>
-    <div id="turtle-button" title="Alternative Speed Limits"><span class="icon-scheduled"></span></div>
-    <div id="compact-button" title="Compact View"><span class="icon-listview"></span></div>
+    <div id="prefs-button" title="编辑参数..."><span class="icon-config"></span></div>
+    <div id="turtle-button" title="选择性限速"><span class="icon-scheduled"></span></div>
+    <div id="compact-button" title="折叠列表视图"><span class="icon-listview"></span></div>
 </div>
 
 <div class="contextMenu" id="torrent_context_menu">
@@ -540,21 +556,6 @@
 </div>
 
 <iframe name="torrent_upload_frame" id="torrent_upload_frame" src="about:blank"></iframe>
-<script type="text/javascript" src="./javascript/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="./javascript/jquery/jqueryui-1.8.16.min.js"></script>
-<script type="text/javascript" src="./javascript/jquery/jquery.transmenu.min.js"></script>
-<script type="text/javascript" src="./javascript/jquery/jquery.contextmenu.min.js"></script>
-<script type="text/javascript" src="./javascript/jquery/jquery.form.min.js"></script>
-<script type="text/javascript" src="./javascript/jquery/json2.min.js"></script>
-<script type="text/javascript" src="./javascript/common.js"></script>
-<script type="text/javascript" src="./javascript/inspector.js"></script>
-<script type="text/javascript" src="./javascript/prefs-dialog.js"></script>
-<script type="text/javascript" src="./javascript/remote.js"></script>
-<script type="text/javascript" src="./javascript/transmission.js"></script>
-<script type="text/javascript" src="./javascript/torrent.js"></script>
-<script type="text/javascript" src="./javascript/torrent-row.js"></script>
-<script type="text/javascript" src="./javascript/file-row.js"></script>
-<script type="text/javascript" src="./javascript/dialog.js"></script>
-<script type="text/javascript" src="./javascript/formatter.js"></script>
+
 </body>
 </html>
