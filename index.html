@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=8,IE=9"><!-- ticket #4555 -->
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="author" content="Vincent,lionzhongtemp@aliyun.com">
+    <meta name="generator" content="webstorm"/>
+    <link href="./images/favicon.ico" rel="icon"/>
+    <link href="./images/favicon.png" rel="shortcut icon"/>
+    <link rel="apple-touch-icon" href="./images/webclip-icon.png"/>
+
+    <link rel="stylesheet" href="style/jqueryui/jqueryui-1.8.16.css" type="text/css" media="all"/>
+    <link media="only screen and (max-device-width: 480px)" href="./style/transmission/mobile.css" type="text/css"
+          rel="stylesheet"/>
+    <!--<link media="screen and (min-device-width: 481px)" href="./style/transmission/common.css" type="text/css" rel="stylesheet" />-->
+    <link media="screen and (min-device-width: 481px)" href="./style/transmission/theme_vincent.css" type="text/css"
+          rel="stylesheet"/>
+    <!--[if IE 8]>
+    <link media="screen" href="./style/transmission/common.css" type="text/css" rel="stylesheet"/>
+    <![endif]-->
+    <title>Transmission 控制台</title>
+</head>
+<body id="transmission_body">
+
+<div id="toolbar" class="clearfix">
+    <div class="logo">
+        <a href="https://www.transmissionbt.com/" target="_blank">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOcAAAA3CAYAAAGAzW2ZAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTExIDc5LjE1ODMyNSwgMjAxNS8wOS8xMC0wMToxMDoyMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoxMzczZDVkNC1lMzJmLWQ2NDEtODVmNS1lYjg3MDQwYTc0N2UiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MkYxQThGNEMzQ0UwMTFFNkE2N0REQjEzRDEwMTk4M0UiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MkYxQThGNEIzQ0UwMTFFNkE2N0REQjEzRDEwMTk4M0UiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ZjY4MTJlYzYtOTM2MC1hOTRkLTk2YjktM2EyZTE3NzE1NzYwIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjEzNzNkNWQ0LWUzMmYtZDY0MS04NWY1LWViODcwNDBhNzQ3ZSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pg7tiy4AACAqSURBVHjaYvz//z8DvQELiAip2cnAyCX+n5ERIcHG/J9xSZkhTSxlAhM80v9fPH/M8PP3fzDeseMIw+cfjDQLArClX3/9Y+AVlGL4/ec/w8v33xls7C2B7L+49PxHo+uh7P1oav7j0gO29M9fJoY//5kYtjQZMWxusmL4DbTv1x+cHmVEowWgbEcgdoCKPUCS/4+uhxGUkJQtI6qkbIpbP7x9zcDJxcUgKCjAwMojwrClXIaRJuGLlHrV7UqO/nSqvvyfW1DKGyZHCwwQQIwDkWUYA8o3MQiIye34+vO/OyMwz4AcwcLMyPDr0wvGNS3utEm926ckMLz7+s+dmZmJoTVeleHnHwaGbz//MeyemUYznzL9+vGJ4dv37wwfv/xmUJHkYvgNTLr79hxm+PTmMbra99BsAUqt87Fkhf/Q1PsfR9Y6D7f0/98/DKysnMAs8o/h9WcGhkePHjBISIihZTMwEIRmBZDliVAHIGcF9KyEnMVAhhlC8zQkn375/ofh3InTDIH1hxke3X/GICGvjCtkEpEMdcQifwBLfkZmN8ItPdxtJiQj8GkHl6AMg5oCzwUgX4aWqRcggMBZJrBiMwMzCxsDt4Ao0ElMDCwszNx///23BEorMjL+f8fKxHDyz7//T34Do+AfMKB+fHrFQKuUTVOPCkmpM1iF1cuyi2o+Agl+fP+G4ed/FgamP38YHjx4xvDr128GKxtjSFX479vLE6tqJB5e3j+kPApORu+f32JgFTd69BtY1zAxMjFw8ggzCPAKMByc6Mogo6LGYGJuxMDIzMpw7/5Thm9/OcVf3D1HL/cJUCiP6lEGYIn7/ftPhtu37jB8/v6X4cO3PwybGwzBydTVSJTBQU+Y4fOXnwz37zwAV7K/vn8iuSZD44OSgwEBPQZIaurRxGHgA3Ixh8WeelSPAtPvP0YWBgkZOYYTR44xsAILfovc3QxvvjMwLFqzm2HLqZcM50+dYTC0tIC1JphJ8GA9nthwICCPzL4PZTugecgQGnAFWIpf1DzKCGl28ri1Pvr85d1zsAQrKzMDFzszA6gA+goslkFK/v9nZDjeZyYKlH4zEPU+xYURIyNGQDBDm+BM0ND7A8XYWlVDAgAEoMZqYpoIwujbXbelZGsgSJoawfqHiYJaJTEaIihcPKh4MRxFziYmxos3NcabBw9eaeJZ5CQXDSQcSLUGxKgFrSVWRaC6JYSW/uyu3wzTZFNK60887CSzM/vtzuy++Wa+eW8kp/3wPwknto9qDU20NiUegFyqcqBgmEdpqrplGW8Mw3pBJZcY6dR3PL571plAi2llzeIqMZ0rlBEAQK0LPqouOtGjPOqODl5DxlAskykMMiUSn5AhkhCPzWFkZBwFzogsGggsfJsNw7FAWUjN5wsERsZyOotG3y6S4TLOd7fhTE8HzHyW9tEMDEb/Vn9edSxQ1eVpNQlFkqifS1F4RG3f7cbNSwGYtGgN2Y3pqbdg7+w43Ftu3/tffLASqej6Y6B1/pYTROKheevXgVFen8bgdZY5DaSIpGjbGqr0OVpGwNnruk34WSVt6kT5RNgvlCEexTadouwVtsmS78Q3AFXctapJpOLj+w8ECnh6+xhSqwXQMuV1ZisYEheQpqVWG7yuTURj8b7epulKz2R0UU7Z2lwWtlslgrSYhoUtWPKd/o2k/kt0lgWc+a/z3HsdAyHc6Q9iNa8gMpPktpl3UQLLeK6+UgXomO0HK6WLNi+kKrwXsvHW02JQAn+1RhfjkQkG5lR3J34kk1AbD+L+o3HI5LwboTnIyhZ4alQY5Nql6LOh3+x7THhX3+T5YBWAdmLO+nktpuSRknZ6Gf67KQVUT14P5xRZgua28DI8iZbWNlqTEhKxGDStBg3+nRAnAwrTAM7cXoj0RB72tBMbwjIpln2HgvB6PdiqedC0dz/qfM18+uYWXk1UGzknkHp22dMcPNe3/fiVAc3fFpBIhK/pn/Wl6aHh6PMH9+g5O4HIOpEfl1MvkqCGRc1piGw6Vbmw9EsAdq0uNooijv929z72rl93R1uScpc7EEKifPRsk2KDGmJ8kMQAieGJRHjUF+FBTaxaeShPRvTFV/HJ+CKYYIzEwKGkoFK1YDSl1FZOSgvptdv72o/bXWfm9nrr5vY0BRoKN3eT3Zvd+c/u/Gd+8//95h4Z9vKopCXyQpkaix08PgTa1oLnDAg8Hyfh7+eajj6KU5TBcfbxbYUhlSFBNX7yhejjh1St9LZpkZ6iNAM63VebQrqqHeoVm9nRKGnEmUjlFP7Zss+MikwI+inkF5AnefpWlnGdUKgFsVgX/H4f4z8kZoSs6QPk3gG6CvsFw0PCDV3wio3eXknI7drcz449L75+2dOW6FkKJ3gBM9MT8DV3INoRItRGh6yabLcmKAoQSVzo93C4cuUaxsbT6O3dgjXtkaX1R/CI+P3roSZVzhau//hlo8dXKPzD7MRPyKSvcv7OrT0V/pnLSchkC1gX3YCWYBBSXmUq/rb1QXwz1IuT7ySRnskjs6ggmojjued3Mqg+d3aYkAChHDKqRcS27z6buTlWL2A3XfKDnCgHPr7Muiet+vfPoXSnsHNj315FVZgspJVKML1BNIk+5BWdlZUzB1lRy2GhTsoJJFevAcHWCJ7Ysgnfn79EGJ6PlQXaNyfnp6+5PcNRGzdP2c65B9yhlOsfWWbdfVb9++dQwyihKRyN6tSRxAk3pv7G3MztsnJk5blFlWXTqE4enXgsfUdmR8NSmVrDa9huqiIrrAzeoO8uJ5xZQyKzj/CQg9qbqP71oIICh20iz2Cddpy/Bx30HjXsDLpoKb+g9qam3Waihixx2PH8pkMGnHSTDPkq5zKQnbshGaSIbp01tTTj1vQsqFpGnSrlFFz6YAfOHOvD0YNbkVUASebw3fv9GD7ej5f6I6hCdZ4YJFEynaEUdovZu5UiUg6ljKbtDqnP2XGHHCiwx2aru0Yn2YUuJ4JU0ocu+iq952XLpl3ISlrPNg/33epJm1Job+dgnWc7ZHuf2g5l6+j4D2dM3suc0NwWQYDA7djVPwj4keCHRLG73hzGK0OnkCOIu0B8lpd5zC5oePLACXx2IcPUQYLCGL38K3bsfArFoszKtDz7F49wD5HlnAOqk8uAvArE36u1epdlc8phM2zlbhdkOFKjPPQ/BUP3KLciF73w7s9qQS55KkM/wGm4eHEE6+IxdMXiTOksSLPoFLP48+Y81m4gATHhmCaJfn8bGYEYEPF4MglV0azpw2H0xP5nFm9PXjD/W8XorjET3crpS79G8nmbopqywWGqjg16nQr8n1oOcGvHaSdhdfSC1X7IVn+vhRofOZxBZ1rcMdMTjnYrbe+xvQ/qPIezbXeHUkq6+9ikImWqm590XQy3BrCYuYOJ8Sm2NlLH0ioerxftHRE8tnE9pKL5L7mME/xIf/veG3+NnPqY/Mw3VKkV5KE2nZOe0G2y8NOvfvGVp33bJrkgwdQ1doWrE01QU/5gG8FWFddPD7yVHj39ibV+KKtVG30YHGpPdF8wSHKLda67cETeGgj0mKOzkeSi876GQ1fQoY30cKR/BGDnymLbKMLwt16vHTt2WruJE9KEpGlTDhW1pSkJCEgCL0UtgiIkkEDQAkI88ADihUPikKgED1BA4npAFN4ACQoIhHhpEBGHKgiFcpXSNEmTxuSw49u73l3mH+/am62dps1BizzRRLuzs7Mrf/t//zH/TAXQ/2PYr1LO/zJr2oxcDn9ti6FHdUhOkSlEnYf5JAeaVAiNTJKbdV1YyT8EQU8LOsYlp2NM1fUhOaclmajD4RCgUThQd0BOTrHjfA5hZdpsmcAsycGC8Gxa0Z+g7LeEEeIrODSW4JgOjabZ4BQdNA/6HfsAbmfNQ5Wf9xwAkwlmSNEc4XRKhWns2o1ekl6NhwmKy58U5ovKOXSRg+vziF8wz+aGyk/8H4BJk9m5bIpAcqYVIUzBdtOP5MrVISKnyohHJpBKJzEWTsPrceOChhCf69Q0bZYLEkvp23xuHIDg6JXcXlTMrGW0ZmnNWcvmbVjfddu4InjqTUnU8yEhjI8dY4j7UO2rQbXXhZPDY0gmMxgZm+A6cm1bM9a1r4GiKJaIkBOZ8V+bD3352gmaBz3f1qidt5JZ5Q8iNTVSrToD9XouwyWSqDSTjiEyE0NDYxtqvBLSWZXnG68MNeJCdt6x9TIk2PUDXw9gdDSMa7u7+PQYLxozfETpw6qa2ius02qVssSuyeTQYVQHm+9VlCzPEqLfXpaziKdktF3Ywi1aSiTPKBqu2RDEyw9cjEhSQSSWgQwXtm/vpqQxfNX3HZySMz8GaPJ6/daZ8CAmR36p/NrLBabL40eo/co7aM6TpIikMjoTRUOojuk/hStPouSJqIxHbmnFxU0+XN7mM/SkjmgsjZ5ekkoZx/4e4mPwKnqQjIwKiVPXuMNiE5eq5zonL4RqIksKZir2D1OJ9WsJG6rJZByemgBkJT/nbLZb0+FJcovtYIBm0Nm5EX8dGYTkcvE2lfmY3hUNl0Is6wXZU0nM495zHMynF3DvM0sKJgUMRHeNn6DSBQcUZp16XRJylCpiUKZZrcXazpgYbq8fbgbk5OQ0b8upKvso6tY7/3+pmQsB5KUlBZMX0eUiaqTojVNy8znMAl0alVyQApAaTrlOubb+mmpEpiOciCiNU6ryr1Ll9ELobBNmz9psslGydb19D4rLdMxqzSey32t9zi7bmCtRPqvQer6rTL+P5niWnXat/az5PwdKvEfr6cF0OPNbBjFD5mD/QYrrFO4mCEensrAapSSJ0wkFU3Fl1pMoAyGTzvJIAwHMwPSQ5C+gHLBR8SYbPbfO0V9AcbkhDJDKZQneZGk3k8jM84Dto7GWt8uM2YPTZyRGUExFMetAiT7W64OnBZPUIUmbahhAGs/Iy7d1Mwv20KtX4cbO+kJ/2siHEsC+39uFREYr9KWNfUSnaGT+8c0WVJ02XDj7Ys/92VeCtnoWQZ/ttBzvttFhFKffucNe5rsdiT1NZjdmJ3v1njHNKtk4j/tQagjJWCqVgm781fp0JJiwPXp7O2ZSOs/ce/OhDjCbhxc1J+d7Msji8TijWj+naQraJiKjCX1hjubxEm2DFjLYZbv2le28z3IcOANreb7JVuaYb5f4OOba7aTUh2m2tZR5//mBqam5FElWJiMjVF+HkePDfAcTanvl/QH8PjiBJFN9siqAdeHg+phdc81978Bb5crrUNY/EUugtq7OsHIFyOnEqK4t6qJQ+oHWWGhn3xncG0VxsfNiRTLMMd+xjbnfQq/l3JFS0t6zUANIVNMz03wpPePbtvZ1mJ6cKiQ+h1a34s6nPmN0KnMgM8z1dIjAXU9+DGlVO9elFLI7cvg31IVWsT4qvw+ihMjor4eXeFXC2dBq33y/+EUY85k5KLcUcB+djbU8SzKnhw72mZKYZfbK6qYG/PLDD3A6JW7hNrZtwHX3vwWvl7kgTCJffLcfR6c9jFol/gFOhMOIRiO45LINxkaEDELmZ+aYaC4BgHtRXMS+/wyl+maDmnsW6V0iZcYcMM73zkHZmy2qosdQH/sXKpna0f59b9H6EZIyUnFNa9vhYj7jj99+a8yeCGi5aCuuvvsN3PvE+/jy0AyqfEG+o8DJ0RM49udf6OzcwqQ3lx+DVafOA7Wpeb5P7zzbBEMvdhv66mGLEfFTCYPiYdu9Gy3H5Z7zk0Gb5d7FerzGGDNqG3O38Y4fY3ZGe6/tOeY93Qa4u8u8+5wGkT1LT9z+3HAuNjVe6OBxSzhx/ChGhk8iEAygfnUz3B4XlzgdImLRKMZPjPCFRl1XddAWsoW5T7Jmx/tffOzY9++9QPZVJd9oaYsdTG9rx84Hm65/6nldzRY7sWsrPAL+PjqIyYlp5BSFS53IdCQtyl3b3oqaYB0i8TQzXosf5opgCJ8/vsZNQPKIYAXMZQWTaDfYedfrnzhqt1wpWPZppm40b+lxi5CceXYmAycja5CZX2nlFhrTH7wAfXs2dMjpOC3gTJjtlbJ8YFIhSQo0b9xxz7ode/aocCGbmuHUOVdmO/2jfUSrvCugTP58pP+1W3YYhsFUoUsFzGUH0wS0llRmdaDxkuYtt+6sbty02Rtsa5F8qwKiq9qQQA3ZeFhWEv+MJcN//DFz/Jv+4YFPPzCif1OGQaBbJbZSlh9M09LzsErI+QyAzDCtvR9V0dCNccN6VU6R4AqY/xmYdhfGYQHNBNEah9csgJem4wqYywNmpZz/5V8B2rvW2DiqK/zNY9/2ev2IEz+S2JAEEicNgQZIiyBpC6WlRY0qFVWtmlAJIYRK7DZVf1QqCWqF2ohCKvUhaJUgWrWlDwFqClRFMRKFQhRsIGkCiYmdOE78iLO73ufs7EzvuXPHHq9nHTuQ4IQ50si73jv33rkz35xz7z3nO97N9MSTOSpe7JAnnsxRmeI4Z1MpchvUKEL1hxCK1nNHED4TkQy+U0mhQmQHF4tFxa8qnyma0irDRJthmlcxZbyYFW6gxQRTcFSbcLF2JYdXhUQEVCZ5mJxi/+iTTOldWcZBRTLf0fTiS4qiGFQXZ1jgAUsSLBcGE1p6lG+RE02jLV7cmSeXHThnIH5VlrYWTWzRCmY9UWJSUjyTh4ZJkD4YoxpNZil9VTPD4aftOmWGUpk1GFClIdb2zqJp7mA/Fbzb54ln1nKIGItlWTqQ05V8IoefZPJmvS649ewSXDk6vN0t1UgaVmF/VHYogvOWvRVUFT6fn/+l0EGUnO+sk9qgttJ5o57aZn3QFFl+h+ntRd4t9ORjoznTZ08JkBgIRGKQlQBMPbe16KvYkc3qPPqdA8ZlHYk0HOm6Qj6DzFgcmWzK8r4kgCoq+15Az9FT3F9aZmYxJfH0+3wI+FWEwkHU19eyo457bVL7ekGHmyomoCZ0rAwFAn1SYex7DLw/LxY0aNkEPqjq9sSTuSJTVmvnt17L53EEjoal61DdtOz7Tavv/Fk6NTYOTDdQ5nMZJM4O8QRsSiCKQCiMaCSAcMAHVbZmluTL4GNgpPIUlaJpuhUVmsrg1OlR9J8c5l681Ke6uhiWLm1BrLqKR7S4Cb0gIhWVONn97NZU/PQjoycO8GALmtv27N/j3V1PLi9wkrbUtSzqFq5CRax+zfV3PfxmVjP5IswUUCoKcukk4vERmGoIIXbuvKoQZ/DPsnkosRabIqM5tZPKFjG/2nKHH05oqAwLxc29qmWE/OR0JGFgYBBvH+hBKpVFhGnUFW3LuNu9xrRjaTeoZyGfiTef+fGafDbVPdTbxRexksMenY0nl5lZG4xUQ6qoRWLoKK666evtGoIMWNlJmLAixwyMnhng4YCRmibUVga5CUuO0ZmShaFESsfyhWH86v4V454OibSOB35zCP0jeVSEFOvcrAVmf0UMn/vsTUjGz2J/92Hs338AtXXVWPWJq5kprE6KHSXRpDDmLbmho/ufj26KNSwZZwrzxJPLakEoOdyLdGIQ/mBlLNrQtoHH0pqGCCuxQkt0vYBEcgSGL4zqmjrEwn6kMgWmLYt2onBHeRO5fAF1EWmSC1JlUEZtBZDTCpPKgue4JfBmIQfCuPnmtVi8aAGGBkfw5r63mdmbs+J7x88x+PdYY9sGnz8cS5zuweDRfbMZg82wIv9KDzvQ2e23R71H57xlF6YGwl8Mse/ng5es5pRlFXo+jaorP7lGDcWq9YI+vvgj8aB3A5lshp0ZRlVFmM0nZaRzgoHPdHPcswxivSSlJ22TcAK3MotL1sKPgWTawPK2q3mZ3t5+vHvoKFasXM7NYFuDUh/VUG11Rc3CNQNH/7s3WFE7mzHYDffoTwLhesx9TpRLTe5GSdrfiyTVl7xZa8J2tFWaTMkfsRgQHSYk05pkygYDQSjE18YDUSRM5wXINaLpvqDj3DopJ5lcAYtamtncNokzw6MYHBxC86Jm9hLJW5s8BpHg+sKsmiaDzUsLSF3scSQQk3s/xe9R1C0Fc1Kce18Z4Nu5Mq7BRPKTZ1E+RDyGidwecdGefT5JJ6bmAnGrYzMmMuNQWYqbfAZTg0ud1+Nsq1w/7XpjjnrPdS29ZfrbAitb0PqSfu6eZuw3YYLFpFP0sdul3hZMH4Ft37tbHPV1O8apnNj3sdMxHnYdcUf/Z5XkRnZBEv9TUdtUJftDEsVmUkSYYVqRYbS6ms3kOeAKRcvMtX6f/nDz4Z3puXRIih+V0Qr2V0JqLIV83vIIMrjXkA6GTbmyrjlqm9QXWfYKc41MJ5v6hW7I6pJydnZDMospJflGoZkpLH6L4ze3m09t2NxDVHanONdmUSmX5ipW0q8N4tgpXiCby1zPXpe2OgQI7X7aZRYLbWjXu2UaE9K+lk0u4LHN3bdK+kkPenuZsdwixs8ei74yY7gJ5YlLNmMijdliR30bxEvPTi1WLo2YPRZdjvHocIzZLeLcWdEMlvUQYnCQOf2P0GyUkp6AevLEaYwMDqO+YT5al1xpma3m5HDPQsHAhtU1WH1FJQ4eT+OplxiYdGMKMDVmtqZzBr50fQyrWipx6EQa/+4a4Sarc9tmIuOOwj8XWceKhqCMp4hDU8TCmLIyvvx78YUeum2YzD9R+pbeDnd+Cno7rxEAbxcPRHcZrVK6oRUXdT4pHq5dmEx7ZL/VSzNGdpdpwwnq1hLt1ivqeVBca69Lf+xr2esyHtOJDdaNJePWXcYM3ibKbSwZi92YHUnNo2LM7y5zXrejDXstorWM1revHS5j1u5o67HzAqfg3DK1dCJnUTpZZikBgmihwqEwX1nNZnJ8zidJk8GZzhbx2H1tWLukAtkCe83eCHz71ia8fvgM0nkTqiqBQrRHU0XcsnIeHvrWSsyP+ZDVmD2xDrjtuno88Kt3EAmpU0zjTDrN2w4FQ9yzSOdZQ629Gu6EkIlzMirTMKWPAKFxzI4Y5hoBttUOAK13AMNNpkvl2uswq1HygugUWrdT9LFzBv3rnMZMftkxX5/u/PVwT9HnJjuFSbkXE2lrpzPTN4prOiuu6XxpKNtF/2YC6O0OM3p7mfl0ObFfhFXnb9YKuzafS44aRU2jItz85BlT2Z2viXGKy1RyDEOnBjnHzLjLHsghvoiOR/6FPf85hpCPjVwGnKvm5tUNnAaMYRpJ8b8vrmvmTglUJugHnn/tGNofeZHVYSVxsOulNqgtogmjtmM11fxlQX2y3QQNXctrubFR6wqKH4Xq7J7FSuUxh6Z42WHebpvBC+B8frdZGbdjcuLwubTqHBdaRxJzxl2OfrqZxzZVWqt44M86xvaaC3DvZlPuQ5GyvrXJ0z09ep5N7mRVzDfBifcj0So0NjfzYenvO4HR4TNMo/qtMgZpxiD80QZ895ev4I72P2KEKbNQEOOUbjndOkirEuspU4IYTeZwZ8efsOUXr0CtbGB1BAQtHHjd1EZ/33HeJrUdiUZZX4rj/aI+6lpqLDHUc9SC6px04dsl5jbV4oHqEA9YZ4k2vZDS6QBqtdBUczGgd7ejn61Cu3Wdw2KpFuV3irLtswBcO2bGWGq/JN76KMGpjp053pOLD7xrac6JPcgsQ1RtfT2uXr6UM5YeOXwYx98/xjmhhNbiYGlqWYGU0ozbv/MUOna8gILYLyFA0kHfSL9t3fEibr3/KSSVRjS3LucO8jZ1PNVJdR85dJjvZVKb1Db1wbmXSvckF+9/LzVy4n3qu2kacxGcccfig9v8rguTSa4/LGmBO9l0fIba+GKueMfK9NMtnfdXZjje55INwnw+W+be2PdnrwBxB86TDvHDAic93bn+rmeflswCaApnaymCQlbTEYnVYe31a1BZEcYJptW639iHMyMjDJc+znjK56O+IBYtXYP9fSY+f+8TePxvrzOQaiiwOn/39zdw672P441jRSxmZSQ1ZEW4sHOpDqqre98+rjHJlF1743W8TWrb3hulg7K0SKaO/q7nnqY+YyohzlyRDsdiSmmykC4xX9l2gdrugnuSkmcwd/b/YphMI206VkjtlWCnbClzTVuEebx7Fi/NVnHOpjJ1HhNWh4QLlGLBTab41jrSy0tMczXesOm3fw423fipQm5skkse7zWDQSTETFotjSPv9WB0NM6d2imqpHb+AkSZCaywOSVFpBB9Zjo+yEzUk/z8mnlNDGzz+XyStkKMQgHJZAJnBgcxlkxycNewueXSZVdA9oeRZnYwxVJLJbNjX7ASuZOvvfr6k/fcVSwWB+yuefQrnlzqUg6c9kquGYzE2tbd84d/SFVLFxLjgBsLGGmwgF9BJKAwgI6g//gpJOJJMfczuXnqDwb5IpCsqhxVtC1T0DRouRz/bHkSmaiKRdG8sAE1tXVI54vIk0ug5LZsZcIfqYGZONL36hPf+HI+Hf+feKno9u+eeHK5gpPED4tLMXrd1376eP2137w9MTJAa6OuldmOQAEfcRIz85SpVtriyGSzyGUy0PKaFd/J55My/IEAguEQQqGQtajErGwCY17Q35YLzSTv26q6Rgzt//3z+//yg3tp/Qol3I0eOD253MFpa9AKjrlAZMHKO374UP3qr95JaVULlCHMPHcEyCR2A2nif/b3GcVHSyp8xGcUkDH41l+fO7jn4R8V8mmio6fVoZStMT1wevJxAqc9Bw0IkJImVVV/oLGx7fb19W23fSFQs+RKf7RxgRquYZqyAL2Q5/PIoi4ysRq6I3mn6agS3AWPVmgJoYrq4yFhlGaQPuvZUWiJgdP5s0ffHzz44p6BAy+8zDTxgABiVoAyD5ftAA+cnnxcwOkEqeIwd+kICnAQSAiBUV8gPM8XrKz0s0NS1KDijwRkNaCyylVMrOnQPohu6Hm9qKXzDMA5LTs2VsixI58ZFqaqLNqSRP1ZcWjsKMJjr/bEA+e0YJUFYBVhAtufbSDLmJqa2lahpuOz4QBcURy64/O0VPIeOD253ET9gOc7gTQbQAMX2DNl2a+f8O6uJ3NS3rvvnhmV+z+5I12np243lAAAAABJRU5ErkJggg==" alt="Transmission 2.52">
+        </a>
+    </div>
+    <div id="toolbar-open" title="打开种子文件" class="ico"><span class="icon-add"></span></div>
+    <div id="toolbar-remove" title="删除选中的任务" class="ico"><span class="icon-delete"></span></div>
+    <div class="toolbar-separator"></div>
+    <div id="toolbar-start" title="开始下载选中的任务" class="ico"><span class="icon-start-light"></span></div>
+    <div id="toolbar-pause" title="暂停选中的任务" class="ico"><span class="icon-pause-light"></span></div>
+    <div id="toolbar-start-all" title="开始所有任务" class="ico"><span class="icon-start-all-light"></span></div>
+    <div id="toolbar-pause-all" title="暂停所有任务" class="ico"><span class="icon-pause-all-light"></span></div>
+    <div id="toolbar-inspector" title="详情面版" class="toolbar-inspector ico"><span class="icon-info-black"></span></div>
+</div>
+
+<div id="statusbar">
+    <div id='speed-info'>
+        <div id='speed-dn-container'>
+            <span class="icon-download"></span>
+            <div id='speed-dn-label'></div>
+        </div>
+        <div id='speed-up-container'>
+            <span class="icon-upload"></span>
+            <div id='speed-up-label'></div>
+        </div>
+    </div>
+    <div id='filter'>
+        <select id="filter-mode" class="form-select">
+            <option value="all">所有状态</option>
+            <option value="active">活跃</option>
+            <option value="downloading">下载中</option>
+            <option value="seeding">做种中</option>
+            <option value="paused">已暂停</option>
+            <option value="finished">已完成</option>
+        </select>
+        <select id="filter-tracker" class="form-select"></select>
+        <input type="search" id="torrent_search" class="form-inpt" placeholder="输入关键字过滤"/>
+        <span id="filter-count">&nbsp;</span>
+    </div>
+</div>
+
+<div id="prefs-dialog" style="display:none;">
+    <ul>
+        <li id="prefs-tab-general"><a href="#prefs-page-torrents">种子</a></li>
+        <li id="prefs-tab-speed"><a href="#prefs-page-speed">速度</a></li>
+        <li id="prefs-tab-peers"><a href="#prefs-page-peers">Peers</a></li>
+        <li id="prefs-tab-network"><a href="#prefs-page-network">网络</a></li>
+        <li class="ui-tab-dialog-close"></li>
+    </ul>
+    <div>
+        <div id="prefs-page-torrents">
+            <div class="prefs-section">
+                <div class="title">下载</div>
+                <div class="row">
+                    <div class="key">下载目录:</div>
+                    <div class="value"><input type="text" id="download-dir"/></div>
+                </div>
+                <div class="checkbox-row"><input type="checkbox" id="start-added-torrents"/><label
+                        for="start-added-torrents">添加完成后直接开始下载</label></div>
+                <div class="checkbox-row"><input type="checkbox" id="rename-partial-files"/><label
+                        for="rename-partial-files">对未完成的文件添加 &quot;.part&quot; 后缀名</label></div>
+            </div>
+            <div class="prefs-section">
+                <div class="title">做种</div>
+                <div class="row">
+                    <div class="key block"><input type="checkbox" id="seedRatioLimited"/><label for="seedRatioLimited">达到此分享率后停止做种:</label>
+                    </div>
+                    <div class="value block"><input type="text" class="numberinput" id="seedRatioLimit"/></div>
+                </div>
+                <div class="row">
+                    <div class="key block"><input type="checkbox" id="idle-seeding-limit-enabled"/><label
+                            for="idle-seeding-limit-enabled">此闲置时间后停止做种 (分钟):</label></div>
+                    <div class="value block"><input type="text" class="numberinput" id="idle-seeding-limit"/></div>
+                </div>
+            </div>
+        </div>
+        <div id="prefs-page-speed">
+            <div class="prefs-section">
+                <div class="title">限速</div>
+                <div class="row">
+                    <div class="key"><input type="checkbox" id="speed-limit-up-enabled"/><label
+                            for="speed-limit-up-enabled">上传 (kB/s):</label></div>
+                    <div class="value"><input type="text" class="numberinput" id="speed-limit-up"/></div>
+                </div>
+                <div class="row">
+                    <div class="key"><input type="checkbox" id="speed-limit-down-enabled"/><label
+                            for="speed-limit-down-enabled">下载 (kB/s):</label></div>
+                    <div class="value"><input type="text" class="numberinput" id="speed-limit-down"/></div>
+                </div>
+            </div>
+            <div class="prefs-section">
+                <div class="title">
+                    <div id="alternative-speed-limits-title">选择性限速</div>
+                </div>
+                <div class="row" style="font-size: smaller; padding-bottom: 4px;">覆盖手动限速或者在计划时间内限速</div>
+                <div class="row">
+                    <div class="key">上传 (kB/s):</div>
+                    <div class="value"><input type="text" class="numberinput" id="alt-speed-up"/></div>
+                </div>
+                <div class="row">
+                    <div class="key">下载 (kB/s):</div>
+                    <div class="value"><input type="text" class="numberinput" id="alt-speed-down"/></div>
+                </div>
+                <div class="checkbox-row"><input type="checkbox" id="alt-speed-time-enabled"/><label
+                        for="alt-speed-time-enabled">计划时段</label></div>
+                <div class="row">
+                    <div class="key">开始时间:</div>
+                    <div class="value"><select id="alt-speed-time-begin"></select></div>
+                </div>
+                <div class="row">
+                    <div class="key">结束时间:</div>
+                    <div class="value"><select id="alt-speed-time-end"></select></div>
+                </div>
+                <div class="row">
+                    <div class="key"><label for="alt-speed-time-day">期间:</label></div>
+                    <div class="value">
+                        <select id="alt-speed-time-day">
+                            <option value="127">每天</option>
+                            <option value="62">工作日</option>
+                            <option value="65">周末</option>
+                            <option value="1">星期天</option>
+                            <option value="2">星期一</option>
+                            <option value="4">星期二</option>
+                            <option value="8">星期三</option>
+                            <option value="16">星期四</option>
+                            <option value="32">星期五</option>
+                            <option value="64">星期六</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="prefs-page-peers">
+            <div class="prefs-section">
+                <div class="title">连接数</div>
+                <div class="row">
+                    <div class="key"><label for="peer-limit-per-torrent">每个种子的最大连接数:</label></div>
+                    <div class="value"><input type="text" class="numberinput" id="peer-limit-per-torrent"/></div>
+                </div>
+                <div class="row">
+                    <div class="key"><label for="peer-limit-global">所有种子累计的最大连接数:</label></div>
+                    <div class="value"><input type="text" class="numberinput" id="peer-limit-global"/></div>
+                </div>
+            </div>
+            <div class="prefs-section">
+                <div class="title">选项</div>
+                <div class="row">
+                    <div class="key">加密模式:</div>
+                    <div class="value">
+                        <select id="encryption">
+                            <option value="tolerated">允许加密</option>
+                            <option value="preferred">喜欢加密</option>
+                            <option value="required">需要加密</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="checkbox-row">
+                    <input type="checkbox" id="pex-enabled" title="PEX is a tool for exchanging peer lists with the peers you're connected to."/>
+                    <label for="pex-enabled" title="PEX is a tool for exchanging peer lists with the peers you're connected to.">使用 PEX
+                        寻找更多的peers</label>
+                </div>
+                <div class="checkbox-row">
+                    <input type="checkbox" id="dht-enabled" title="DHT is a tool for finding peers without a tracker."/>
+                    <label for="dht-enabled" title="DHT is a tool for finding peers without a tracker.">使用 DHT 寻找更多的peers</label>
+                </div>
+                <div class="checkbox-row">
+                    <input type="checkbox" id="lpd-enabled" title="LPD is a tool for finding peers on your local network."/>
+                    <label for="lpd-enabled" title="LPD is a tool for finding peers on your local network.">使用 LPD 寻找更多的peers</label>
+                </div>
+            </div>
+            <div class="prefs-section">
+                <div class="title">拦截列表</div>
+                <div class="row">
+                    <div class="key"><input type="checkbox" id="blocklist-enabled"/>
+                        <label for="blocklist-enabled">开启拦截列表:</label>
+                    </div>
+                    <div class="value">
+                        <input type="url" id="blocklist-url"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="key" style="margin-top: 3px; font-size: smaller;">拦截列表有 <span
+                            id="blocklist-size">?</span> 条规则
+                    </div>
+                    <div class="value"><input type="button" id="blocklist-update-button" value="更新"/></div>
+                </div>
+            </div>
+        </div>
+        <div id="prefs-page-network">
+            <div class="prefs-section">
+                <div class="title">监听端口</div>
+                <div class="row">
+                    <div class="key">
+                        <label for="peer-port">Peer 监听端口:</label>
+                    </div>
+                    <div class="value">
+                        <input type="text" class="numberinput" id="peer-port"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="key">&nbsp;</div>
+                    <div class="value">
+                        <span id="port-label">状态: 未知</span>
+                    </div>
+                </div>
+                <div class="checkbox-row">
+                    <input type="checkbox" id="peer-port-random-on-start"/>
+                    <label for="peer-port-random-on-start">开始时使用随机端口</label>
+                </div>
+                <div class="checkbox-row">
+                    <input type="checkbox" id="port-forwarding-enabled"/>
+                    <label for="port-forwarding-enabled">使用路由器的端口转发</label>
+                </div>
+            </div>
+            <div class="prefs-section">
+                <div class="title">选项</div>
+                <div class="checkbox-row">
+                    <input type="checkbox" id="utp-enabled" title="uTP is a tool for reducing network congestion."/>
+                    <label for="utp-enabled" title="uTP is a tool for reducing network congestion.">为peer通信开启uTP</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="torrent_inspector" style="display:none;">
+
+    <div id="inspector-tabs-wrapper">
+        <div id="inspector-tabs">
+            <div class="inspector-tab selected" id="inspector-tab-info" title="Info"><a href="#info"><span class="icon-info-light"></span></a></div>
+            <div class="inspector-tab" id="inspector-tab-peers" title="Peers"><a href="#peers"><span class="icon-people"></span></a></div>
+            <div class="inspector-tab" id="inspector-tab-trackers" title="Trackers"><a href="#trackers"><span class="icon-server"></span></a></div>
+            <div class="inspector-tab" id="inspector-tab-files" title="Files"><a href="#files"><span class="icon-checklist"></span></a></div>
+        </div><!-- inspector-tabs -->
+    </div><!-- inspector-tabs-wrapper -->
+
+    <div id="inspector_header">
+        <div id="torrent_inspector_name"></div>
+        <span id="torrent_inspector_size"></span>
+    </div>
+
+    <div class="inspector-page" id="inspector-page-info">
+        <div class="prefs-section">
+            <div class="title">活跃状况</div>
+            <div class="row">
+                <div class="key">含有容量（Have）:</div>
+                <div class="value" id="inspector-info-have">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="key">下载完成度:</div>
+                <div class="value" id="inspector-info-availability">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="key">已下载:</div>
+                <div class="value" id="inspector-info-downloaded">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="key">已上传:</div>
+                <div class="value" id="inspector-info-uploaded">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="key">状态:</div>
+                <div class="value" id="inspector-info-state">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="key">下载时长:</div>
+                <div class="value" id="inspector-info-running-time">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="key">预计还需时长:</div>
+                <div class="value" id="inspector-info-remaining-time">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="key">上一次活跃:</div>
+                <div class="value" id="inspector-info-last-activity">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="key">错误:</div>
+                <div class="value" id="inspector-info-error">&nbsp;</div>
+            </div>
+        </div>
+        <div class="prefs-section">
+            <div class="title">细节</div>
+            <div class="row">
+                <div class="key">大小:</div>
+                <div class="value" id="inspector-info-size">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="key">位置:</div>
+                <div class="value" id="inspector-info-location">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="key">哈希:</div>
+                <div class="value" id="inspector-info-hash">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="key">隐私:</div>
+                <div class="value" id="inspector-info-privacy">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="key">起源:</div>
+                <div class="value" id="inspector-info-origin">&nbsp;</div>
+            </div>
+            <div class="row">
+                <div class="key">评论:</div>
+                <div class="value" id="inspector-info-comment">&nbsp;</div>
+            </div>
+        </div>
+    </div><!-- id="inspector_tab_info_container" -->
+
+    <div style="display:none;" class="inspector-page" id="inspector-page-peers">
+        <div id="inspector_peers_list">
+        </div>
+    </div><!-- id="inspector_tab_peers_container" -->
+
+    <div style="display:none;" class="inspector-page" id="inspector-page-trackers">
+        <div id="inspector_trackers_list">
+        </div>
+    </div><!-- id="inspector_tab_trackers_container" -->
+
+    <div style="display:none;" class="inspector-page" id="inspector-page-files">
+        <ul id="file-list-header">
+            <li id="select-all-files">选择全部</li>
+            <li id="deselect-all-files">反选全部</li>
+        </ul>
+        <ul id="inspector_file_list">
+        </ul>
+    </div><!-- id="inspector_tab_files_container" -->
+
+</div>
+
+<div id="torrent_container">
+    <ul class="torrent_list" id="torrent_list"></ul>
+</div>
+
+<div class="dialog_container" id="dialog_container" style="display:none;">
+    <div class="dialog_top_bar"></div>
+    <div class="dialog_window">
+        <div class="dialog_logo" id="dialog_logo"></div>
+        <h2 class="dialog_heading" id="dialog_heading"></h2>
+        <div class="dialog_message" id="dialog_message"></div>
+        <a href="#confirm" id="dialog_confirm_button">Confirm</a>
+        <a href="#cancel" id="dialog_cancel_button">Cancel</a>
+    </div>
+</div>
+
+<div id="about-dialog" style="display:none;">
+    <p id="about-logo"></p>
+    <p id="about-title">Transmission X</p>
+    <p id="about-blurb">快速、简单易用的 BitTorrent 客户端</p>
+    <p id="about-copyright">Copyright (c) Transmission 项目版权所有</p>
+</div>
+
+<div id="stats-dialog" style="display:none;">
+    <div class="prefs-section">
+        <div class="title">当前 Session</div>
+        <div class="row">
+            <div class="key">已上传:</div>
+            <div class="value" id='stats-session-uploaded'>&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="key">已下载:</div>
+            <div class="value" id='stats-session-downloaded'>&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="key">分享率:</div>
+            <div class="value" id='stats-session-ratio'>&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="key">运行时长:</div>
+            <div class="value" id='stats-session-duration'>&nbsp;</div>
+        </div>
+    </div>
+    <div class="prefs-section">
+        <div class="title">累计</div>
+        <div class="row">
+            <div class="key">已开启任务:</div>
+            <div class="value" id='stats-total-count'>&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="key">已上传:</div>
+            <div class="value" id='stats-total-uploaded'>&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="key">已下载:</div>
+            <div class="value" id='stats-total-downloaded'>&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="key">分享率:</div>
+            <div class="value" id='stats-total-ratio'>&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="key">运行时长:</div>
+            <div class="value" id='stats-total-duration'>&nbsp;</div>
+        </div>
+    </div>
+</div>
+
+<div class="dialog_container" id="upload_container" style="display:none;">
+    <div class="dialog_top_bar"></div>
+    <div class="dialog_window">
+        <div class="dialog_logo" id="upload_dialog_logo"></div>
+        <h2 class="dialog_heading">Upload Torrent Files</h2>
+        <form action="#" method="post" id="torrent_upload_form"
+              enctype="multipart/form-data" target="torrent_upload_frame">
+            <div class="dialog_message">
+                <label for="torrent_upload_file">Please select a torrent file to upload:</label>
+                <input type="file" name="torrent_files[]" id="torrent_upload_file" multiple="multiple"/>
+                <label for="torrent_upload_url">Or enter a URL:</label>
+                <input type="url" id="torrent_upload_url"/>
+                <input type="checkbox" id="torrent_auto_start"/>
+                <label for="torrent_auto_start" id="auto_start_label">Start when added</label>
+            </div>
+            <a href="#upload" id="upload_confirm_button">Upload</a>
+            <a href="#cancel" id="upload_cancel_button">Cancel</a>
+        </form>
+    </div>
+</div>
+
+<div class="torrent_footer">
+    <ul id="settings_menu" title="Settings Menu">
+        <li id="button">　
+            <ul id="footer_super_menu">
+                <li id="about-button">关于Transmission</li>
+                <li class="separator"></li>
+                <li id="homepage">主页</li>
+                <li id="tipjar">捐赠</li>
+                <li class="separator"></li>
+                <li id="statistics">统计</li>
+                <li class="separator"></li>
+                <li>下载速率
+                    <ul id="footer_download_rate_menu">
+                        <li id="unlimited_download_rate">不限速</li>
+                        <li id="limited_download_rate">限速 (10 kB/s)</li>
+                        <li class="separator"></li>
+                        <li class='download-speed'>5 kB/s</li>
+                        <li class='download-speed'>10 kB/s</li>
+                        <li class='download-speed'>20 kB/s</li>
+                        <li class='download-speed'>30 kB/s</li>
+                        <li class='download-speed'>40 kB/s</li>
+                        <li class='download-speed'>50 kB/s</li>
+                        <li class='download-speed'>75 kB/s</li>
+                        <li class='download-speed'>100 kB/s</li>
+                        <li class='download-speed'>150 kB/s</li>
+                        <li class='download-speed'>200 kB/s</li>
+                        <li class='download-speed'>250 kB/s</li>
+                        <li class='download-speed'>500 kB/s</li>
+                        <li class='download-speed'>750 kB/s</li>
+                    </ul>
+                </li>
+                <li>上传速率
+                    <ul id="footer_upload_rate_menu">
+                        <li id="unlimited_upload_rate">不限速</li>
+                        <li id="limited_upload_rate">限速 (10 kB/s)</li>
+                        <li class="separator"></li>
+                        <li class='upload-speed'>5 kB/s</li>
+                        <li class='upload-speed'>10 kB/s</li>
+                        <li class='upload-speed'>20 kB/s</li>
+                        <li class='upload-speed'>30 kB/s</li>
+                        <li class='upload-speed'>40 kB/s</li>
+                        <li class='upload-speed'>50 kB/s</li>
+                        <li class='upload-speed'>75 kB/s</li>
+                        <li class='upload-speed'>100 kB/s</li>
+                        <li class='upload-speed'>150 kB/s</li>
+                        <li class='upload-speed'>200 kB/s</li>
+                        <li class='upload-speed'>250 kB/s</li>
+                        <li class='upload-speed'>500 kB/s</li>
+                        <li class='upload-speed'>750 kB/s</li>
+                    </ul>
+                </li>
+                <li class="separator"></li>
+                <li>对传输任务排序
+                    <!--◀-->
+                    <ul id="footer_sort_menu">
+                        <li class='sort-mode' id="sort_by_queue_order">队列顺序</li>
+                        <li class='sort-mode' id="sort_by_activity">活跃度</li>
+                        <li class='sort-mode' id="sort_by_age">时间</li>
+                        <li class='sort-mode' id="sort_by_name">名称</li>
+                        <li class='sort-mode' id="sort_by_percent_completed">进度</li>
+                        <li class='sort-mode' id="sort_by_ratio">分享率</li>
+                        <li class='sort-mode' id="sort_by_size">大小</li>
+                        <li class='sort-mode' id="sort_by_state">状态</li>
+                        <li class="separator"></li>
+                        <li id="reverse_sort_order">反向排序</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div id="prefs-button" title="Edit Preferences..."><span class="icon-config"></span></div>
+    <div id="turtle-button" title="Alternative Speed Limits"><span class="icon-scheduled"></span></div>
+    <div id="compact-button" title="Compact View"><span class="icon-listview"></span></div>
+</div>
+
+<div class="contextMenu" id="torrent_context_menu">
+    <ul>
+        <li id="context_pause_selected" class="disabled context_pause_selected">暂停</li>
+        <li id="context_resume_selected" class="disabled context_resume_selected">恢复</li>
+        <li id="context_resume_now_selected" class="disabled context_resume_selected">立刻恢复</li>
+        <li class="separator"></li>
+        <li id="context_move_top">移到顶部</li>
+        <li id="context_move_up">向上移</li>
+        <li id="context_move_down">向下移</li>
+        <li id="context_move_bottom">移到底部</li>
+        <li class="separator"></li>
+        <li id="context_remove">从列表中删除...</li>
+        <li id="context_removedata">废除数据并且从列表中移除...</li>
+        <li class="separator"></li>
+        <li id="context_verify">检验本地数据</li>
+        <li class="separator"></li>
+        <li id="context_reannounce">向tracker问询更多peers</li>
+    </ul>
+</div>
+
+<iframe name="torrent_upload_frame" id="torrent_upload_frame" src="about:blank"></iframe>
+<script type="text/javascript" src="./javascript/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="./javascript/jquery/jqueryui-1.8.16.min.js"></script>
+<script type="text/javascript" src="./javascript/jquery/jquery.transmenu.min.js"></script>
+<script type="text/javascript" src="./javascript/jquery/jquery.contextmenu.min.js"></script>
+<script type="text/javascript" src="./javascript/jquery/jquery.form.min.js"></script>
+<script type="text/javascript" src="./javascript/jquery/json2.min.js"></script>
+<script type="text/javascript" src="./javascript/common.js"></script>
+<script type="text/javascript" src="./javascript/inspector.js"></script>
+<script type="text/javascript" src="./javascript/prefs-dialog.js"></script>
+<script type="text/javascript" src="./javascript/remote.js"></script>
+<script type="text/javascript" src="./javascript/transmission.js"></script>
+<script type="text/javascript" src="./javascript/torrent.js"></script>
+<script type="text/javascript" src="./javascript/torrent-row.js"></script>
+<script type="text/javascript" src="./javascript/file-row.js"></script>
+<script type="text/javascript" src="./javascript/dialog.js"></script>
+<script type="text/javascript" src="./javascript/formatter.js"></script>
+</body>
+</html>
