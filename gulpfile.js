@@ -7,7 +7,7 @@ const babel = require("gulp-babel");
 const sass = require("gulp-sass");
 const sourcemaps = require("gulp-sourcemaps");
 const uglify = require("gulp-uglify");
-
+    // cleancss = require("gulp-clean-css"),
 const path = {
 	"sass":"source/scss/**/*.scss",
 	"sassLV1":"source/scss/*.scss",
@@ -19,15 +19,17 @@ const path = {
 
 gulp.task("jsCompile", function () {
     gulp.src([path.jsLV1,path.js])
+		// .pipe(sourcemaps.init())
         .pipe(uglify())
+		// .pipe(sourcemaps.write("/maps"))
         .pipe(gulp.dest(path.jsmin));
 });
 
 gulp.task("SassCompile", function () {
     gulp.src([path.sassLV1,path.sass])
-		.pipe(sourcemaps.init())
+		// .pipe(sourcemaps.init())
         .pipe(sass({outputStyle: "compressed"}).on("error", sass.logError))
-        .pipe(sourcemaps.write("/maps"))
+        // .pipe(sourcemaps.write("/maps"))
         .pipe(gulp.dest(path.css));
 });
 

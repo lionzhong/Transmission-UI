@@ -90,12 +90,12 @@ TorrentRendererHelper.renderProgressbar = function(controller, t, progressbar)
 
 TorrentRendererHelper.formatUL = function(t)
 {
-	return '&uarr; ' + Transmission.fmt.speedBps(t.getUploadSpeed());
+	return '上传速度：' + Transmission.fmt.speedBps(t.getUploadSpeed());
 };
 
 TorrentRendererHelper.formatDL = function(t)
 {
-	return '&darr; ' + Transmission.fmt.speedBps(t.getDownloadSpeed());
+	return '下载速度：' + Transmission.fmt.speedBps(t.getDownloadSpeed());
 };
 
 /****
@@ -153,9 +153,9 @@ TorrentRendererFull.prototype =
 			return err;
 
 		if (t.isDownloading())
-			return [ 'Downloading from',
+			return [ '下载中',
 			         t.getPeersSendingToUs(),
-			         'of',
+			         ' / ',
 			         t.getPeersConnected(),
 			         'peers',
 			         '-',
@@ -163,16 +163,16 @@ TorrentRendererFull.prototype =
 			         TorrentRendererHelper.formatUL(t) ].join(' ');
 
 		if (t.isSeeding())
-			return [ 'Seeding to',
+			return [ '做种中：',
 			         t.getPeersGettingFromUs(),
-			         'of',
+			         ' / ',
 			         t.getPeersConnected(),
 			         'peers',
-			         '-',
+			         ' - ',
 			         TorrentRendererHelper.formatUL(t) ].join(' ');
 
 		if (t.isChecking())
-			return [ 'Verifying local data (',
+			return [ '验证本地数据中 (',
 			         Transmission.fmt.percentString(100.0 * t.getRecheckProgress()),
 			         '% tested)' ].join('');
 
@@ -202,14 +202,16 @@ TorrentRendererFull.prototype =
 				      Transmission.fmt.size(t.getTotalSize()),
 				      ' (', t.getPercentDoneStr(), '%)' ];
 			// append UL stats: ', uploaded 8.59 GiB (Ratio: 12.3)'
-			c.push(', uploaded ',
+			c.push(', 已上传 ',
 			        Transmission.fmt.size(t.getUploadedEver()),
-			        ' (Ratio ',
+			        ' (分享率 ',
 			        Transmission.fmt.ratioString(t.getUploadRatio()),
 			        ')');
 		} else { // not done yet
-			c = [ Transmission.fmt.size(sizeWhenDone - t.getLeftUntilDone()),
-			      ' of ', Transmission.fmt.size(sizeWhenDone),
+			c = [
+				  '已下载：',
+				  Transmission.fmt.size(sizeWhenDone - t.getLeftUntilDone()),
+			      ' / ', Transmission.fmt.size(sizeWhenDone),
 			      ' (', t.getPercentDoneStr(), '%)' ];
 		}
 

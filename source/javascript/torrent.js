@@ -253,16 +253,16 @@ Torrent.prototype =
 	getPercentDone: function() { return this.fields.percentDone; },
 	getStateString: function() {
 		switch(this.getStatus()) {
-			case Torrent._StatusStopped:        return this.isFinished() ? 'Seeding complete' : 'Paused';
-			case Torrent._StatusCheckWait:      return 'Queued for verification';
-			case Torrent._StatusCheck:          return 'Verifying local data';
-			case Torrent._StatusDownloadWait:   return 'Queued for download';
-			case Torrent._StatusDownload:       return 'Downloading';
-			case Torrent._StatusSeedWait:       return 'Queued for seeding';
-			case Torrent._StatusSeed:           return 'Seeding';
+			case Torrent._StatusStopped:        return this.isFinished() ? '完成做种' : '暂停';
+			case Torrent._StatusCheckWait:      return '排队等待验证';
+			case Torrent._StatusCheck:          return '正在验证本地数据';
+			case Torrent._StatusDownloadWait:   return '排队等待下载';
+			case Torrent._StatusDownload:       return '下载中';
+			case Torrent._StatusSeedWait:       return '排队等待做种';
+			case Torrent._StatusSeed:           return '做种中';
 			case null:
-			case undefined:                     return 'Unknown';
-			default:                            return 'Error';
+			case undefined:                     return '未知';
+			default:                            return '错误';
 		}
 	},
 	seedRatioLimit: function(controller){
@@ -274,13 +274,18 @@ Torrent.prototype =
 	},
 	getErrorMessage: function() {
 		var str = this.getErrorString();
+		switch (str){
+			case "No data found! Ensure your drives are connected or use \"Set Location\". To re-download, remove the torrent and re-add it.":
+				str = "找不到数据！确保您的驱动器已连接或使用 \"设置下载目录\". 要重新下载, 需要移除并重新添加种子。";
+				break;
+		}
 		switch(this.getError()) {
 			case Torrent._ErrTrackerWarning:
-				return 'Tracker returned a warning: ' + str;
+				return 'Tracker 返回了一个警告: ' + str;
 			case Torrent._ErrTrackerError:
-				return 'Tracker returned an error: ' + str;
+				return 'Tracker 返回了一个错误: ' + str;
 			case Torrent._ErrLocalError:
-				return 'Error: ' + str;
+				return '错误: ' + str;
 			default:
 				return null;
 		}

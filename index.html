@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +10,7 @@
     <link href="./images/favicon.ico" rel="icon"/>
     <link href="./images/favicon.png" rel="shortcut icon"/>
     <link rel="apple-touch-icon" href="./images/webclip-icon.png"/>
+
     <link rel="stylesheet" href="style/jqueryui/jqueryui-1.8.16.css" type="text/css" media="all"/>
     <link media="only screen and (max-device-width: 480px)" href="./style/transmission/mobile.css" type="text/css"
           rel="stylesheet"/>
@@ -20,22 +20,6 @@
     <!--[if IE 8]>
     <link media="screen" href="./style/transmission/common.css" type="text/css" rel="stylesheet"/>
     <![endif]-->
-    <script type="text/javascript" src="./javascript/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="./javascript/jquery/jqueryui-1.8.16.min.js"></script>
-    <script type="text/javascript" src="./javascript/jquery/jquery.transmenu.min.js"></script>
-    <script type="text/javascript" src="./javascript/jquery/jquery.contextmenu.min.js"></script>
-    <script type="text/javascript" src="./javascript/jquery/jquery.form.min.js"></script>
-    <script type="text/javascript" src="./javascript/jquery/json2.min.js"></script>
-    <script type="text/javascript" src="./javascript/common.js"></script>
-    <script type="text/javascript" src="./javascript/inspector.js"></script>
-    <script type="text/javascript" src="./javascript/prefs-dialog.js"></script>
-    <script type="text/javascript" src="./javascript/remote.js"></script>
-    <script type="text/javascript" src="./javascript/transmission.js"></script>
-    <script type="text/javascript" src="./javascript/torrent.js"></script>
-    <script type="text/javascript" src="./javascript/torrent-row.js"></script>
-    <script type="text/javascript" src="./javascript/file-row.js"></script>
-    <script type="text/javascript" src="./javascript/dialog.js"></script>
-    <script type="text/javascript" src="./javascript/formatter.js"></script>
     <title>Transmission 控制台</title>
 </head>
 <body id="transmission_body">
@@ -379,9 +363,12 @@
 <div class="dialog_container" id="dialog_container" style="display:none;">
     <div class="dialog_top_bar"></div>
     <div class="dialog_window">
-        <div class="dialog_logo" id="dialog_logo"></div>
-        <h2 class="dialog_heading" id="dialog_heading"></h2>
-        <div class="dialog_message" id="dialog_message"></div>
+        <div class="clearfix">
+            <div class="dialog_logo" id="dialog_logo"></div>
+            <h2 class="dialog_heading" id="dialog_heading"></h2>
+            <div class="dialog_message" id="dialog_message"></div>
+        </div>
+
         <a href="#confirm" id="dialog_confirm_button">确认</a>
         <a href="#cancel" id="dialog_cancel_button">取消</a>
     </div>
@@ -444,8 +431,7 @@
     <div class="dialog_window">
         <div class="dialog_logo" id="upload_dialog_logo"></div>
         <h2 class="dialog_heading">上传种子文件</h2>
-        <form action="#" method="post" id="torrent_upload_form"
-              enctype="multipart/form-data" target="torrent_upload_frame">
+        <form action="#" method="post" id="torrent_upload_form" enctype="multipart/form-data" target="torrent_upload_frame">
             <div class="dialog_message">
                 <label for="torrent_upload_file">请选择一个种子文件上传:</label>
                 <input type="file" name="torrent_files[]" id="torrent_upload_file" multiple="multiple"/>
@@ -556,6 +542,21 @@
 </div>
 
 <iframe name="torrent_upload_frame" id="torrent_upload_frame" src="about:blank"></iframe>
-
+<script type="text/javascript" src="./javascript/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="./javascript/jquery/jqueryui-1.8.16.min.js"></script>
+<script type="text/javascript" src="./javascript/jquery/jquery.transmenu.min.js"></script>
+<script type="text/javascript" src="./javascript/jquery/jquery.contextmenu.min.js"></script>
+<script type="text/javascript" src="./javascript/jquery/jquery.form.min.js"></script>
+<script type="text/javascript" src="./javascript/jquery/json2.min.js"></script>
+<script type="text/javascript" src="./javascript/common.js"></script>
+<script type="text/javascript" src="./javascript/inspector.js"></script>
+<script type="text/javascript" src="./javascript/prefs-dialog.js"></script>
+<script type="text/javascript" src="./javascript/remote.js"></script>
+<script type="text/javascript" src="./javascript/transmission.js"></script>
+<script type="text/javascript" src="./javascript/torrent.js"></script>
+<script type="text/javascript" src="./javascript/torrent-row.js"></script>
+<script type="text/javascript" src="./javascript/file-row.js"></script>
+<script type="text/javascript" src="./javascript/dialog.js"></script>
+<script type="text/javascript" src="./javascript/formatter.js"></script>
 </body>
 </html>

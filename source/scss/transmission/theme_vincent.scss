@@ -399,7 +399,7 @@ ul.torrent_list {
       background-color: #e9fff3;
       div {
         &.torrent_progress_details.error, &.torrent_peer_details.error {
-          color: #FFF;
+          color: #FF0003;
         }
       }
     }
@@ -836,20 +836,15 @@ div {
     }
     div.dialog_window {
       h2.dialog_heading {
-        display: block;
-        float: left;
-        width: 305px;
         font-size: $font-size-large*1.2;
         color: black;
-        margin-top: 20px;
         word-break: break-all;
         word-wrap: break-word;
+        margin: 20px 20px 20px 108px;
       }
       div.dialog_message {
-        float: left;
+        margin: 0 0 0 108px;
         padding-left: 3px;
-        margin-left: -3px;
-        width: 305px;
         overflow: hidden;
       }
       a {
