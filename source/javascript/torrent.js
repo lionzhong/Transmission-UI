@@ -273,12 +273,7 @@ Torrent.prototype =
 		}
 	},
 	getErrorMessage: function() {
-		var str = this.getErrorString();
-		switch (str){
-			case "No data found! Ensure your drives are connected or use \"Set Location\". To re-download, remove the torrent and re-add it.":
-				str = "找不到数据！确保您的驱动器已连接或使用 \"设置下载目录\". 要重新下载, 需要移除并重新添加种子。";
-				break;
-		}
+		var str = parseStr(this.getErrorString());
 		switch(this.getError()) {
 			case Torrent._ErrTrackerWarning:
 				return 'Tracker 返回了一个警告: ' + str;

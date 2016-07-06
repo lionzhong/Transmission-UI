@@ -229,13 +229,13 @@ Transmission.fmt = (function()
 			var dateDiff = now.getDate() - myDate.getDate();
 			if (sameYear && sameMonth && Math.abs(dateDiff) <= 1){
 				if (dateDiff === 0){
-					date = "Today";
+					date = "今天";
 				}
 				else if (dateDiff === 1){
-					date = "Yesterday";
+					date = "昨天";
 				}
 				else{
-					date = "Tomorrow";
+					date = "明天";
 				}
 			}
 			else{
@@ -243,10 +243,10 @@ Transmission.fmt = (function()
 			}
 
 			var hours = myDate.getHours();
-			var period = "AM";
+			var period = "上午";
 			if (hours > 12){
 				hours = hours - 12;
-				period = "PM";
+				period = "下午";
 			}
 			if (hours === 0){
 				hours = 12;

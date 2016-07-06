@@ -305,3 +305,15 @@ parseUri.options = {
 		loose:  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/
 	}
 };
+
+function parseStr(str) {
+	switch (str){
+		case "No data found! Ensure your drives are connected or use \"Set Location\". To re-download, remove the torrent and re-add it.":
+			str = "找不到数据！确保您的驱动器已连接或使用 \"设置下载目录\". 要重新下载, 需要移除并重新添加种子。";
+			break;
+		case "You already are downloading the same torrent. You may only 1 leech from one location at a time.":
+			str = "你正在下载同一个种子，在同一位置同一时间，你只能 1 leech。";
+			break;
+	}
+	return str;
+}

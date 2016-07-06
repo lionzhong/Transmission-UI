@@ -178,7 +178,7 @@ function Inspector(controller) {
             else if( !haveUnverified )
                 str = fmt.size(haveVerified) + ' / ' + fmt.size(sizeWhenDone) + ' (' + str +'%)';
             else
-                str = fmt.size(haveVerified) + ' / ' + fmt.size(sizeWhenDone) + ' (' + str +'%), ' + fmt.size(haveUnverified) + ' Unverified';
+                str = fmt.size(haveVerified) + ' / ' + fmt.size(sizeWhenDone) + ' (' + str +'%), ' + fmt.size(haveUnverified) + ' 未核实';
         }
         setTextContent(e.have_lb, str);
 
@@ -325,7 +325,7 @@ function Inspector(controller) {
                 }
             }
         }
-        setTextContent(e.error_lb, str || none);
+        setTextContent(e.error_lb, parseStr(str) || none);
 
         //
         // size
@@ -430,7 +430,9 @@ function Inspector(controller) {
             else if(mixed_creator && date)
                 str = '创建日期 ' + (new Date(date*1000)).toDateString();
             else
-                str = '在 ' + (new Date(date*1000)).toDateString() + '被' + creator + '创建';
+                var $date = new Date(date*1000);
+                var dateStr = $date.getFullYear()+"年"+$date.getMonth()+"月"+$date.getDay()+"日";
+                str = '在 ' + dateStr + '被' + creator + '创建';
         }
         setTextContent(e.origin_lb, str);
 
@@ -613,7 +615,7 @@ function Inspector(controller) {
                 lastAnnounce = [ lastAnnounceTime, ' (已连接 ',  Transmission.fmt.plural(tracker.lastAnnouncePeerCount, 'peer'), ')' ];
             } else {
                 lastAnnounceLabel = '播报错误';
-                lastAnnounce = [ (tracker.lastAnnounceResult ? (tracker.lastAnnounceResult + ' - ') : ''), lastAnnounceTime ];
+                lastAnnounce = [ (tracker.lastAnnounceResult ? (parseStr(tracker.lastAnnounceResult) + ' - ') : ''), lastAnnounceTime ];
             }
         }
         return { 'label':lastAnnounceLabel, 'value':lastAnnounce.join('') };
@@ -765,4 +767,4 @@ function Inspector(controller) {
     };
 
     initialize (controller);
-};
+}
