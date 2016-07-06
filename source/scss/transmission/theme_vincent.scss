@@ -233,7 +233,10 @@ div#toolbar {
 ****  TORRENT CONTAINER
 ****
 ***/
-
+.selection-none{
+  @include css3("user-select",none);
+  @include css3("::selection",none);
+}
 div#torrent_container {
   position: fixed;
   top: 93px;
@@ -244,6 +247,7 @@ div#torrent_container {
   margin: 0;
   overflow: auto;
   z-index: 4;
+  @extend .selection-none;
   @media (max-width: 1024px) {
     top: 55px;
     bottom: 2.7em;
@@ -256,6 +260,7 @@ ul.torrent_list {
   padding: 0;
   text-align: left;
   cursor: pointer;
+  @extend .selection-none;
   /**
    * Progressbar
    *
@@ -279,6 +284,7 @@ ul.torrent_list {
     color: #666;
     background-color: white;
     position: relative;
+    @extend .selection-none;
     &.even {
       background-color: #F7F7F7;
     }
@@ -452,8 +458,7 @@ ul.torrent_list {
 
 #prefs-dialog.ui-tabs .ui-tabs-panel {
   padding: 0;
-  -moz-user-select: none;
-  -webkit-user-select: none;
+  @extend .selection-none;
 }
 
 .prefs-section {
