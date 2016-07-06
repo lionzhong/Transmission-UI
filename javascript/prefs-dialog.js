@@ -1,1 +1,318 @@
-function PrefsDialog(e){var t={dialog:null,remote:null,elements:{},keys:["alt-speed-down","alt-speed-time-begin","alt-speed-time-day","alt-speed-time-enabled","alt-speed-time-end","alt-speed-up","blocklist-enabled","blocklist-size","blocklist-url","dht-enabled","download-dir","encryption","idle-seeding-limit","idle-seeding-limit-enabled","lpd-enabled","peer-limit-global","peer-limit-per-torrent","peer-port","peer-port-random-on-start","pex-enabled","port-forwarding-enabled","rename-partial-files","seedRatioLimit","seedRatioLimited","speed-limit-down","speed-limit-down-enabled","speed-limit-up","speed-limit-up-enabled","start-added-torrents","utp-enabled"],groups:{"alt-speed-time-enabled":["alt-speed-time-begin","alt-speed-time-day","alt-speed-time-end"],"blocklist-enabled":["blocklist-url","blocklist-update-button"],"idle-seeding-limit-enabled":["idle-seeding-limit"],seedRatioLimited:["seedRatioLimit"],"speed-limit-down-enabled":["speed-limit-down"],"speed-limit-up-enabled":["speed-limit-up"]}},i=function(e){var t,i,s,n,o;for(t=0;t<96;++t)i=parseInt(t/4,10),s=t%4*15,n=15*t,o=i+":"+(s||"00"),e.options[t]=new Option(o,n)},s=function(e){var i=e.arguments["port-is-open"],s="Port is <b>"+(i?"Open":"Closed")+"</b>",n=t.elements.root.find("#port-label");setInnerHTML(n[0],s)},n=function(e,i){var s,n,o,a;if(e in t.groups)for(a=t.elements.root,o=t.groups[e],s=0;n=o[s];++s)a.find("#"+n).attr("disabled",!i)},o=function(){t.remote.updateBlocklist(),a(!1)},a=function(e){var i=t.elements.blocklist_button;i.attr("disabled",!e),i.val(e?"Update":"Updating...")},l=function(e){var t;switch(e[0].type){case"checkbox":case"radio":return e.prop("checked");case"text":case"url":case"email":case"number":case"search":case"select-one":return t=e.val(),parseInt(t,10).toString()===t?parseInt(t,10):parseFloat(t).toString()===t?parseFloat(t):t;default:return null}},d=function(e){var i={};i[e.target.id]=l($(e.target)),t.remote.savePrefs(i)},r=function(e){t.oldValue=l($(e.target))},c=function(e){var i=l($(e.target));if(i!==t.oldValue){var s={};s[e.target.id]=i,t.remote.savePrefs(s),delete t.oldValue}},p=function(){return{width:$(window).width(),height:$(window).height(),position:["left","top"]}},m=function(e){var s,n,a,l;for(t.remote=e,a=$("#prefs-dialog"),t.elements.root=a,i(a.find("#alt-speed-time-begin")[0]),i(a.find("#alt-speed-time-end")[0]),l=isMobileDevice?p():{width:350,height:400},l.autoOpen=!1,l.show=l.hide="fade",l.close=b,a.tabbedDialog(l),a=a.find("#blocklist-update-button"),t.elements.blocklist_button=a,a.click(o),s=0;n=t.keys[s];++s)switch(a=t.elements.root.find("#"+n),a[0].type){case"checkbox":case"radio":case"select-one":a.change(d);break;case"text":case"url":case"email":case"number":case"search":a.focus(r),a.blur(c)}},u=function(){var e,i,s,n={},o=t.keys,a=t.elements.root;for(e=0;i=o[e];++e)s=l(a.find("#"+i)),null!==s&&(n[i]=s);return n},b=function(){transmission.hideMobileAddressbar(),$(t.dialog).trigger("closed",u())};this.set=function(e){var i,s,o,l,d=t.keys,r=t.elements.root;for(a(!0),s=0;o=d[s];++s)if(l=e[o],i=r.find("#"+o),"blocklist-size"===o)i.text(""+l.toStringWithCommas());else switch(i[0].type){case"checkbox":case"radio":i.prop("checked",l),n(o,l);break;case"text":case"url":case"email":case"number":case"search":i[0]!==document.activeElement&&i.val(l);break;case"select-one":i.val(l)}},this.show=function(){transmission.hideMobileAddressbar(),a(!0),t.remote.checkPort(s,this),t.elements.root.dialog("open")},this.close=function(){transmission.hideMobileAddressbar(),t.elements.root.dialog("close")},this.shouldAddedTorrentsStart=function(){return t.elements.root.find("#start-added-torrents")[0].checked},t.dialog=this,m(e)}
+/**
+ * Copyright © Jordan Lee, Dave Perrett, Malcolm Jarvis and Bruno Bierbaumer
+ *
+ * This file is licensed under the GPLv2.
+ * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ */
+
+function PrefsDialog(remote) {
+
+    var data = {
+        dialog: null,
+        remote: null,
+        elements: { },
+
+        // all the RPC session keys that we have gui controls for
+        keys: [
+            'alt-speed-down',
+            'alt-speed-time-begin',
+            'alt-speed-time-day',
+            'alt-speed-time-enabled',
+            'alt-speed-time-end',
+            'alt-speed-up',
+            'blocklist-enabled',
+            'blocklist-size',
+            'blocklist-url',
+            'dht-enabled',
+            'download-dir',
+            'encryption',
+            'idle-seeding-limit',
+            'idle-seeding-limit-enabled',
+            'lpd-enabled',
+            'peer-limit-global',
+            'peer-limit-per-torrent',
+            'peer-port',
+            'peer-port-random-on-start',
+            'pex-enabled',
+            'port-forwarding-enabled',
+            'rename-partial-files',
+            'seedRatioLimit',
+            'seedRatioLimited',
+            'speed-limit-down',
+            'speed-limit-down-enabled',
+            'speed-limit-up',
+            'speed-limit-up-enabled',
+            'start-added-torrents',
+            'utp-enabled'
+        ],
+
+        // map of keys that are enabled only if a 'parent' key is enabled
+        groups: {
+            'alt-speed-time-enabled': ['alt-speed-time-begin',
+                                       'alt-speed-time-day',
+                                       'alt-speed-time-end' ],
+            'blocklist-enabled': ['blocklist-url',
+                                  'blocklist-update-button' ],
+            'idle-seeding-limit-enabled': [ 'idle-seeding-limit' ],
+            'seedRatioLimited': [ 'seedRatioLimit' ],
+            'speed-limit-down-enabled': [ 'speed-limit-down' ],
+            'speed-limit-up-enabled': [ 'speed-limit-up' ]
+        }
+    },
+
+    initTimeDropDown = function(e)
+    {
+        var i, hour, mins, value, content;
+
+        for (i=0; i<24*4; ++i) {
+            hour = parseInt(i/4, 10);
+            mins = ((i%4) * 15);
+            value = i * 15;
+            content = hour + ':' + (mins || '00');
+            e.options[i] = new Option(content, value);
+        }
+    },
+
+    onPortChecked = function(response)
+    {
+        var is_open = response['arguments']['port-is-open'],
+            text = 'Port is <b>' + (is_open ? 'Open' : 'Closed') + '</b>',
+            e = data.elements.root.find('#port-label');
+        setInnerHTML(e[0],text);
+    },
+
+    setGroupEnabled = function(parent_key, enabled)
+    {
+        var i, key, keys, root;
+
+        if (parent_key in data.groups)
+        {
+            root = data.elements.root,
+            keys = data.groups[parent_key];
+
+            for (i=0; key=keys[i]; ++i)
+                root.find('#'+key).attr('disabled',!enabled);
+        }
+    },
+
+    onBlocklistUpdateClicked = function ()
+    {
+        data.remote.updateBlocklist();
+        setBlocklistButtonEnabled(false);
+    },
+    setBlocklistButtonEnabled = function(b)
+    {
+        var e = data.elements.blocklist_button;
+        e.attr('disabled',!b);
+        e.val(b ? 'Update' : 'Updating...');
+    },
+
+    getValue = function(e)
+    {
+        var str;
+
+        switch (e[0].type)
+        {
+            case 'checkbox':
+            case 'radio':
+                return e.prop('checked');
+
+            case 'text':
+            case 'url':
+            case 'email':
+            case 'number':
+            case 'search':
+            case 'select-one':
+                str = e.val();
+                if( parseInt(str,10).toString() === str)
+                    return parseInt(str,10);
+                if( parseFloat(str).toString() === str)
+                    return parseFloat(str);
+                return str;
+
+            default:
+                return null;
+        }
+    },
+
+    /* this callback is for controls whose changes can be applied
+       immediately, like checkboxs, radioboxes, and selects */
+    onControlChanged = function(ev)
+    {
+        var o = {};
+        o[ev.target.id] = getValue($(ev.target));
+        data.remote.savePrefs(o);
+    },
+        
+    /* these two callbacks are for controls whose changes can't be applied
+       immediately -- like a text entry field -- because it takes many
+       change events for the user to get to the desired result */
+    onControlFocused  = function(ev)
+    {
+        data.oldValue = getValue($(ev.target));
+    },
+    onControlBlurred  = function(ev)
+    {
+        var newValue = getValue($(ev.target));
+        if (newValue !== data.oldValue)
+        {
+            var o = {};
+            o[ev.target.id] = newValue;
+            data.remote.savePrefs(o);
+            delete data.oldValue;
+        }
+    },
+
+    getDefaultMobileOptions = function()
+    {
+        return {
+            width: $(window).width(),
+            height: $(window).height(),
+            position: [ 'left', 'top' ]
+        };
+    },
+
+    initialize = function (remote)
+    {
+        var i, key, e, o;
+
+        data.remote = remote;
+
+        e = $('#prefs-dialog');
+        data.elements.root = e;
+
+        initTimeDropDown(e.find('#alt-speed-time-begin')[0]);
+        initTimeDropDown(e.find('#alt-speed-time-end')[0]);
+
+        o = isMobileDevice
+          ? getDefaultMobileOptions()
+          : { width: 350, height: 400 };
+        o.autoOpen = false;
+        o.show = o.hide = 'fade';
+        o.close = onDialogClosed;
+        e.tabbedDialog(o);
+
+        e = e.find('#blocklist-update-button');
+        data.elements.blocklist_button = e;
+        e.click(onBlocklistUpdateClicked);
+
+        // listen for user input
+        for (i=0; key=data.keys[i]; ++i)
+        {
+            e = data.elements.root.find('#'+key);
+            switch (e[0].type)
+            {
+                case 'checkbox':
+                case 'radio':
+                case 'select-one':
+                    e.change(onControlChanged);
+                    break;
+
+                case 'text':
+                case 'url':
+                case 'email':
+                case 'number':
+                case 'search':
+                    e.focus(onControlFocused);
+                    e.blur(onControlBlurred);
+
+                default:
+                    break;
+            }
+        }
+    },
+
+    getValues = function()
+    {
+        var i, key, val, o={},
+            keys = data.keys,
+            root = data.elements.root;
+
+        for (i=0; key=keys[i]; ++i) {
+            val = getValue(root.find('#'+key));
+            if (val !== null)
+                o[key] = val;
+        }
+
+        return o;
+    },
+
+    onDialogClosed = function()
+    {
+        transmission.hideMobileAddressbar();
+
+        $(data.dialog).trigger('closed', getValues());
+    };
+
+    /****
+    *****  PUBLIC FUNCTIONS
+    ****/
+
+    // update the dialog's controls
+    this.set = function (o)
+    {
+        var e, i, key, val, option,
+            keys = data.keys,
+            root = data.elements.root;
+
+        setBlocklistButtonEnabled(true);
+
+        for (i=0; key=keys[i]; ++i)
+        {
+            val = o[key];
+            e = root.find('#'+key);
+
+            if (key === 'blocklist-size')
+            {
+                // special case -- regular text area
+                e.text('' + val.toStringWithCommas());
+            }
+            else switch (e[0].type)
+            {
+                case 'checkbox':
+                case 'radio':
+                    e.prop('checked', val);
+                    setGroupEnabled(key, val);
+                    break;
+                case 'text':
+                case 'url':
+                case 'email':
+                case 'number':
+                case 'search':
+                    // don't change the text if the user's editing it.
+                    // it's very annoying when that happens!
+                    if (e[0] !== document.activeElement)
+                        e.val(val);
+                    break;
+                case 'select-one':
+                    e.val(val);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    this.show = function ()
+    {
+        transmission.hideMobileAddressbar();
+
+        setBlocklistButtonEnabled(true);
+        data.remote.checkPort(onPortChecked,this);
+        data.elements.root.dialog('open');
+    };
+
+    this.close = function ()
+    {
+        transmission.hideMobileAddressbar();
+        data.elements.root.dialog('close');
+    },
+
+    this.shouldAddedTorrentsStart = function()
+    {
+        return data.elements.root.find('#start-added-torrents')[0].checked;
+    };
+
+    data.dialog = this;
+    initialize (remote);
+};

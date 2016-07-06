@@ -94,9 +94,9 @@ function Inspector(controller) {
         var torrents = data.torrents,
             e = data.elements,
             fmt = Transmission.fmt,
-            none = 'None',
-            mixed = 'Mixed',
-            unknown = 'Unknown',
+            none = '无',
+            mixed = '已合并',
+            unknown = '未知',
             isMixed, allPaused, allFinished,
             str,
             baseline, it, s, i, t,
@@ -140,9 +140,9 @@ function Inspector(controller) {
             if( isMixed )
                 str = mixed;
             else if( allFinished )
-                str = 'Finished';
+                str = '已完成';
             else if( allPaused )
-                str = 'Paused';
+                str = '已暂停';
             else
                 str = torrents[0].getStateString();
         }
@@ -176,9 +176,9 @@ function Inspector(controller) {
             if( !haveUnverified && !leftUntilDone )
                 str = fmt.size(haveVerified) + ' (100%)';
             else if( !haveUnverified )
-                str = fmt.size(haveVerified) + ' of ' + fmt.size(sizeWhenDone) + ' (' + str +'%)';
+                str = fmt.size(haveVerified) + ' / ' + fmt.size(sizeWhenDone) + ' (' + str +'%)';
             else
-                str = fmt.size(haveVerified) + ' of ' + fmt.size(sizeWhenDone) + ' (' + str +'%), ' + fmt.size(haveUnverified) + ' Unverified';
+                str = fmt.size(haveVerified) + ' / ' + fmt.size(sizeWhenDone) + ' (' + str +'%), ' + fmt.size(haveUnverified) + ' Unverified';
         }
         setTextContent(e.have_lb, str);
 
@@ -207,7 +207,7 @@ function Inspector(controller) {
                 f += t.getFailedEver();
             }
             if(f)
-                str = fmt.size(d) + ' (' + fmt.size(f) + ' corrupt)';
+                str = fmt.size(d) + ' (' + fmt.size(f) + ' 已丢弃)';
             else
                 str = fmt.size(d);
         }
@@ -234,7 +234,7 @@ function Inspector(controller) {
 					u += t.getUploadedEver();
 				}
 			}
-            str = fmt.size(u) + ' (Ratio: ' + fmt.ratioString( Math.ratio(u,d))+')';
+            str = fmt.size(u) + ' (分享率: ' + fmt.ratioString( Math.ratio(u,d))+')';
         }
         setTextContent(e.uploaded_lb, str);
 
@@ -304,9 +304,9 @@ function Inspector(controller) {
             if(d < 0)
                 str = none;
             else if(d < 5)
-                str = 'Active now';
+                str = '现在'/*'Active now'*/;
             else
-                str = fmt.timeInterval(d) + ' ago';
+                str = fmt.timeInterval(d) + ' 以前';
         }
         setTextContent(e.last_activity_lb, str);
 
@@ -346,9 +346,9 @@ function Inspector(controller) {
             if(!size)
                 str = none;
             else if(pieceSize > 0)
-                str = fmt.size(size) + ' (' + pieces.toStringWithCommas() + ' pieces @ ' + fmt.mem(pieceSize) + ')';
+                str = fmt.size(size) + ' (' + pieces.toStringWithCommas() + ' 片 @ ' + fmt.mem(pieceSize) + ')';
             else
-                str = fmt.size(size) + ' (' + pieces.toStringWithCommas() + ' pieces)';
+                str = fmt.size(size) + ' (' + pieces.toStringWithCommas() + ' 片)';
         }
         setTextContent(e.size_lb, str);
 
@@ -377,7 +377,7 @@ function Inspector(controller) {
             str = none;
         else {
             baseline = torrents[0].getPrivateFlag();
-            str = baseline ? 'Private to this tracker -- DHT and PEX disabled' : 'Public torrent';
+            str = baseline ? '私有分享到这个 tracker -- 已禁用DHT 和 PEX' : '发布种子';
             for(i=0; t=torrents[i]; ++i) {
                 if(baseline != t.getPrivateFlag()) {
                     str = mixed;
@@ -426,11 +426,11 @@ function Inspector(controller) {
             if(mixed_creator && mixed_date)
                 str = mixed;
             else if(mixed_date && creator.length)
-                str = 'Created by ' + creator;
+                str = '创建者 ' + creator;
             else if(mixed_creator && date)
-                str = 'Created on ' + (new Date(date*1000)).toDateString();
+                str = '创建日期 ' + (new Date(date*1000)).toDateString();
             else
-                str = 'Created by ' + creator + ' on ' + (new Date(date*1000)).toDateString();
+                str = '在 ' + (new Date(date*1000)).toDateString() + '被' + creator + '创建';
         }
         setTextContent(e.origin_lb, str);
 
@@ -578,41 +578,41 @@ function Inspector(controller) {
         var timeUntilAnnounce, s = '';
         switch (tracker.announceState) {
             case Torrent._TrackerActive:
-                s = 'Announce in progress';
+                s = '正在播报';
                 break;
             case Torrent._TrackerWaiting:
                 timeUntilAnnounce = tracker.nextAnnounceTime - ((new Date()).getTime() / 1000);
                 if (timeUntilAnnounce < 0) {
                     timeUntilAnnounce = 0;
                 }
-                s = 'Next announce in ' + Transmission.fmt.timeInterval(timeUntilAnnounce);
+                s = '下次播报时间：' + Transmission.fmt.timeInterval(timeUntilAnnounce);
                 break;
             case Torrent._TrackerQueued:
-                s = 'Announce is queued';
+                s = '请求播报已排队';
                 break;
             case Torrent._TrackerInactive:
                 s = tracker.isBackup ?
-                    'Tracker will be used as a backup' :
-                    'Announce not scheduled';
+                    'Tracker将作为备用' :
+                    '没有播报计划';
                 break;
             default:
-                s = 'unknown announce state: ' + tracker.announceState;
+                s = '未知的播报状态: ' + tracker.announceState;
         }
         return s;
     },
 
     lastAnnounceStatus = function(tracker) {
 
-        var lastAnnounceLabel = 'Last Announce',
+        var lastAnnounceLabel = '最后播报时间',
             lastAnnounce = [ 'N/A' ],
         lastAnnounceTime;
 
         if (tracker.hasAnnounced) {
             lastAnnounceTime = Transmission.fmt.timestamp(tracker.lastAnnounceTime);
             if (tracker.lastAnnounceSucceeded) {
-                lastAnnounce = [ lastAnnounceTime, ' (got ',  Transmission.fmt.plural(tracker.lastAnnouncePeerCount, 'peer'), ')' ];
+                lastAnnounce = [ lastAnnounceTime, ' (已连接 ',  Transmission.fmt.plural(tracker.lastAnnouncePeerCount, 'peer'), ')' ];
             } else {
-                lastAnnounceLabel = 'Announce error';
+                lastAnnounceLabel = '播报错误';
                 lastAnnounce = [ (tracker.lastAnnounceResult ? (tracker.lastAnnounceResult + ' - ') : ''), lastAnnounceTime ];
             }
         }
@@ -621,7 +621,7 @@ function Inspector(controller) {
 
     lastScrapeStatus = function(tracker) {
 
-        var lastScrapeLabel = 'Last Scrape',
+        var lastScrapeLabel = '最后吸血时间',
             lastScrape = 'N/A',
         lastScrapeTime;
 
@@ -630,7 +630,7 @@ function Inspector(controller) {
             if (tracker.lastScrapeSucceeded) {
                 lastScrape = lastScrapeTime;
             } else {
-                lastScrapeLabel = 'Scrape error';
+                lastScrapeLabel = '吸血错误';
                 lastScrape = (tracker.lastScrapeResult ? tracker.lastScrapeResult + ' - ' : '') + lastScrapeTime;
             }
         }
@@ -667,7 +667,7 @@ function Inspector(controller) {
                     tier = tracker.tier;
 
                     html.push('<div class="inspector_group_label">',
-                          'Tier ', tier, '</div>',
+                          tier, ' 层', '</div>',
                           '<ul class="tier_list">');
                 }
 

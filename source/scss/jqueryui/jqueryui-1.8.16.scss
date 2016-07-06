@@ -581,6 +581,12 @@ button.ui-button::-moz-focus-inner {
     padding: 0;
     width: 300px;
     overflow: hidden;
+    @media (max-width: 1024px) {
+        top:55px !important;
+        width: 100% !important;
+        height: 40em !important;;
+        //bottom: 2.8em !important;
+    }
 }
 
 .ui-dialog .ui-dialog-titlebar {

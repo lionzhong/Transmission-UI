@@ -31,7 +31,7 @@ $.fn.tabbedDialog = function (dialog_opts) {
 	this.parent().addClass('ui-tabs').prepend(tabul).draggable('option','handle',tabul); 
 	this.siblings('.ui-dialog-titlebar').remove();
 	tabul.addClass('ui-dialog-titlebar');
-}
+};
 
 $(document).ready(function() {
 
@@ -94,12 +94,12 @@ function setInnerHTML(e, html)
 		e.currentHTML = html;
 		e.innerHTML = html;
 	}
-};
+}
 
 function sanitizeText(text)
 {
 	return text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-};
+}
 
 /**
  * Many of our text changes are triggered by periodic refreshes
@@ -110,7 +110,7 @@ function setTextContent(e, text)
 {
 	if (e && (e.textContent != text))
 		e.textContent = text;
-};
+}
 
 /*
  *   Given a numerator and denominator, return a ratio string
@@ -131,11 +131,11 @@ Math.ratio = function(numerator, denominator) {
 Number.prototype.toTruncFixed = function(place) {
 	var ret = Math.floor(this * Math.pow (10, place)) / Math.pow(10, place);
 	return ret.toFixed(place);
-}
+};
 
 Number.prototype.toStringWithCommas = function() {
     return this.toString().replace(/\B(?=(?:\d{3})+(?!\d))/g, ",");
-}
+};
 
 
 /*
@@ -143,7 +143,7 @@ Number.prototype.toStringWithCommas = function() {
  */
 String.prototype.trim = function () {
 	return this.replace(/^\s*/, "").replace(/\s*$/, "");
-}
+};
 
 /***
 ****  Preferences
@@ -291,7 +291,7 @@ function parseUri (str) {
 	});
 
 	return uri;
-};
+}
 
 parseUri.options = {
 	strictMode: false,

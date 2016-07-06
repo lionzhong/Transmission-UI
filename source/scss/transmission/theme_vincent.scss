@@ -71,6 +71,9 @@ div#toolbar {
   background: none;
   background-color: $prime-green;
   @extend .clearfix;
+  @media (max-width: 1024px) {
+    padding-left: 61px;
+  }
   > div{
     cursor: pointer;
     @include css3("user-select",none);
@@ -116,6 +119,18 @@ div#toolbar {
           display: block;
         }
       }
+      @media (max-width: 1024px) {
+        display: none;
+      }
+    }
+    &.logo-mobile{
+      @extend .logo;
+      left: 4px;
+      top: 4px;
+      display: none;
+      @media (max-width: 1024px) {
+        display: block;
+      }
     }
     &.disabled {
       opacity: 0.55;
@@ -136,7 +151,10 @@ div#toolbar {
         color: $toolbar-set;
         @include css3("transition",all 0.5s);
         &:hover{
-            color: $gray-100;
+          color: $gray-100;
+          @media (max-width: 1024px) {
+            color: $toolbar-set;
+          }
         }
       }
       &:hover{
@@ -173,6 +191,9 @@ div#toolbar {
   text-align: left;
   padding: 5px;
   color: $gray-100;
+  @media (max-width: 1024px) {
+    display: none;
+  }
   #filter{
     >.form-select,>.form-inpt{
       margin: 0;
@@ -222,6 +243,11 @@ div#torrent_container {
   padding: 0;
   margin: 0;
   overflow: auto;
+  z-index: 4;
+  @media (max-width: 1024px) {
+    top: 55px;
+    bottom: 2.7em;
+  }
 }
 
 ul.torrent_list {
@@ -247,6 +273,9 @@ ul.torrent_list {
   li.torrent {
     border-bottom: 1px solid #ccc;
     padding: 15px 40px 15px 20px;
+    @media (max-width: 1024px) {
+      padding: 0.8em;
+    }
     color: #666;
     background-color: white;
     position: relative;
@@ -255,6 +284,9 @@ ul.torrent_list {
     }
     &.compact {
       padding: 4px;
+      @media (max-width: 1024px) {
+        padding: 0.8em;
+      }
       div.torrent_name {
         color: black;
       }
@@ -264,6 +296,9 @@ ul.torrent_list {
       position: relative;
       right: -27px;
       top: 3px;
+      @media (max-width: 1024px) {
+        display: none;
+      }
       img {
         position: relative;
         right: -10px;
@@ -335,6 +370,9 @@ ul.torrent_list {
           right: 10px;
           top: 12px;
           /*float: right;*/
+          @media (max-width: 1024px) {
+            top: 1.5em;
+          }
         }
         &.full {
           margin: 8px 0;
@@ -488,10 +526,16 @@ div#torrent_inspector {
   top: 93px;
   position: fixed;
   width: 570px;
-  z-index: 5;
   border-left: 1px solid $gray-80;
   bottom: 0;
   right: 0;
+  z-index: 90;
+  @media (max-width: 1024px) {
+    background-color: $gray-100;
+    width: auto;
+    top: 55px;
+    left: 0;
+  }
   /* Files Inspector Tab */
   #inspector-close {
     display: none;
@@ -543,6 +587,18 @@ div#torrent_inspector {
       font-size: large;
     }
   }
+  @media (max-width: 1024px) {
+    .inspector-page{
+      .key{
+        font-weight: bold;
+        float: none;
+
+      }
+      .value{
+        margin: 0 0 10px 0;
+      }
+    }
+  }
   ul.tier_list {
     margin: 2px 0 8px 0;
     width: 100%;
@@ -561,8 +617,19 @@ div#torrent_inspector {
       width: 330px;
       display: table;
       margin-top: 1px;
+      text-overflow: ellipsis;
+      @media (max-width: 1024px) {
+        width: 230px;
+      }
       div {
         padding: 2px;
+        @media (max-width: 1024px) {
+          height: 20px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          width: 230px;
+        }
       }
     }
     table {
@@ -572,6 +639,15 @@ div#torrent_inspector {
     th {
       text-align: right;
     }
+    @media (max-width: 1024px) {
+      table {
+        margin-top: -2px;
+      }
+      th,td{
+        line-height: 20.5px;
+      }
+    }
+
   }
   li.inspector_tracker_entry {
     padding: 3px 0 3px 2px;
@@ -754,24 +830,36 @@ div {
     top:15px;
     right: 45px;
     z-index: 90;
-    > * {
-      //margin: 5px 0 5px 5px;
-      //padding: 8px 30px;
+    > ul,>div {
       float: left;
       cursor: pointer;
       @include css3("user-select",none);
     }
+    > ul{
+      @media (max-width: 1024px) {
+        display: none;
+      }
+    }
     >div{
       margin: 0 5px;
       font-size: $font-size-base;
+      //@media (max-width: 1024px) {
+      //  font-size: 2.2em;
+      //}
       >span{
         font-size: $font-size-large*1.8;
         color: $toolbar-set;
         @include css3("transition",all 0.5s);
+        @media (max-width: 1024px) {
+          font-size: 2.2em;
+        }
       }
       &:hover{
         >span{
           color: $gray-100;
+          @media (max-width: 1024px) {
+            color: $toolbar-set;
+          }
         }
       }
       &.main_container {
@@ -785,6 +873,9 @@ div {
           right:0;
           > li {
             padding: 0;
+            >div{
+              display: none;
+            }
           }
         }
       }
@@ -797,6 +888,26 @@ div {
           &:hover{
             background-color: lighten($toolbar-set,15%);
           }
+        }
+      }
+    }
+    @media (max-width: 1024px) {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: inherit;
+      background-color: $gray-90;
+      @include border("border-top");
+      padding: 0.3em;
+      >ul,>ul>li{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      >ul{
+        >li{
+
         }
       }
     }
@@ -826,6 +937,9 @@ div {
       position: relative;
       top: 80px;
       @include css3("box-shadow",0 3px 10px rgba(0, 0, 0, 0.3));
+      @media (max-width: 1024px) {
+        width: auto;
+      }
     }
     .dialog_logo {
       width: 64px;
@@ -1034,6 +1148,7 @@ iframe#torrent_upload_frame {
 }
 #footer_super_menu{
   font-size: 12px;
+  //display: none;
 }
 /*--------------------------------------
  *

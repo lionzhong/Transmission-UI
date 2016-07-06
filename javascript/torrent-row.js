@@ -1,1 +1,382 @@
-function TorrentRendererHelper(){}function TorrentRendererFull(){}function TorrentRendererCompact(){}function TorrentRow(e,t,r){this.initialize(e,t,r)}TorrentRendererHelper.getProgressInfo=function(e,t){var r,n,o=t.getStatus(),s=t.seedRatioLimit(e);return r=t.needsMetaData()?100*t.getMetadataPercentComplete():t.isDone()?s>0&&t.isSeeding()?Math.round(100*t.getUploadRatio()/s):100:Math.round(100*t.getPercentDone()),n=o===Torrent._StatusStopped?"paused":o===Torrent._StatusDownloadWait?"leeching queued":t.needsMetaData()?"magnet":o===Torrent._StatusDownload?"leeching":o===Torrent._StatusSeedWait?"seeding queued":o===Torrent._StatusSeed?"seeding":"",{percent:r,complete:["torrent_progress_bar","complete",n].join(" "),incomplete:["torrent_progress_bar","incomplete",n].join(" ")}},TorrentRendererHelper.createProgressbar=function(e){var t,r,n;return t=document.createElement("div"),t.className="torrent_progress_bar complete",r=document.createElement("div"),r.className="torrent_progress_bar incomplete",n=document.createElement("div"),n.className="torrent_progress_bar_container "+e,n.appendChild(t),n.appendChild(r),{element:n,complete:t,incomplete:r}},TorrentRendererHelper.renderProgressbar=function(e,t,r){var n,o,s,a,i=TorrentRendererHelper.getProgressInfo(e,t);n=r.complete,o=n.style,s=""+i.percent+"%",a=i.percent>0?"block":"none",o.width===s&&o.display===a||$(n).css({width:""+i.percent+"%",display:a}),n.className!==i.complete&&(n.className=i.complete),n=r.incomplete,a=i.percent<100?"block":"none",n.style.display!==a&&(n.style.display=a),n.className!==i.incomplete&&(n.className=i.incomplete)},TorrentRendererHelper.formatUL=function(e){return"上传速度："+Transmission.fmt.speedBps(e.getUploadSpeed())},TorrentRendererHelper.formatDL=function(e){return"下载速度："+Transmission.fmt.speedBps(e.getDownloadSpeed())},TorrentRendererFull.prototype={createRow:function(){var e,t,r,n,o,s,a;return e=document.createElement("li"),e.className="torrent",t=document.createElement("div"),t.className="torrent_name",r=document.createElement("div"),r.className="torrent_peer_details",n=TorrentRendererHelper.createProgressbar("full"),o=document.createElement("div"),o.className="torrent_progress_details",s=document.createElement("div"),a=document.createElement("a"),a.appendChild(s),e.appendChild(t),e.appendChild(r),e.appendChild(a),e.appendChild(n.element),e.appendChild(o),e._name_container=t,e._peer_details_container=r,e._progress_details_container=o,e._progressbar=n,e._pause_resume_button_image=s,e._toggle_running_button=a,e},getPeerDetails:function(e){var t;return(t=e.getErrorMessage())?t:e.isDownloading()?["下载中",e.getPeersSendingToUs()," / ",e.getPeersConnected(),"peers","-",TorrentRendererHelper.formatDL(e),TorrentRendererHelper.formatUL(e)].join(" "):e.isSeeding()?["做种中：",e.getPeersGettingFromUs()," / ",e.getPeersConnected(),"peers"," - ",TorrentRendererHelper.formatUL(e)].join(" "):e.isChecking()?["验证本地数据中 (",Transmission.fmt.percentString(100*e.getRecheckProgress()),"% tested)"].join(""):e.getStateString()},getProgressDetails:function(e,t){if(t.needsMetaData()){var r=100*t.getMetadataPercentComplete();return["Magnetized transfer - retrieving metadata (",Transmission.fmt.percentString(r),"%)"].join("")}var n,o=t.getSizeWhenDone(),s=t.getTotalSize(),a=t.isDone()||t.isSeeding();if(a?(n=s===o?[Transmission.fmt.size(s)]:[Transmission.fmt.size(o)," of ",Transmission.fmt.size(t.getTotalSize())," (",t.getPercentDoneStr(),"%)"],n.push(", 已上传 ",Transmission.fmt.size(t.getUploadedEver())," (分享率 ",Transmission.fmt.ratioString(t.getUploadRatio()),")")):n=["已下载：",Transmission.fmt.size(o-t.getLeftUntilDone())," / ",Transmission.fmt.size(o)," (",t.getPercentDoneStr(),"%)"],!t.isStopped()&&(!a||t.seedRatioLimit(e)>0)){n.push(" - ");var i=t.getETA();i<0||i>=3596400?n.push("remaining time unknown"):n.push(Transmission.fmt.timeInterval(t.getETA())," remaining")}return n.join("")},render:function(e,t,r){setTextContent(r._name_container,t.getName()),TorrentRendererHelper.renderProgressbar(e,t,r._progressbar);var n=t.getError()!==Torrent._ErrNone,o=r._peer_details_container;$(o).toggleClass("error",n),setTextContent(o,this.getPeerDetails(t)),o=r._progress_details_container,setTextContent(o,this.getProgressDetails(e,t));var s=t.isStopped();o=r._pause_resume_button_image,o.alt=s?"Resume":"Pause",o.className=s?"torrent_resume":"torrent_pause"}},TorrentRendererCompact.prototype={createRow:function(){var e,t,r,n;return e=TorrentRendererHelper.createProgressbar("compact"),t=document.createElement("div"),t.className="torrent_peer_details compact",r=document.createElement("div"),r.className="torrent_name compact",n=document.createElement("li"),n.appendChild(e.element),n.appendChild(t),n.appendChild(r),n.className="torrent compact",n._progressbar=e,n._details_container=t,n._name_container=r,n},getPeerDetails:function(e){var t;if(t=e.getErrorMessage())return t;if(e.isDownloading()){var r=e.getDownloadSpeed()>0,n=e.getUploadSpeed()>0;if(!n&&!r)return"Idle";var o="";return r&&(o+=TorrentRendererHelper.formatDL(e)),r&&n&&(o+=" "),n&&(o+=TorrentRendererHelper.formatUL(e)),o}return e.isSeeding()?["Ratio: ",Transmission.fmt.ratioString(e.getUploadRatio()),", ",TorrentRendererHelper.formatUL(e)].join(""):e.getStateString()},render:function(e,t,r){var n=t.isStopped(),o=r._name_container;$(o).toggleClass("paused",n),setTextContent(o,t.getName());var s=t.getError()!==Torrent._ErrNone;o=r._details_container,$(o).toggleClass("error",s),setTextContent(o,this.getPeerDetails(t)),TorrentRendererHelper.renderProgressbar(e,t,r._progressbar)}},TorrentRow.prototype={initialize:function(e,t,r){var n=this;this._view=e,this._torrent=r,this._element=e.createRow(),this.render(t),$(this._torrent).bind("dataChanged.torrentRowListener",function(){n.render(t)})},getElement:function(){return this._element},render:function(e){var t=this.getTorrent();t&&this._view.render(e,t,this.getElement())},isSelected:function(){return this.getElement().className.indexOf("selected")!==-1},setSelected:function(e){$(this.getElement()).toggleClass("selected",e)},getToggleRunningButton:function(){return this.getElement()._toggle_running_button},getTorrent:function(){return this._torrent},getTorrentId:function(){return this.getTorrent().getId()}};
+/**
+ * Copyright © Mnemosyne LLC
+ *
+ * This file is licensed under the GPLv2.
+ * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ */
+
+function TorrentRendererHelper()
+{
+}
+
+TorrentRendererHelper.getProgressInfo = function(controller, t)
+{
+	var pct, extra,
+	    s = t.getStatus(),
+	    seed_ratio_limit = t.seedRatioLimit(controller);
+
+	if (t.needsMetaData())
+		pct = t.getMetadataPercentComplete() * 100;
+	else if (!t.isDone())
+		pct = Math.round(t.getPercentDone() * 100);
+	else if (seed_ratio_limit > 0 && t.isSeeding()) // don't split up the bar if paused or queued
+		pct = Math.round(t.getUploadRatio() * 100 / seed_ratio_limit);
+	else
+		pct = 100;
+
+	if (s === Torrent._StatusStopped)
+		extra = 'paused';
+	else if (s === Torrent._StatusDownloadWait)
+		extra = 'leeching queued';
+	else if (t.needsMetaData())
+		extra = 'magnet';
+	else if (s === Torrent._StatusDownload)
+		extra = 'leeching';
+	else if (s === Torrent._StatusSeedWait)
+		extra = 'seeding queued';
+	else if (s === Torrent._StatusSeed)
+		extra = 'seeding';
+	else
+		extra = '';
+
+	return {
+		percent: pct,
+		complete: [ 'torrent_progress_bar', 'complete', extra ].join(' '),
+		incomplete: [ 'torrent_progress_bar', 'incomplete', extra ].join(' ')
+	};
+};
+
+TorrentRendererHelper.createProgressbar = function(classes)
+{
+	var complete, incomplete, progressbar;
+
+	complete = document.createElement('div');
+	complete.className = 'torrent_progress_bar complete';
+
+	incomplete = document.createElement('div');
+	incomplete.className = 'torrent_progress_bar incomplete';
+
+	progressbar = document.createElement('div');
+	progressbar.className = 'torrent_progress_bar_container ' + classes;
+	progressbar.appendChild(complete);
+	progressbar.appendChild(incomplete);
+
+	return { 'element': progressbar, 'complete': complete, 'incomplete': incomplete };
+};
+
+TorrentRendererHelper.renderProgressbar = function(controller, t, progressbar)
+{
+	var e, style, width, display,
+	    info = TorrentRendererHelper.getProgressInfo(controller, t);
+
+	// update the complete progressbar
+	e = progressbar.complete;
+	style = e.style;
+	width = '' + info.percent + '%';
+	display = info.percent > 0 ? 'block' : 'none';
+	if (style.width!==width || style.display!==display)
+		$(e).css({ width: ''+info.percent+'%', display: display });
+	if (e.className !== info.complete)
+		e.className = info.complete;
+
+	// update the incomplete progressbar
+	e = progressbar.incomplete;
+	display = (info.percent < 100) ? 'block' : 'none';
+	if (e.style.display !== display)
+		e.style.display = display;
+	if (e.className !== info.incomplete)
+		e.className = info.incomplete;
+};
+
+TorrentRendererHelper.formatUL = function(t)
+{
+	return '上传速度：' + Transmission.fmt.speedBps(t.getUploadSpeed());
+};
+
+TorrentRendererHelper.formatDL = function(t)
+{
+	return '下载速度：' + Transmission.fmt.speedBps(t.getDownloadSpeed());
+};
+
+/****
+*****
+*****
+****/
+
+function TorrentRendererFull()
+{
+}
+TorrentRendererFull.prototype =
+{
+	createRow: function()
+	{
+		var root, name, peers, progressbar, details, image, button;
+
+		root = document.createElement('li');
+		root.className = 'torrent';
+
+		name = document.createElement('div');
+		name.className = 'torrent_name';
+
+		peers = document.createElement('div');
+		peers.className = 'torrent_peer_details';
+
+		progressbar = TorrentRendererHelper.createProgressbar('full');
+
+		details = document.createElement('div');
+		details.className = 'torrent_progress_details';
+
+		image = document.createElement('div');
+		button = document.createElement('a');
+		button.appendChild(image);
+
+		root.appendChild(name);
+		root.appendChild(peers);
+		root.appendChild(button);
+		root.appendChild(progressbar.element);
+		root.appendChild(details);
+
+		root._name_container = name;
+		root._peer_details_container = peers;
+		root._progress_details_container = details;
+		root._progressbar = progressbar;
+		root._pause_resume_button_image = image;
+		root._toggle_running_button = button;
+
+		return root;
+	},
+
+	getPeerDetails: function(t)
+	{
+		var err;
+		if ((err = t.getErrorMessage()))
+			return err;
+
+		if (t.isDownloading())
+			return [ '下载中',
+			         t.getPeersSendingToUs(),
+			         ' / ',
+			         t.getPeersConnected(),
+			         'peers',
+			         '-',
+			         TorrentRendererHelper.formatDL(t),
+			         TorrentRendererHelper.formatUL(t) ].join(' ');
+
+		if (t.isSeeding())
+			return [ '做种中：',
+			         t.getPeersGettingFromUs(),
+			         ' / ',
+			         t.getPeersConnected(),
+			         'peers',
+			         ' - ',
+			         TorrentRendererHelper.formatUL(t) ].join(' ');
+
+		if (t.isChecking())
+			return [ '验证本地数据中 (',
+			         Transmission.fmt.percentString(100.0 * t.getRecheckProgress()),
+			         '% tested)' ].join('');
+
+		return t.getStateString();
+	},
+
+	getProgressDetails: function(controller, t)
+	{
+		if (t.needsMetaData()) {
+			var percent = 100 * t.getMetadataPercentComplete();
+			return [ "Magnetized transfer - retrieving metadata (",
+			         Transmission.fmt.percentString(percent),
+			         "%)" ].join('');
+		}
+
+		var c,
+		    sizeWhenDone = t.getSizeWhenDone(),
+		    totalSize = t.getTotalSize(),
+		    is_done = t.isDone() || t.isSeeding();
+
+		if (is_done) {
+			if (totalSize === sizeWhenDone) // seed: '698.05 MiB'
+				c = [ Transmission.fmt.size(totalSize) ];
+			else // partial seed: '127.21 MiB of 698.05 MiB (18.2%)'
+				c = [ Transmission.fmt.size(sizeWhenDone),
+				      ' of ',
+				      Transmission.fmt.size(t.getTotalSize()),
+				      ' (', t.getPercentDoneStr(), '%)' ];
+			// append UL stats: ', uploaded 8.59 GiB (Ratio: 12.3)'
+			c.push(', 已上传 ',
+			        Transmission.fmt.size(t.getUploadedEver()),
+			        ' (分享率 ',
+			        Transmission.fmt.ratioString(t.getUploadRatio()),
+			        ')');
+		} else { // not done yet
+			c = [
+				  '已下载：',
+				  Transmission.fmt.size(sizeWhenDone - t.getLeftUntilDone()),
+			      ' / ', Transmission.fmt.size(sizeWhenDone),
+			      ' (', t.getPercentDoneStr(), '%)' ];
+		}
+
+		// maybe append eta
+		if (!t.isStopped() && (!is_done || t.seedRatioLimit(controller)>0)) {
+			c.push(' - ');
+			var eta = t.getETA();
+			if (eta < 0 || eta >= (999*60*60) /* arbitrary */)
+				c.push('未知剩余时长');
+			else
+				c.push(Transmission.fmt.timeInterval(t.getETA()),
+				        ' 剩余时长');
+		}
+
+		return c.join('');
+	},
+
+	render: function(controller, t, root)
+	{
+		// name
+		setTextContent(root._name_container, t.getName());
+
+		// progressbar
+		TorrentRendererHelper.renderProgressbar(controller, t, root._progressbar);
+
+		// peer details
+		var has_error = t.getError() !== Torrent._ErrNone;
+		var e = root._peer_details_container;
+		$(e).toggleClass('error',has_error);
+		setTextContent(e, this.getPeerDetails(t));
+
+		// progress details
+		e = root._progress_details_container;
+		setTextContent(e, this.getProgressDetails(controller, t));
+
+		// pause/resume button
+		var is_stopped = t.isStopped();
+		e = root._pause_resume_button_image;
+		e.alt = is_stopped ? 'Resume' : 'Pause';
+		e.className = is_stopped ? 'torrent_resume' : 'torrent_pause';
+	}
+};
+
+/****
+*****
+*****
+****/
+
+function TorrentRendererCompact()
+{
+}
+TorrentRendererCompact.prototype =
+{
+	createRow: function()
+	{
+		var progressbar, details, name, root;
+
+		progressbar = TorrentRendererHelper.createProgressbar('compact');
+
+		details = document.createElement('div');
+		details.className = 'torrent_peer_details compact';
+
+		name = document.createElement('div');
+		name.className = 'torrent_name compact';
+
+		root = document.createElement('li');
+		root.appendChild(progressbar.element);
+		root.appendChild(details);
+		root.appendChild(name);
+		root.className = 'torrent compact';
+		root._progressbar = progressbar;
+		root._details_container = details;
+		root._name_container = name;
+		return root;
+	},
+
+	getPeerDetails: function(t)
+	{
+		var c;
+		if ((c = t.getErrorMessage()))
+			return c;
+		if (t.isDownloading()) {
+			var have_dn = t.getDownloadSpeed() > 0,
+			    have_up = t.getUploadSpeed() > 0;
+			if (!have_up && !have_dn)
+				return 'Idle';
+			var s = '';
+			if (have_dn)
+				s += TorrentRendererHelper.formatDL(t);
+			if (have_dn && have_up)
+				s += ' '
+			if (have_up)
+				s += TorrentRendererHelper.formatUL(t);
+			return s;
+		}
+		if (t.isSeeding())
+			return [ 'Ratio: ',
+			         Transmission.fmt.ratioString(t.getUploadRatio()),
+			         ', ',
+			         TorrentRendererHelper.formatUL(t) ].join('');
+		return t.getStateString();
+	},
+
+	render: function(controller, t, root)
+	{
+		// name
+		var is_stopped = t.isStopped();
+		var e = root._name_container;
+		$(e).toggleClass('paused', is_stopped);
+		setTextContent(e, t.getName());
+
+		// peer details
+		var has_error = t.getError() !== Torrent._ErrNone;
+		e = root._details_container;
+		$(e).toggleClass('error', has_error);
+		setTextContent(e, this.getPeerDetails(t));
+
+		// progressbar
+		TorrentRendererHelper.renderProgressbar(controller, t, root._progressbar);
+	}
+};
+
+/****
+*****
+*****
+****/
+
+function TorrentRow(view, controller, torrent)
+{
+	this.initialize(view, controller, torrent);
+}
+TorrentRow.prototype =
+{
+	initialize: function(view, controller, torrent) {
+		var row = this;
+		this._view = view;
+		this._torrent = torrent;
+		this._element = view.createRow();
+		this.render(controller);
+		$(this._torrent).bind('dataChanged.torrentRowListener',function(){row.render(controller);});
+
+	},
+	getElement: function() {
+		return this._element;
+	},
+	render: function(controller) {
+		var tor = this.getTorrent();
+		if (tor)
+			this._view.render(controller, tor, this.getElement());
+	},
+	isSelected: function() {
+		return this.getElement().className.indexOf('selected') !== -1;
+	},
+	setSelected: function(flag) {
+		$(this.getElement()).toggleClass('selected', flag);
+	},
+
+	getToggleRunningButton: function() {
+		return this.getElement()._toggle_running_button;
+	},
+
+	getTorrent: function() {
+		return this._torrent;
+	},
+	getTorrentId: function() {
+		return this.getTorrent().getId();
+	}
+};

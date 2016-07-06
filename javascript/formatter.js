@@ -1,1 +1,307 @@
-Transmission.fmt=function(){var e=1e3,t="kB/s",n="MB/s",r="GB/s",o=1e3,i="B",a="kB",u="MB",s="GB",c="TB",h=1024,d="B",p="KiB",f="MiB",M="GiB",l="TiB";return{updateUnits:function(e){},percentString:function(e){return e<10?e.toTruncFixed(2):e<100?e.toTruncFixed(1):e.toTruncFixed(0)},ratioString:function(e){return e===-1?"None":e===-2?"&infin;":this.percentString(e)},mem:function(e){if(e<h)return[e,d].join(" ");var t,n;return e<Math.pow(h,2)?(t=e/h,n=p):e<Math.pow(h,3)?(t=e/Math.pow(h,2),n=f):e<Math.pow(h,4)?(t=e/Math.pow(h,3),n=M):(t=e/Math.pow(h,4),n=l),t<=9.995?[t.toTruncFixed(2),n].join(" "):[t.toTruncFixed(1),n].join(" ")},size:function(e){if(e<o)return[e,i].join(" ");var t,n;return e<Math.pow(o,2)?(t=e/o,n=a):e<Math.pow(o,3)?(t=e/Math.pow(o,2),n=u):e<Math.pow(o,4)?(t=e/Math.pow(o,3),n=s):(t=e/Math.pow(o,4),n=c),t<=9.995?[t.toTruncFixed(2),n].join(" "):[t.toTruncFixed(1),n].join(" ")},speedBps:function(e){return this.speed(this.toKBps(e))},toKBps:function(t){return Math.floor(t/e)},speed:function(o){var i=o;return i<=999.95?[i.toTruncFixed(0),t].join(" "):(i/=e,i<=99.995?[i.toTruncFixed(2),n].join(" "):i<=999.95?[i.toTruncFixed(1),n].join(" "):(i/=e,[i.toTruncFixed(2),r].join(" ")))},timeInterval:function(e){var t=Math.floor(e/86400),n=Math.floor(e%86400/3600),r=Math.floor(e%3600/60),e=Math.floor(e%60),o=t+" 天",i=n+" 小时",a=r+" 分钟",u=e+" 秒";return t?t>=4||!n?o:o+", "+i:n?n>=4||!r?i:i+", "+a:r?r>=4||!e?a:a+", "+u:u},timestamp:function(e){if(!e)return"N/A";var t=new Date(1e3*e),n=new Date,r="",o="",i=n.getFullYear()===t.getFullYear(),a=n.getMonth()===t.getMonth(),u=n.getDate()-t.getDate();r=i&&a&&Math.abs(u)<=1?0===u?"Today":1===u?"Yesterday":"Tomorrow":t.toDateString();var s=t.getHours(),c="AM";s>12&&(s-=12,c="PM"),0===s&&(s=12),s<10&&(s="0"+s);var h=t.getMinutes();h<10&&(h="0"+h);var e=t.getSeconds();return e<10&&(e="0"+e),o=[s,h,e].join(":"),[r,o,c].join(" ")},plural:function(e,t){return[e.toStringWithCommas()," ",t,""].join("")},peerStatus:function(e){for(var t,n=[],r=0;t=e[r];++r){var o=null;switch(t){case"O":o="Optimistic unchoke";break;case"D":o="Downloading from this peer";break;case"d":o="We would download from this peer if they'd let us";break;case"U":o="Uploading to peer";break;case"u":o="We would upload to this peer if they'd ask";break;case"K":o="Peer has unchoked us, but we're not interested";break;case"?":o="We unchoked this peer, but they're not interested";break;case"E":o="Encrypted Connection";break;case"H":o="Peer was discovered through Distributed Hash Table (DHT)";break;case"X":o="Peer was discovered through Peer Exchange (PEX)";break;case"I":o="Peer is an incoming connection";break;case"T":o="Peer is connected via uTP"}o?n.push('<span title="'+t+": "+o+'">'+t+"</span>"):n.push(t)}return n.join("")}}}();
+/**
+ * Copyright © Mnemosyne LLC
+ *
+ * This file is licensed under the GPLv2.
+ * http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+ */
+
+Transmission.fmt = (function()
+{
+	var speed_K = 1000;
+	var speed_B_str =  'B/s';
+	var speed_K_str = 'kB/s';
+	var speed_M_str = 'MB/s';
+	var speed_G_str = 'GB/s';
+	var speed_T_str = 'TB/s';
+
+	var size_K = 1000;
+	var size_B_str =  'B';
+	var size_K_str = 'kB';
+	var size_M_str = 'MB';
+	var size_G_str = 'GB';
+	var size_T_str = 'TB';
+
+	var mem_K = 1024;
+	var mem_B_str =   'B';
+	var mem_K_str = 'KiB';
+	var mem_M_str = 'MiB';
+	var mem_G_str = 'GiB';
+	var mem_T_str = 'TiB';
+
+	return {
+
+		updateUnits: function(u)
+		{
+/*
+			speed_K     = u['speed-bytes'];
+			speed_K_str = u['speed-units'][0];
+			speed_M_str = u['speed-units'][1];
+			speed_G_str = u['speed-units'][2];
+			speed_T_str = u['speed-units'][3];
+
+			size_K     = u['size-bytes'];
+			size_K_str = u['size-units'][0];
+			size_M_str = u['size-units'][1];
+			size_G_str = u['size-units'][2];
+			size_T_str = u['size-units'][3];
+
+			mem_K     = u['memory-bytes'];
+			mem_K_str = u['memory-units'][0];
+			mem_M_str = u['memory-units'][1];
+			mem_G_str = u['memory-units'][2];
+			mem_T_str = u['memory-units'][3];
+*/
+		},
+
+		/*
+		 *   Format a percentage to a string
+		 */
+		percentString: function(x) {
+			if (x < 10.0)
+				return x.toTruncFixed(2);
+			else if (x < 100.0)
+				return x.toTruncFixed(1);
+			else
+				return x.toTruncFixed(0);
+		},
+
+		/*
+		 *   Format a ratio to a string
+		 */
+		ratioString: function(x) {
+			if (x === -1)
+				return "None";
+			if (x === -2)
+				return '&infin;';
+			return this.percentString(x);
+		},
+
+		/**
+		 * Formats the a memory size into a human-readable string
+		 * @param {Number} bytes the filesize in bytes
+		 * @return {String} human-readable string
+		 */
+		mem: function(bytes)
+		{
+			if (bytes < mem_K)
+				return [ bytes, mem_B_str ].join(' ');
+
+			var convertedSize;
+			var unit;
+
+			if (bytes < Math.pow(mem_K, 2))
+			{
+				convertedSize = bytes / mem_K;
+				unit = mem_K_str;
+			}
+			else if (bytes < Math.pow(mem_K, 3))
+			{
+				convertedSize = bytes / Math.pow(mem_K, 2);
+				unit = mem_M_str;
+			}
+			else if (bytes < Math.pow(mem_K, 4))
+			{
+				convertedSize = bytes / Math.pow(mem_K, 3);
+				unit = mem_G_str;
+			}
+			else
+			{
+				convertedSize = bytes / Math.pow(mem_K, 4);
+				unit = mem_T_str;
+			}
+
+			// try to have at least 3 digits and at least 1 decimal
+			return convertedSize <= 9.995 ? [ convertedSize.toTruncFixed(2), unit ].join(' ')
+			                              : [ convertedSize.toTruncFixed(1), unit ].join(' ');
+		},
+
+		/**
+		 * Formats the a disk capacity or file size into a human-readable string
+		 * @param {Number} bytes the filesize in bytes
+		 * @return {String} human-readable string
+		 */
+		size: function(bytes)
+		{
+			if (bytes < size_K)
+				return [ bytes, size_B_str ].join(' ');
+
+			var convertedSize;
+			var unit;
+
+			if (bytes < Math.pow(size_K, 2))
+			{
+				convertedSize = bytes / size_K;
+				unit = size_K_str;
+			}
+			else if (bytes < Math.pow(size_K, 3))
+			{
+				convertedSize = bytes / Math.pow(size_K, 2);
+				unit = size_M_str;
+			}
+			else if (bytes < Math.pow(size_K, 4))
+			{
+				convertedSize = bytes / Math.pow(size_K, 3);
+				unit = size_G_str;
+			}
+			else
+			{
+				convertedSize = bytes / Math.pow(size_K, 4);
+				unit = size_T_str;
+			}
+
+			// try to have at least 3 digits and at least 1 decimal
+			return convertedSize <= 9.995 ? [ convertedSize.toTruncFixed(2), unit ].join(' ')
+			                              : [ convertedSize.toTruncFixed(1), unit ].join(' ');
+		},
+
+		speedBps: function(Bps)
+		{
+			return this.speed(this.toKBps(Bps));
+		},
+
+		toKBps: function(Bps)
+		{
+			return Math.floor(Bps / speed_K);
+		},
+
+		speed: function(KBps)
+		{
+			var speed = KBps;
+
+			if (speed <= 999.95) // 0 KBps to 999 K
+				return [ speed.toTruncFixed(0), speed_K_str ].join(' ');
+
+			speed /= speed_K;
+
+			if (speed <= 99.995) // 1 M to 99.99 M
+				return [ speed.toTruncFixed(2), speed_M_str ].join(' ');
+			if (speed <= 999.95) // 100 M to 999.9 M
+				return [ speed.toTruncFixed(1), speed_M_str ].join(' ');
+
+			// insane speeds
+			speed /= speed_K;
+			return [ speed.toTruncFixed(2), speed_G_str ].join(' ');
+		},
+
+		timeInterval: function(seconds)
+		{
+			var days    = Math.floor (seconds / 86400),
+			    hours   = Math.floor ((seconds % 86400) / 3600),
+			    minutes = Math.floor ((seconds % 3600) / 60),
+			    seconds = Math.floor (seconds % 60),
+			    d = days    + ' ' + (days    > 1 ? '天'    : '天'),
+			    h = hours   + ' ' + (hours   > 1 ? '小时'   : '小时'),
+			    m = minutes + ' ' + (minutes > 1 ? '分钟' : '分钟'),
+			    s = seconds + ' ' + (seconds > 1 ? '秒' : '秒');
+
+			if (days) {
+				if (days >= 4 || !hours)
+					return d;
+				return d + ', ' + h;
+			}
+			if (hours) {
+				if (hours >= 4 || !minutes)
+					return h;
+				return h + ', ' + m;
+			}
+			if (minutes) {
+				if (minutes >= 4 || !seconds)
+					return m;
+				return m + ', ' + s;
+			}
+			return s;
+		},
+
+		timestamp: function(seconds)
+		{
+			if (!seconds)
+				return 'N/A';
+
+			var myDate = new Date(seconds*1000);
+			var now = new Date();
+
+			var date = "";
+			var time = "";
+
+			var sameYear = now.getFullYear() === myDate.getFullYear();
+			var sameMonth = now.getMonth() === myDate.getMonth();
+
+			var dateDiff = now.getDate() - myDate.getDate();
+			if (sameYear && sameMonth && Math.abs(dateDiff) <= 1){
+				if (dateDiff === 0){
+					date = "Today";
+				}
+				else if (dateDiff === 1){
+					date = "Yesterday";
+				}
+				else{
+					date = "Tomorrow";
+				}
+			}
+			else{
+				date = myDate.toDateString();
+			}
+
+			var hours = myDate.getHours();
+			var period = "AM";
+			if (hours > 12){
+				hours = hours - 12;
+				period = "PM";
+			}
+			if (hours === 0){
+				hours = 12;
+			}
+			if (hours < 10){
+				hours = "0" + hours;
+			}
+			var minutes = myDate.getMinutes();
+			if (minutes < 10){
+				minutes = "0" + minutes;
+			}
+			var seconds = myDate.getSeconds();
+				if (seconds < 10){
+					seconds = "0" + seconds;
+			}
+
+			time = [hours, minutes, seconds].join(':');
+
+			return [date, time, period].join(' ');
+		},
+
+		plural: function(i, word)
+		{
+			return [ i.toStringWithCommas(), ' ', word, (i==1?'':'') ].join('');
+		},
+
+		peerStatus: function( flagStr ) 
+		{ 
+			var formattedFlags = []; 
+			for (var i=0, flag; flag=flagStr[i]; ++i)
+			{
+				var explanation = null;
+				switch (flag)
+				{
+					case "O": explanation = "Optimistic unchoke"; break;
+					case "D": explanation = "Downloading from this peer"; break;
+					case "d": explanation = "We would download from this peer if they'd let us"; break;
+					case "U": explanation = "Uploading to peer"; break;
+					case "u": explanation = "We would upload to this peer if they'd ask"; break;
+					case "K": explanation = "Peer has unchoked us, but we're not interested"; break;
+					case "?": explanation = "We unchoked this peer, but they're not interested"; break;
+					case "E": explanation = "Encrypted Connection"; break;
+					case "H": explanation = "Peer was discovered through Distributed Hash Table (DHT)"; break;
+					case "X": explanation = "Peer was discovered through Peer Exchange (PEX)"; break;
+					case "I": explanation = "Peer is an incoming connection"; break;
+					case "T": explanation = "Peer is connected via uTP"; break;
+				}
+
+				if (!explanation) { 
+					formattedFlags.push(flag); 
+				} else { 
+					formattedFlags.push("<span title=\"" + flag + ': ' + explanation + "\">" + flag + "</span>"); 
+				} 
+			} 
+			return formattedFlags.join(''); 
+		}
+	}
+})();

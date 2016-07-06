@@ -220,10 +220,10 @@ TorrentRendererFull.prototype =
 			c.push(' - ');
 			var eta = t.getETA();
 			if (eta < 0 || eta >= (999*60*60) /* arbitrary */)
-				c.push('remaining time unknown');
+				c.push('未知剩余时长');
 			else
 				c.push(Transmission.fmt.timeInterval(t.getETA()),
-				        ' remaining');
+				        ' 剩余时长');
 		}
 
 		return c.join('');

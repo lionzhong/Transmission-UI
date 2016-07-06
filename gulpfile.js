@@ -20,16 +20,16 @@ const path = {
 gulp.task("jsCompile", function () {
     gulp.src([path.jsLV1,path.js])
 		// .pipe(sourcemaps.init())
-        .pipe(uglify())
+        // .pipe(uglify())
 		// .pipe(sourcemaps.write("/maps"))
         .pipe(gulp.dest(path.jsmin));
 });
 
 gulp.task("SassCompile", function () {
     gulp.src([path.sassLV1,path.sass])
-		// .pipe(sourcemaps.init())
+		.pipe(sourcemaps.init())
         .pipe(sass({outputStyle: "compressed"}).on("error", sass.logError))
-        // .pipe(sourcemaps.write("/maps"))
+        .pipe(sourcemaps.write("/maps"))
         .pipe(gulp.dest(path.css));
 });
 
