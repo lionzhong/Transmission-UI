@@ -1,7 +1,7 @@
-@import "../base/variables";
-@import "../mixins/importMixins";
-@import "../base/font";
-@import "../jqueryui/jqueryui";
+@import "base/variables";
+@import "mixins/importMixins";
+@import "base/font";
+@import "jqueryui/jqueryui";
 /*--------------------------------------
  *
  * G L O B A L
@@ -51,7 +51,7 @@ body {
     text-align: center;
   }
   #about-logo {
-    background: transparent url("images/logo.png") top left no-repeat;
+    background: transparent url("../images/logo.png") top left no-repeat;
     width: 64px;
     height: 64px;
     margin-left: 100px;
@@ -525,7 +525,7 @@ ul.torrent_list {
   }
   #alternative-speed-limits-title {
     padding-left: 18px;
-    background: transparent url("images/blue-turtle.png") no-repeat;
+    background: transparent url("../images/blue-turtle.png") no-repeat;
   }
   #alternative-speed-limits-desc {
     font-size: smaller;
@@ -802,7 +802,7 @@ tr.inspector_peer_entry {
   div.encrypted-peer-cell {
     width: 16px;
     height: 16px;
-    background: transparent url("images/lock_icon.png") no-repeat;
+    background: transparent url("../images/lock_icon.png") no-repeat;
   }
   &.odd {
     background-color: #EEEEEE;
@@ -839,34 +839,34 @@ div {
           border-top-left-radius: 5px;
           border-bottom-left-radius: 5px;
           background-color: #dcdcdc;
-          background-image: url("images/file-priority-low.png");
+          background-image: url("../images/file-priority-low.png");
           /* fallback */
-          background-image: url("images/file-priority-low.png"), -webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#c8c8c8));
+          background-image: url("../images/file-priority-low.png"), -webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#c8c8c8));
           /* Saf4+, Chrome */
-          background-image: url("images/file-priority-low.png"), -webkit-linear-gradient(top, #f1f1f1, #c8c8c8);
+          background-image: url("../images/file-priority-low.png"), -webkit-linear-gradient(top, #f1f1f1, #c8c8c8);
           /* Chrome 10+, Saf5.1+ */
-          background-image: url("images/file-priority-low.png"), -moz-linear-gradient(top, #f1f1f1, #c8c8c8);
+          background-image: url("../images/file-priority-low.png"), -moz-linear-gradient(top, #f1f1f1, #c8c8c8);
           /* FF3.6+ */
-          background-image: url("images/file-priority-low.png"), -ms-linear-gradient(top, #f1f1f1, #c8c8c8);
+          background-image: url("../images/file-priority-low.png"), -ms-linear-gradient(top, #f1f1f1, #c8c8c8);
           /* IE10 */
-          background-image: url("images/file-priority-low.png"), -o-linear-gradient(top, #f1f1f1, #c8c8c8);
+          background-image: url("../images/file-priority-low.png"), -o-linear-gradient(top, #f1f1f1, #c8c8c8);
           /* Opera 11.10+ */
           background-position: center;
           background-repeat: no-repeat;
           border-right-width: 0px;
           &:active, &.selected {
             background-color: #e6e6ff;
-            background-image: url("images/file-priority-low.png");
+            background-image: url("../images/file-priority-low.png");
             /* fallback */
-            background-image: url("images/file-priority-low.png"), -webkit-gradient(linear, left top, left bottom, from(#d7d7ff), to(#f5f5ff));
+            background-image: url("../images/file-priority-low.png"), -webkit-gradient(linear, left top, left bottom, from(#d7d7ff), to(#f5f5ff));
             /* Saf4+, Chrome */
-            background-image: url("images/file-priority-low.png"), -webkit-linear-gradient(top, #d7d7ff, #f5f5ff);
+            background-image: url("../images/file-priority-low.png"), -webkit-linear-gradient(top, #d7d7ff, #f5f5ff);
             /* Chrome 10+, Saf5.1+ */
-            background-image: url("images/file-priority-low.png"), -moz-linear-gradient(top, #d7d7ff, #f5f5ff);
+            background-image: url("../images/file-priority-low.png"), -moz-linear-gradient(top, #d7d7ff, #f5f5ff);
             /* FF3.6+ */
-            background-image: url("images/file-priority-low.png"), -ms-linear-gradient(top, #d7d7ff, #f5f5ff);
+            background-image: url("../images/file-priority-low.png"), -ms-linear-gradient(top, #d7d7ff, #f5f5ff);
             /* IE10 */
-            background-image: url("images/file-priority-low.png"), -o-linear-gradient(top, #d7d7ff, #f5f5ff);
+            background-image: url("../images/file-priority-low.png"), -o-linear-gradient(top, #d7d7ff, #f5f5ff);
             /* Opera 11.10+ */
             background-position: center;
             background-repeat: no-repeat;
@@ -874,33 +874,33 @@ div {
         }
         &.normal {
           background-color: #dcdcdc;
-          background-image: url("images/file-priority-normal.png");
+          background-image: url("../images/file-priority-normal.png");
           /* fallback */
-          background-image: url("images/file-priority-normal.png"), -webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#c8c8c8));
+          background-image: url("../images/file-priority-normal.png"), -webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#c8c8c8));
           /* Saf4+, Chrome */
-          background-image: url("images/file-priority-normal.png"), -webkit-linear-gradient(top, #f1f1f1, #c8c8c8);
+          background-image: url("../images/file-priority-normal.png"), -webkit-linear-gradient(top, #f1f1f1, #c8c8c8);
           /* Chrome 10+, Saf5.1+ */
-          background-image: url("images/file-priority-normal.png"), -moz-linear-gradient(top, #f1f1f1, #c8c8c8);
+          background-image: url("../images/file-priority-normal.png"), -moz-linear-gradient(top, #f1f1f1, #c8c8c8);
           /* FF3.6+ */
-          background-image: url("images/file-priority-normal.png"), -ms-linear-gradient(top, #f1f1f1, #c8c8c8);
+          background-image: url("../images/file-priority-normal.png"), -ms-linear-gradient(top, #f1f1f1, #c8c8c8);
           /* IE10 */
-          background-image: url("images/file-priority-normal.png"), -o-linear-gradient(top, #f1f1f1, #c8c8c8);
+          background-image: url("../images/file-priority-normal.png"), -o-linear-gradient(top, #f1f1f1, #c8c8c8);
           /* Opera 11.10+ */
           background-position: center;
           background-repeat: no-repeat;
           &:active, &.selected {
             background-color: #e6e6ff;
-            background-image: url("images/file-priority-normal.png");
+            background-image: url("../images/file-priority-normal.png");
             /* fallback */
-            background-image: url("images/file-priority-normal.png"), -webkit-gradient(linear, left top, left bottom, from(#d7d7ff), to(#f5f5ff));
+            background-image: url("../images/file-priority-normal.png"), -webkit-gradient(linear, left top, left bottom, from(#d7d7ff), to(#f5f5ff));
             /* Saf4+, Chrome */
-            background-image: url("images/file-priority-normal.png"), -webkit-linear-gradient(top, #d7d7ff, #f5f5ff);
+            background-image: url("../images/file-priority-normal.png"), -webkit-linear-gradient(top, #d7d7ff, #f5f5ff);
             /* Chrome 10+, Saf5.1+ */
-            background-image: url("images/file-priority-normal.png"), -moz-linear-gradient(top, #d7d7ff, #f5f5ff);
+            background-image: url("../images/file-priority-normal.png"), -moz-linear-gradient(top, #d7d7ff, #f5f5ff);
             /* FF3.6+ */
-            background-image: url("images/file-priority-normal.png"), -ms-linear-gradient(top, #d7d7ff, #f5f5ff);
+            background-image: url("../images/file-priority-normal.png"), -ms-linear-gradient(top, #d7d7ff, #f5f5ff);
             /* IE10 */
-            background-image: url("images/file-priority-normal.png"), -o-linear-gradient(top, #d7d7ff, #f5f5ff);
+            background-image: url("../images/file-priority-normal.png"), -o-linear-gradient(top, #d7d7ff, #f5f5ff);
             /* Opera 11.10+ */
             background-position: center;
             background-repeat: no-repeat;
@@ -912,34 +912,34 @@ div {
           border-top-right-radius: 5px;
           border-bottom-right-radius: 5px;
           background-color: #dcdcdc;
-          background-image: url("images/file-priority-high.png");
+          background-image: url("../images/file-priority-high.png");
           /* fallback */
-          background-image: url("images/file-priority-high.png"), -webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#c8c8c8));
+          background-image: url("../images/file-priority-high.png"), -webkit-gradient(linear, left top, left bottom, from(#f1f1f1), to(#c8c8c8));
           /* Saf4+, Chrome */
-          background-image: url("images/file-priority-high.png"), -webkit-linear-gradient(top, #f1f1f1, #c8c8c8);
+          background-image: url("../images/file-priority-high.png"), -webkit-linear-gradient(top, #f1f1f1, #c8c8c8);
           /* Chrome 10+, Saf5.1+ */
-          background-image: url("images/file-priority-high.png"), -moz-linear-gradient(top, #f1f1f1, #c8c8c8);
+          background-image: url("../images/file-priority-high.png"), -moz-linear-gradient(top, #f1f1f1, #c8c8c8);
           /* FF3.6+ */
-          background-image: url("images/file-priority-high.png"), -ms-linear-gradient(top, #f1f1f1, #c8c8c8);
+          background-image: url("../images/file-priority-high.png"), -ms-linear-gradient(top, #f1f1f1, #c8c8c8);
           /* IE10 */
-          background-image: url("images/file-priority-high.png"), -o-linear-gradient(top, #f1f1f1, #c8c8c8);
+          background-image: url("../images/file-priority-high.png"), -o-linear-gradient(top, #f1f1f1, #c8c8c8);
           /* Opera 11.10+ */
           background-position: center;
           background-repeat: no-repeat;
           border-left-width: 0px;
           &:active, &.selected {
             background-color: #e6e6ff;
-            background-image: url("images/file-priority-high.png");
+            background-image: url("../images/file-priority-high.png");
             /* fallback */
-            background-image: url("images/file-priority-high.png"), -webkit-gradient(linear, left top, left bottom, from(#d7d7ff), to(#f5f5ff));
+            background-image: url("../images/file-priority-high.png"), -webkit-gradient(linear, left top, left bottom, from(#d7d7ff), to(#f5f5ff));
             /* Saf4+, Chrome */
-            background-image: url("images/file-priority-high.png"), -webkit-linear-gradient(top, #d7d7ff, #f5f5ff);
+            background-image: url("../images/file-priority-high.png"), -webkit-linear-gradient(top, #d7d7ff, #f5f5ff);
             /* Chrome 10+, Saf5.1+ */
-            background-image: url("images/file-priority-high.png"), -moz-linear-gradient(top, #d7d7ff, #f5f5ff);
+            background-image: url("../images/file-priority-high.png"), -moz-linear-gradient(top, #d7d7ff, #f5f5ff);
             /* FF3.6+ */
-            background-image: url("images/file-priority-high.png"), -ms-linear-gradient(top, #d7d7ff, #f5f5ff);
+            background-image: url("../images/file-priority-high.png"), -ms-linear-gradient(top, #d7d7ff, #f5f5ff);
             /* IE10 */
-            background-image: url("images/file-priority-high.png"), -o-linear-gradient(top, #d7d7ff, #f5f5ff);
+            background-image: url("../images/file-priority-high.png"), -o-linear-gradient(top, #d7d7ff, #f5f5ff);
             /* Opera 11.10+ */
             background-position: center;
             background-repeat: no-repeat;
@@ -1127,7 +1127,7 @@ div {
       height: 64px;
       margin: 20px 20px 0 20px;
       float: left;
-      background: transparent url("images/logo.png") top left no-repeat;
+      background: transparent url("../images/logo.png") top left no-repeat;
     }
     div.dialog_window {
       h2.dialog_heading {
@@ -1162,7 +1162,7 @@ div {
         font: -webkit-control;
         cursor: default;
         &:hover, &:active {
-          background: #c0c8d6 url("images/filter_bar.png") bottom repeat-x;
+          background: #c0c8d6 url("../images/filter_bar.png") bottom repeat-x;
         }
       }
     }
