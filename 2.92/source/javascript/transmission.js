@@ -846,13 +846,13 @@ Transmission.prototype =
 		    row = ev.currentTarget.row;
 
 		// handle the per-row "torrent_resume" button
-		if (ev.target.className === 'torrent_resume') {
+		if (ev.target.className === 'torrent_resume icon-start-deep') {
 			this.startTorrent(row.getTorrent());
 			return;
 		}
 
 		// handle the per-row "torrent_pause" button
-		if (ev.target.className === 'torrent_pause') {
+		if (ev.target.className === 'torrent_pause icon-pause-deep') {
 			this.stopTorrent(row.getTorrent());
 			return;
 		}

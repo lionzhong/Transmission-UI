@@ -31,7 +31,7 @@ $.fn.tabbedDialog = function (dialog_opts) {
 	this.parent().addClass('ui-tabs').prepend(tabul).draggable('option','handle',tabul);
 	this.siblings('.ui-dialog-titlebar').remove();
 	tabul.addClass('ui-dialog-titlebar');
-}
+};
 
 $(document).ready(function() {
 

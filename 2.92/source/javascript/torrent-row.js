@@ -285,7 +285,7 @@ TorrentRendererFull.prototype =
 		var is_stopped = t.isStopped();
 		e = root._pause_resume_button_image;
 		e.alt = is_stopped ? 'Resume' : 'Pause';
-		e.className = is_stopped ? 'torrent_resume' : 'torrent_pause';
+		e.className = is_stopped ? 'torrent_resume icon-start-deep' : 'torrent_pause icon-pause-deep';
 	}
 };
 
