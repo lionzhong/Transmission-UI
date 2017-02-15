@@ -215,7 +215,7 @@
                         for="port-forwarding-enabled">使用路由器的端口转发</label></div>
             </div>
             <div class="prefs-section">
-                <div class="title">Options</div>
+                <div class="title">选项</div>
                 <div class="checkbox-row"><input type="checkbox" id="utp-enabled"
                                                  title="uTP is a tool for reducing network congestion."/>
                     <label for="utp-enabled" title="uTP is a tool for reducing network congestion.">为peer通信开启uTP</label></div>
@@ -248,7 +248,7 @@
                 <div class="value" id="inspector-info-have">&nbsp;</div>
             </div>
             <div class="row">
-                <div class="key">下载完成度:</div>
+                <div class="key">可用性:</div>
                 <div class="value" id="inspector-info-availability">&nbsp;</div>
             </div>
             <div class="row">
@@ -336,8 +336,8 @@
         <div class="dialog_logo" id="dialog_logo"></div>
         <h2 class="dialog_heading" id="dialog_heading"></h2>
         <div class="dialog_message" id="dialog_message"></div>
-        <a href="#confirm" id="dialog_confirm_button">Confirm</a>
-        <a href="#cancel" id="dialog_cancel_button">Cancel</a>
+        <a href="#confirm" id="dialog_confirm_button">确定</a>
+        <a href="#cancel" id="dialog_cancel_button">取消</a>
     </div>
 </div>
 
@@ -350,44 +350,44 @@
 
 <div class="ui-helper-hidden" id="stats-dialog">
     <div class="prefs-section">
-        <div class="title">Current Session</div>
+        <div class="title">当前会话</div>
         <div class="row">
-            <div class="key">Uploaded:</div>
+            <div class="key">已上传:</div>
             <div class="value" id='stats-session-uploaded'>&nbsp;</div>
         </div>
         <div class="row">
-            <div class="key">Downloaded:</div>
+            <div class="key">已下载:</div>
             <div class="value" id='stats-session-downloaded'>&nbsp;</div>
         </div>
         <div class="row">
-            <div class="key">Ratio:</div>
+            <div class="key">分享率:</div>
             <div class="value" id='stats-session-ratio'>&nbsp;</div>
         </div>
         <div class="row">
-            <div class="key">Running Time:</div>
+            <div class="key">运行时长:</div>
             <div class="value" id='stats-session-duration'>&nbsp;</div>
         </div>
     </div>
     <div class="prefs-section">
-        <div class="title">Total</div>
+        <div class="title">全部</div>
         <div class="row">
-            <div class="key">Started:</div>
+            <div class="key">已开始:</div>
             <div class="value" id='stats-total-count'>&nbsp;</div>
         </div>
         <div class="row">
-            <div class="key">Uploaded:</div>
+            <div class="key">已上传:</div>
             <div class="value" id='stats-total-uploaded'>&nbsp;</div>
         </div>
         <div class="row">
-            <div class="key">Downloaded:</div>
+            <div class="key">已下载:</div>
             <div class="value" id='stats-total-downloaded'>&nbsp;</div>
         </div>
         <div class="row">
-            <div class="key">Ratio:</div>
+            <div class="key">分享率:</div>
             <div class="value" id='stats-total-ratio'>&nbsp;</div>
         </div>
         <div class="row">
-            <div class="key">Running Time:</div>
+            <div class="key">运行时长:</div>
             <div class="value" id='stats-total-duration'>&nbsp;</div>
         </div>
     </div>
@@ -397,21 +397,21 @@
     <div class="dialog_top_bar"></div>
     <div class="dialog_window">
         <div class="dialog_logo" id="upload_dialog_logo"></div>
-        <h2 class="dialog_heading">Upload Torrent Files</h2>
+        <h2 class="dialog_heading">上传种子文件</h2>
         <form action="#" method="post" id="torrent_upload_form"
               enctype="multipart/form-data" target="torrent_upload_frame">
             <div class="dialog_message">
-                <label for="torrent_upload_file">Please select a torrent file to upload:</label>
+                <label for="torrent_upload_file">选择一个种子文件上传:</label>
                 <input type="file" name="torrent_files[]" id="torrent_upload_file" multiple="multiple"/>
-                <label for="torrent_upload_url">Or enter a URL:</label>
+                <label for="torrent_upload_url">或者输入一个URL:</label>
                 <input type="url" id="torrent_upload_url"/>
-                <label id='add-dialog-folder-label' for="add-dialog-folder-input">Destination folder:</label>
+                <label id='add-dialog-folder-label' for="add-dialog-folder-input">存储位置:</label>
                 <input type="text" id="add-dialog-folder-input"/>
                 <input type="checkbox" id="torrent_auto_start"/>
-                <label for="torrent_auto_start" id="auto_start_label">Start when added</label>
+                <label for="torrent_auto_start" id="auto_start_label">添加成功后就开始下载</label>
             </div>
-            <a href="#upload" id="upload_confirm_button">Upload</a>
-            <a href="#cancel" id="upload_cancel_button">Cancel</a>
+            <a href="#upload" id="upload_confirm_button">上传</a>
+            <a href="#cancel" id="upload_cancel_button">取消</a>
         </form>
     </div>
 </div>
@@ -420,13 +420,13 @@
     <div class="dialog_top_bar"></div>
     <div class="dialog_window">
         <div class="dialog_logo"></div>
-        <h2 class="dialog_heading">Rename torrent</h2>
+        <h2 class="dialog_heading">重命名种子</h2>
         <div class="dialog_message">
-            <label for="torrent_rename_name">Enter new name:</label>
+            <label for="torrent_rename_name">输入新名称:</label>
             <input type="text" id="torrent_rename_name"/>
         </div>
-        <a href="#rename" id="rename_confirm_button">Rename</a>
-        <a href="#cancel" id="rename_cancel_button">Cancel</a>
+        <a href="#rename" id="rename_confirm_button">重命名</a>
+        <a href="#cancel" id="rename_cancel_button">取消</a>
     </div>
 </div>
 
@@ -434,15 +434,15 @@
     <div class="dialog_top_bar"></div>
     <div class="dialog_window">
         <div class="dialog_logo" id="move_dialog_logo"></div>
-        <h2 class="dialog_heading">Set Location</h2>
+        <h2 class="dialog_heading">设置存储位置</h2>
         <form action="#" method="post" id="torrent_move_form"
               enctype="multipart/form-data" target="torrent_move_frame">
             <div class="dialog_message">
-                <label for="torrent_path">Location:</label>
+                <label for="torrent_path">位置:</label>
                 <input type="text" id="torrent_path"/>
             </div>
-            <a href="#move" id="move_confirm_button">Apply</a>
-            <a href="#cancel" id="move_cancel_button">Cancel</a>
+            <a href="#move" id="move_confirm_button">应用</a>
+            <a href="#cancel" id="move_cancel_button">取消</a>
         </form>
     </div>
 </div>
