@@ -1,0 +1,29 @@
+{
+  "name": "NSFGulpTask",
+  "version": "1.0.0",
+  "description": "js，scss",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-css-scss": "^0.1.0",
+    "gulp-jsbeautify": "^0.1.1",
+    "gulp-jshint": "^2.0.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.0.1",
+    "jshint": "^2.9.2",
+    "jshint-stylish": "^2.2.0"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "s"
+  },
+  "keywords": [
+    "gulp"
+  ],
+  "author": "vincent",
+  "license": "ISC"
+}

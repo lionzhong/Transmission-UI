@@ -2,6 +2,7 @@
 @import "mixins/importMixins";
 @import "base/font";
 @import "jqueryui/jqueryui";
+
 /*--------------------------------------
  *
  * G L O B A L
@@ -226,6 +227,7 @@ div#toolbar {
       min-width: 129px;
       border-radius: 5px;
       color: darken($statusbar-bg, 15%);
+      vertical-align: middle;
     }
     > .form-inpt {
       padding: 6.5px 10px;
@@ -504,11 +506,19 @@ ul.torrent_list {
       > * {
         margin-left: 0px;
       }
+      &.block{
+        float: none;
+        margin-bottom: 10px;
+      }
     }
     .value {
       margin-left: 150px;
       > * {
         width: 100%;
+      }
+      &.block{
+        margin: 0;
+        clear: both;
       }
     }
   }

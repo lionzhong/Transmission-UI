@@ -32,17 +32,6 @@
     <div id="toolbar-start-all" title="开始所有任务" class="ico"><span class="icon-start-all-light"></span></div>
     <div id="toolbar-pause-all" title="暂停所有任务" class="ico"><span class="icon-pause-all-light"></span></div>
     <div id="toolbar-inspector" title="详情面版" class="toolbar-inspector ico"><span class="icon-info-black"></span></div>
-
-
-    <!--<div id="toolbar-open" title="Open Torrent"></div>-->
-    <!--<div id="toolbar-remove" title="Remove Selected Torrents"></div>-->
-    <!--<div id="toolbar-separator"></div>-->
-    <!--<div id="toolbar-start" title="Start Selected Torrents"></div>-->
-    <!--<div id="toolbar-pause" title="Pause Selected Torrents"></div>-->
-    <!--<div id="toolbar-separator"></div>-->
-    <!--<div id="toolbar-start-all" title="Start All Torrents"></div>-->
-    <!--<div id="toolbar-pause-all" title="Pause All Torrents"></div>-->
-    <!--<div id="toolbar-inspector" title="Toggle Inspector"></div>-->
 </div>
 
 <div id="statusbar">
@@ -57,183 +46,179 @@
         </div>
     </div>
     <div id='filter'>
-        Show
         <select id="filter-mode" class="form-select">
-            <option value="all">All</option>
+            <option value="all">所有状态</option>
             <option value="active">Active</option>
-            <option value="downloading">Downloading</option>
-            <option value="seeding">Seeding</option>
-            <option value="paused">Paused</option>
-            <option value="finished">Finished</option>
+            <option value="downloading">下载中</option>
+            <option value="seeding">正在做种</option>
+            <option value="paused">已暂停</option>
+            <option value="finished">已完成</option>
         </select>
         <select id="filter-tracker" class="form-select"></select>
-        <input type="search" id="torrent_search" class="form-inpt" placeholder="Filter"/>
+        <input type="search" id="torrent_search" class="form-inpt" placeholder="输入关键字过滤"/>
         <span id="filter-count">&nbsp;</span>
     </div>
 </div>
 
 <div class="ui-helper-hidden" id="prefs-dialog">
     <ul>
-        <li id="prefs-tab-general"><a href="#prefs-page-torrents">Torrents</a></li>
-        <li id="prefs-tab-speed"><a href="#prefs-page-speed">Speed</a></li>
+        <li id="prefs-tab-general"><a href="#prefs-page-torrents">种子</a></li>
+        <li id="prefs-tab-speed"><a href="#prefs-page-speed">速度</a></li>
         <li id="prefs-tab-peers"><a href="#prefs-page-peers">Peers</a></li>
-        <li id="prefs-tab-network"><a href="#prefs-page-network">Network</a></li>
+        <li id="prefs-tab-network"><a href="#prefs-page-network">网络</a></li>
         <li class="ui-tab-dialog-close"></li>
     </ul>
     <div>
         <div id="prefs-page-torrents">
             <div class="prefs-section">
-                <div class="title">Downloading</div>
+                <div class="title">下载</div>
                 <div class="row">
-                    <div class="key">Download to:</div>
-                    <div class="value"><input type="text" id="download-dir"/></div>
+                    <div class="key block">下载目录:</div>
+                    <div class="value block"><input type="text" id="download-dir"/></div>
                 </div>
                 <div class="checkbox-row"><input type="checkbox" id="start-added-torrents"/><label
-                        for="start-added-torrents">Start when added</label></div>
+                        for="start-added-torrents">添加完成后直接开始下载</label></div>
                 <div class="checkbox-row"><input type="checkbox" id="rename-partial-files"/><label
-                        for="rename-partial-files">Append &quot;.part&quot; to incomplete files' names</label></div>
+                        for="rename-partial-files">对未完成的文件添加 &quot;.part&quot; 后缀名</label></div>
             </div>
             <div class="prefs-section">
-                <div class="title">Seeding</div>
+                <div class="title">做种</div>
                 <div class="row">
-                    <div class="key"><input type="checkbox" id="seedRatioLimited"/><label for="seedRatioLimited">Stop
-                        seeding at ratio:</label></div>
-                    <div class="value"><input type="number" min="0" id="seedRatioLimit"/></div>
+                    <div class="key block"><input type="checkbox" id="seedRatioLimited"/>
+                        <label for="seedRatioLimited">达到此分享率时停止做种:</label>
+                    </div>
+                    <div class="value block"><input type="number" min="0" id="seedRatioLimit"/></div>
                 </div>
                 <div class="row">
-                    <div class="key"><input type="checkbox" id="idle-seeding-limit-enabled"/><label
-                            for="idle-seeding-limit-enabled">Stop seeding if idle for (min):</label></div>
-                    <div class="value"><input type="number" min="0" id="idle-seeding-limit"/></div>
+                    <div class="key block">
+                        <input type="checkbox" id="idle-seeding-limit-enabled"/>
+                        <label for="idle-seeding-limit-enabled">到达此时长以后停止做种:</label>
+                    </div>
+                    <div class="value block"><input type="number" min="0" id="idle-seeding-limit"/></div>
                 </div>
             </div>
         </div>
         <div id="prefs-page-speed">
             <div class="prefs-section">
-                <div class="title">Speed Limits</div>
+                <div class="title">限速</div>
                 <div class="row">
                     <div class="key"><input type="checkbox" id="speed-limit-up-enabled"/><label
-                            for="speed-limit-up-enabled">Upload (kB/s):</label></div>
+                            for="speed-limit-up-enabled">上传 (kB/s):</label></div>
                     <div class="value"><input type="number" min="0" id="speed-limit-up"/></div>
                 </div>
                 <div class="row">
                     <div class="key"><input type="checkbox" id="speed-limit-down-enabled"/><label
-                            for="speed-limit-down-enabled">Download (kB/s):</label></div>
+                            for="speed-limit-down-enabled">下载 (kB/s):</label></div>
                     <div class="value"><input type="number" min="0" id="speed-limit-down"/></div>
                 </div>
             </div>
             <div class="prefs-section">
                 <div class="title">
-                    <div id="alternative-speed-limits-title">Alternative Speed Limits</div>
+                    <div id="alternative-speed-limits-title">选择性限速</div>
                 </div>
-                <div class="row" id="alternative-speed-limits-desc">Override normal speed limits manually or at
-                    scheduled times
-                </div>
+                <div class="row" id="alternative-speed-limits-desc">覆盖手动限速或者在计划时间内限速</div>
                 <div class="row">
-                    <div class="key">Upload (kB/s):</div>
+                    <div class="key">上传 (kB/s):</div>
                     <div class="value"><input type="number" min="0" id="alt-speed-up"/></div>
                 </div>
                 <div class="row">
-                    <div class="key">Download (kB/s):</div>
+                    <div class="key">下载 (kB/s):</div>
                     <div class="value"><input type="number" min="0" id="alt-speed-down"/></div>
                 </div>
                 <div class="checkbox-row"><input type="checkbox" id="alt-speed-time-enabled"/><label
-                        for="alt-speed-time-enabled">Scheduled Times</label></div>
+                        for="alt-speed-time-enabled">计划时段</label></div>
                 <div class="row">
-                    <div class="key">From:</div>
+                    <div class="key">开始时间:</div>
                     <div class="value"><select id="alt-speed-time-begin"></select></div>
                 </div>
                 <div class="row">
-                    <div class="key">To:</div>
+                    <div class="key">结束时间:</div>
                     <div class="value"><select id="alt-speed-time-end"></select></div>
                 </div>
                 <div class="row">
-                    <div class="key"><label for="alt-speed-time-day">On days:</label></div>
+                    <div class="key"><label for="alt-speed-time-day">期间:</label></div>
                     <div class="value"><select id="alt-speed-time-day">
-                        <option value="127">Everyday</option>
-                        <option value="62">Weekdays</option>
-                        <option value="65">Weekends</option>
-                        <option value="1">Sunday</option>
-                        <option value="2">Monday</option>
-                        <option value="4">Tuesday</option>
-                        <option value="8">Wednesday</option>
-                        <option value="16">Thursday</option>
-                        <option value="32">Friday</option>
-                        <option value="64">Saturday</option>
+                        <option value="127">每天</option>
+                        <option value="62">工作日</option>
+                        <option value="65">周末</option>
+                        <option value="1">星期天</option>
+                        <option value="2">星期一</option>
+                        <option value="4">星期二</option>
+                        <option value="8">星期三</option>
+                        <option value="16">星期四</option>
+                        <option value="32">星期五</option>
+                        <option value="64">星期六</option>
                     </select></div>
                 </div>
             </div>
         </div>
         <div id="prefs-page-peers">
             <div class="prefs-section">
-                <div class="title">Connections</div>
+                <div class="title">连接数</div>
                 <div class="row">
-                    <div class="key"><label for="peer-limit-per-torrent">Max peers per torrent:</label></div>
-                    <div class="value"><input type="number" min="0" id="peer-limit-per-torrent"/></div>
+                    <div class="key block"><label for="peer-limit-per-torrent">每个种子的最大Peer数:</label></div>
+                    <div class="value block"><input type="number" min="0" id="peer-limit-per-torrent"/></div>
                 </div>
                 <div class="row">
-                    <div class="key"><label for="peer-limit-global">Max peers overall:</label></div>
-                    <div class="value"><input type="number" min="0" id="peer-limit-global"/></div>
+                    <div class="key block"><label for="peer-limit-global">所有种子累计的最大Peer数:</label></div>
+                    <div class="value block"><input type="number" min="0" id="peer-limit-global"/></div>
                 </div>
             </div>
             <div class="prefs-section">
-                <div class="title">Options</div>
+                <div class="title">选项</div>
                 <div class="row">
-                    <div class="key">Encryption mode:</div>
+                    <div class="key">加密模式:</div>
                     <div class="value"><select id="encryption">
-                        <option value="tolerated">Allow encryption</option>
-                        <option value="preferred">Prefer encryption</option>
-                        <option value="required">Require encryption</option>
+                        <option value="tolerated">允许加密</option>
+                        <option value="preferred">喜欢加密</option>
+                        <option value="required">需要加密</option>
                     </select></div>
                 </div>
                 <div class="checkbox-row"><input type="checkbox" id="pex-enabled"
                                                  title="PEX is a tool for exchanging peer lists with the peers you're connected to."/>
                     <label for="pex-enabled"
-                           title="PEX is a tool for exchanging peer lists with the peers you're connected to.">Use PEX
-                        to find more peers</label></div>
+                           title="PEX is a tool for exchanging peer lists with the peers you're connected to.">使用 PEX
+                        查找更多的peers</label></div>
                 <div class="checkbox-row"><input type="checkbox" id="dht-enabled"
                                                  title="DHT is a tool for finding peers without a tracker."/>
-                    <label for="dht-enabled" title="DHT is a tool for finding peers without a tracker.">Use DHT to find
-                        more peers</label></div>
+                    <label for="dht-enabled" title="DHT is a tool for finding peers without a tracker.">使用 DHT 寻找更多的peers</label></div>
                 <div class="checkbox-row"><input type="checkbox" id="lpd-enabled"
                                                  title="LPD is a tool for finding peers on your local network."/>
-                    <label for="lpd-enabled" title="LPD is a tool for finding peers on your local network.">Use LPD to
-                        find more peers</label></div>
+                    <label for="lpd-enabled" title="LPD is a tool for finding peers on your local network.">使用 LPD 寻找更多的peers</label></div>
             </div>
             <div class="prefs-section">
-                <div class="title">Blocklist</div>
+                <div class="title">拦截列表</div>
                 <div class="row">
-                    <div class="key"><input type="checkbox" id="blocklist-enabled"/><label for="blocklist-enabled">Enable
-                        blocklist:</label></div>
+                    <div class="key"><input type="checkbox" id="blocklist-enabled"/><label for="blocklist-enabled">开启拦截列表:</label></div>
                     <div class="value"><input type="url" id="blocklist-url"/></div>
                 </div>
                 <div class="row">
-                    <div class="key" id="blocklist-info">Blocklist has <span id="blocklist-size">?</span> rules</div>
+                    <div class="key" id="blocklist-info">拦截列表有 <span id="blocklist-size">?</span> 条规则</div>
                     <div class="value"><input type="button" id="blocklist-update-button" value="Update"/></div>
                 </div>
             </div>
         </div>
         <div id="prefs-page-network">
             <div class="prefs-section">
-                <div class="title">Listening Port</div>
+                <div class="title">监听端口</div>
                 <div class="row">
-                    <div class="key"><label for="peer-port">Peer listening port:</label></div>
+                    <div class="key"><label for="peer-port">Peer 监听端口:</label></div>
                     <div class="value"><input type="number" min="0" max="65535" id="peer-port"/></div>
                 </div>
                 <div class="row">
                     <div class="key">&nbsp;</div>
-                    <div class="value"><span id="port-label">Status: Unknown</span></div>
+                    <div class="value"><span id="port-label">状态: 未知</span></div>
                 </div>
                 <div class="checkbox-row"><input type="checkbox" id="peer-port-random-on-start"/><label
-                        for="peer-port-random-on-start">Randomize port on launch</label></div>
+                        for="peer-port-random-on-start">启动时使用随机端口</label></div>
                 <div class="checkbox-row"><input type="checkbox" id="port-forwarding-enabled"/><label
-                        for="port-forwarding-enabled">Use port forwarding from my router</label></div>
+                        for="port-forwarding-enabled">使用路由器的端口转发</label></div>
             </div>
             <div class="prefs-section">
                 <div class="title">Options</div>
                 <div class="checkbox-row"><input type="checkbox" id="utp-enabled"
                                                  title="uTP is a tool for reducing network congestion."/>
-                    <label for="utp-enabled" title="uTP is a tool for reducing network congestion.">Enable uTP for peer
-                        communication</label></div>
+                    <label for="utp-enabled" title="uTP is a tool for reducing network congestion.">为peer通信开启uTP</label></div>
             </div>
         </div>
     </div>
@@ -257,68 +242,68 @@
 
     <div class="inspector-page" id="inspector-page-info">
         <div class="prefs-section">
-            <div class="title">Activity</div>
+            <div class="title">活跃状况</div>
             <div class="row">
-                <div class="key">Have:</div>
+                <div class="key">含有容量（Have）:</div>
                 <div class="value" id="inspector-info-have">&nbsp;</div>
             </div>
             <div class="row">
-                <div class="key">Availability:</div>
+                <div class="key">下载完成度:</div>
                 <div class="value" id="inspector-info-availability">&nbsp;</div>
             </div>
             <div class="row">
-                <div class="key">Uploaded:</div>
+                <div class="key">已上传:</div>
                 <div class="value" id="inspector-info-uploaded">&nbsp;</div>
             </div>
             <div class="row">
-                <div class="key">Downloaded:</div>
+                <div class="key">已下载:</div>
                 <div class="value" id="inspector-info-downloaded">&nbsp;</div>
             </div>
             <div class="row">
-                <div class="key">State:</div>
+                <div class="key">状态:</div>
                 <div class="value" id="inspector-info-state">&nbsp;</div>
             </div>
             <div class="row">
-                <div class="key">Running Time:</div>
+                <div class="key">运行时长:</div>
                 <div class="value" id="inspector-info-running-time">&nbsp;</div>
             </div>
             <div class="row">
-                <div class="key">Remaining Time:</div>
+                <div class="key">预计还需时长:</div>
                 <div class="value" id="inspector-info-remaining-time">&nbsp;</div>
             </div>
             <div class="row">
-                <div class="key">Last Activity:</div>
+                <div class="key">上一次活跃:</div>
                 <div class="value" id="inspector-info-last-activity">&nbsp;</div>
             </div>
             <div class="row">
-                <div class="key">Error:</div>
+                <div class="key">错误:</div>
                 <div class="value" id="inspector-info-error">&nbsp;</div>
             </div>
         </div>
         <div class="prefs-section">
-            <div class="title">Details</div>
+            <div class="title">明细</div>
             <div class="row">
-                <div class="key">Size:</div>
+                <div class="key">大小:</div>
                 <div class="value" id="inspector-info-size">&nbsp;</div>
             </div>
             <div class="row">
-                <div class="key">Location:</div>
+                <div class="key">位置:</div>
                 <div class="value" id="inspector-info-location">&nbsp;</div>
             </div>
             <div class="row">
-                <div class="key">Hash:</div>
+                <div class="key">哈希:</div>
                 <div class="value" id="inspector-info-hash">&nbsp;</div>
             </div>
             <div class="row">
-                <div class="key">Privacy:</div>
+                <div class="key">隐私:</div>
                 <div class="value" id="inspector-info-privacy">&nbsp;</div>
             </div>
             <div class="row">
-                <div class="key">Origin:</div>
+                <div class="key">源:</div>
                 <div class="value" id="inspector-info-origin">&nbsp;</div>
             </div>
             <div class="row">
-                <div class="key">Comment:</div>
+                <div class="key">备注:</div>
                 <div class="value" id="inspector-info-comment">&nbsp;</div>
             </div>
         </div>
@@ -359,8 +344,8 @@
 <div class="ui-helper-hidden" id="about-dialog">
     <p id="about-logo"></p>
     <p id="about-title">Transmission X</p>
-    <p id="about-blurb">A fast and easy BitTorrent client</p>
-    <p id="about-copyright">Copyright (c) The Transmission Project</p>
+    <p id="about-blurb">快速、简单易用的 BitTorrent 客户端</p>
+    <p id="about-copyright">Copyright (c) Transmission 项目版权所有</p>
 </div>
 
 <div class="ui-helper-hidden" id="stats-dialog">
@@ -468,23 +453,23 @@
     <div id="turtle-button" title="选择性限速"><span class="icon-scheduled"></span></div>
     <div id="compact-button" title="折叠列表视图"><span class="icon-listview"></span></div>
 
-    <ul class="ui-helper-hidden" id="footer_super_menu">
-        <li id="about-button">About</li>
+    <ul class="ui-helper-hidden menu-top-list" id="footer_super_menu">
+        <li id="about-button">关于Transmission</li>
         <li>---</li>
-        <li id="homepage">Transmission Homepage</li>
-        <li id="tipjar">Transmission Tip Jar</li>
+        <li id="homepage">主页</li>
+        <li id="tipjar">捐赠</li>
         <li>---</li>
-        <li id="statistics">Statistics</li>
+        <li id="statistics">统计</li>
         <!--
         <li id="toggle_notifications">Notifcations</li>
         -->
         <li>---</li>
-        <li>Total Download Rate
+        <li>设置最高下载速度
             <ul id="footer_download_rate_menu">
                 <li radio-group="download-rate" id="unlimited_download_rate"><span
-                        class='ui-icon ui-icon-bullet'></span>Unlimited
+                        class='ui-icon ui-icon-bullet'></span>不限速
                 </li>
-                <li radio-group="download-rate" id="limited_download_rate">Limit (10 kB/s)</li>
+                <li radio-group="download-rate" id="limited_download_rate">限速 (10 kB/s)</li>
                 <li>---</li>
                 <li class='download-speed'>5 kB/s</li>
                 <li class='download-speed'>10 kB/s</li>
@@ -501,11 +486,11 @@
                 <li class='download-speed'>750 kB/s</li>
             </ul>
         </li>
-        <li>Total Upload Rate
+        <li>设置最高上传速度
             <ul id="footer_upload_rate_menu">
-                <li radio-group="upload-rate" id="unlimited_upload_rate"><span class='ui-icon ui-icon-bullet'></span>Unlimited
+                <li radio-group="upload-rate" id="unlimited_upload_rate"><span class='ui-icon ui-icon-bullet'></span>不限速
                 </li>
-                <li radio-group="upload-rate" id="limited_upload_rate">Limit (10 kB/s)</li>
+                <li radio-group="upload-rate" id="limited_upload_rate">限速 (10 kB/s)</li>
                 <li>---</li>
                 <li class='upload-speed'>5 kB/s</li>
                 <li class='upload-speed'>10 kB/s</li>
@@ -523,44 +508,44 @@
             </ul>
         </li>
         <li>---</li>
-        <li>Sort Transfers By
+        <li>对传输任务排序
             <ul id="footer_sort_menu">
-                <li radio-group="sort-mode" id="sort_by_queue_order">Queue Order</li>
-                <li radio-group="sort-mode" id="sort_by_activity">Activity</li>
-                <li radio-group="sort-mode" id="sort_by_age">Age</li>
-                <li radio-group="sort-mode" id="sort_by_name">Name</li>
-                <li radio-group="sort-mode" id="sort_by_percent_completed">Progress</li>
-                <li radio-group="sort-mode" id="sort_by_ratio">Ratio</li>
-                <li radio-group="sort-mode" id="sort_by_size">Size</li>
-                <li radio-group="sort-mode" id="sort_by_state">State</li>
+                <li radio-group="sort-mode" id="sort_by_queue_order">队列顺序</li>
+                <li radio-group="sort-mode" id="sort_by_activity">活跃度</li>
+                <li radio-group="sort-mode" id="sort_by_age">时间</li>
+                <li radio-group="sort-mode" id="sort_by_name">名称</li>
+                <li radio-group="sort-mode" id="sort_by_percent_completed">进度</li>
+                <li radio-group="sort-mode" id="sort_by_ratio">分享率</li>
+                <li radio-group="sort-mode" id="sort_by_size">大小</li>
+                <li radio-group="sort-mode" id="sort_by_state">状态</li>
                 <li>---</li>
-                <li id="reverse_sort_order">Reverse Sort Order</li>
+                <li id="reverse_sort_order">反向排序</li>
             </ul>
         </li>
     </ul>
 </div>
 
 <ul class="ui-helper-hidden" id="torrent_context_menu">
-    <li data-command="pause_selected">Pause</li>
-    <li data-command="resume_selected">Resume</li>
-    <li data-command="resume_now_selected">Resume Now</li>
+    <li data-command="pause_selected">暂停</li>
+    <li data-command="resume_selected">恢复</li>
+    <li data-command="resume_now_selected">立刻恢复</li>
     <li>---</li>
-    <li data-command="move_top">Move to Top</li>
-    <li data-command="move_up">Move Up</li>
-    <li data-command="move_down">Move Down</li>
-    <li data-command="move_bottom">Move to Bottom</li>
+    <li data-command="move_top">移到顶部</li>
+    <li data-command="move_up">向上移</li>
+    <li data-command="move_down">向下移</li>
+    <li data-command="move_bottom">移到底部</li>
     <li>---</li>
-    <li data-command="remove">Remove From List…</li>
-    <li data-command="remove_data">Trash Data and Remove From List…</li>
+    <li data-command="remove">从列表中删除…</li>
+    <li data-command="remove_data">删除磁盘数据，以及从列表中移除…</li>
     <li>---</li>
-    <li data-command="verify">Verify Local Data</li>
-    <li data-command="move">Set Location…</li>
-    <li data-command="rename">Rename…</li>
+    <li data-command="verify">检验本地数据</li>
+    <li data-command="move">设置存放位置…</li>
+    <li data-command="rename">重命名…</li>
     <li>---</li>
-    <li data-command="reannounce">Ask tracker for more peers</li>
+    <li data-command="reannounce">向tracker问询更多peers</li>
     <li>---</li>
-    <li data-command="select_all">Select All</li>
-    <li data-command="deselect_all">Deselect All</li>
+    <li data-command="select_all">全选</li>
+    <li data-command="deselect_all">全都不选</li>
 </ul>
 
 <iframe name="torrent_upload_frame" id="torrent_upload_frame" src="about:blank"></iframe>
