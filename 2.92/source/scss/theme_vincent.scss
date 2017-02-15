@@ -326,6 +326,9 @@ ul.torrent_list {
       position: relative;
       right: -22px;
       top: 1px;
+      @media (max-width: 1024px) {
+        display: none;
+      }
       img {
         position: relative;
         right: -10px;
@@ -338,12 +341,6 @@ ul.torrent_list {
           @include css3("transition", opacity 0.5s);
           opacity: 0.65;
         }
-        //&.torrent_pause {
-        //  background-position: left top;
-        //}
-        //&.torrent_resume {
-        //  background-position: center top;
-        //}
       }
       &:active div {
         &.torrent_pause {
@@ -559,6 +556,7 @@ div#torrent_inspector {
     width: auto;
     top: 55px;
     left: 0;
+    z-index: 90;
   }
   /* Files Inspector Tab */
   #inspector-close {
