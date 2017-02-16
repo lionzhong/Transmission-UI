@@ -217,9 +217,14 @@ div#toolbar {
   padding: 5px;
   color: $gray-100;
   @media (max-width: 1024px) {
-    display: none;
+    position: static;
+    padding: 0;
+    color: darken($prime-green,35%);
   }
   #filter {
+    @media (max-width: 1024px) {
+      display: none;
+    }
     > .form-select, > .form-inpt {
       margin: 0;
       border: none;
@@ -236,6 +241,14 @@ div#toolbar {
   #speed-info {
     float: right;
     margin: 5px 15px 0 0;
+    @media (max-width: 1024px) {
+      margin: 0;
+      position: fixed;
+      right:10px;
+      bottom: 10px;
+      z-index: 91;
+      color: darken($prime-green,25%);
+    }
     * {
       display: inline-block;
     }
