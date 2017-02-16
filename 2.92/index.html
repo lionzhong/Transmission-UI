@@ -228,10 +228,10 @@
 
     <div id="inspector-tabs-wrapper">
         <div id="inspector-tabs">
-            <div class="inspector-tab selected" id="inspector-tab-info" title="Info"><a href="#info"><span class="icon-info-light"></span></a></div>
+            <div class="inspector-tab selected" id="inspector-tab-info" title="信息"><a href="#info"><span class="icon-info-light"></span></a></div>
             <div class="inspector-tab" id="inspector-tab-peers" title="Peers"><a href="#peers"><span class="icon-people"></span></a></div>
             <div class="inspector-tab" id="inspector-tab-trackers" title="Trackers"><a href="#trackers"><span class="icon-server"></span></a></div>
-            <div class="inspector-tab" id="inspector-tab-files" title="Files"><a href="#files"><span class="icon-checklist"></span></a></div>
+            <div class="inspector-tab" id="inspector-tab-files" title="文件"><a href="#files"><span class="icon-checklist"></span></a></div>
         </div><!-- inspector-tabs -->
     </div><!-- inspector-tabs-wrapper -->
 
@@ -244,7 +244,7 @@
         <div class="prefs-section">
             <div class="title">活跃状况</div>
             <div class="row">
-                <div class="key">含有容量（Have）:</div>
+                <div class="key">下载进度:</div>
                 <div class="value" id="inspector-info-have">&nbsp;</div>
             </div>
             <div class="row">
@@ -396,7 +396,7 @@
 <div class="dialog_container ui-helper-hidden" id="upload_container">
     <div class="dialog_top_bar"></div>
     <div class="dialog_window">
-        <div class="dialog_logo" id="upload_dialog_logo"></div>
+        <div class="dialog_logo_upload" id="upload_dialog_logo"></div>
         <h2 class="dialog_heading">上传种子文件</h2>
         <form action="#" method="post" id="torrent_upload_form"
               enctype="multipart/form-data" target="torrent_upload_frame">
@@ -410,7 +410,7 @@
                 <input type="checkbox" id="torrent_auto_start"/>
                 <label for="torrent_auto_start" id="auto_start_label">添加成功后就开始下载</label>
             </div>
-            <a href="#upload" id="upload_confirm_button">上传</a>
+            <a href="#upload" class="confirm" id="upload_confirm_button">上传</a>
             <a href="#cancel" id="upload_cancel_button">取消</a>
         </form>
     </div>
@@ -419,13 +419,13 @@
 <div class="dialog_container ui-helper-hidden" id="rename_container">
     <div class="dialog_top_bar"></div>
     <div class="dialog_window">
-        <div class="dialog_logo"></div>
+        <div class="dialog_logo_rename"></div>
         <h2 class="dialog_heading">重命名种子</h2>
         <div class="dialog_message">
             <label for="torrent_rename_name">输入新名称:</label>
             <input type="text" id="torrent_rename_name"/>
         </div>
-        <a href="#rename" id="rename_confirm_button">重命名</a>
+        <a href="#rename" class="confirm" id="rename_confirm_button">重命名</a>
         <a href="#cancel" id="rename_cancel_button">取消</a>
     </div>
 </div>
@@ -441,7 +441,7 @@
                 <label for="torrent_path">位置:</label>
                 <input type="text" id="torrent_path"/>
             </div>
-            <a href="#move" id="move_confirm_button">应用</a>
+            <a href="#move" class="confirm" id="move_confirm_button">应用</a>
             <a href="#cancel" id="move_cancel_button">取消</a>
         </form>
     </div>

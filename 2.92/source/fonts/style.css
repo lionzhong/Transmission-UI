@@ -1,87 +1,102 @@
 @font-face {
-    font-family: 'transmission';
-    src:    url('fonts/transmission.eot?apkwcm');
-    src:    url('fonts/transmission.eot?apkwcm#iefix') format('embedded-opentype'),
-        url('fonts/transmission.ttf?apkwcm') format('truetype'),
-        url('fonts/transmission.woff?apkwcm') format('woff'),
-        url('fonts/transmission.svg?apkwcm#transmission') format('svg');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'transmission';
+  src:  url('fonts/transmission.eot?ljv2x6');
+  src:  url('fonts/transmission.eot?ljv2x6#iefix') format('embedded-opentype'),
+    url('fonts/transmission.ttf?ljv2x6') format('truetype'),
+    url('fonts/transmission.woff?ljv2x6') format('woff'),
+    url('fonts/transmission.svg?ljv2x6#transmission') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 [class^="icon-"], [class*=" icon-"] {
-    /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'transmission' !important;
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'transmission' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
 
-    /* Better Font Rendering =========== */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .icon-info-black:before {
-    content: "\e912";
+  content: "\e912";
 }
 .icon-info-light:before {
-    content: "\e913";
+  content: "\e913";
 }
 .icon-pause-all-light:before {
-    content: "\e900";
+  content: "\e900";
 }
 .icon-add:before {
-    content: "\e901";
+  content: "\e901";
 }
 .icon-checklist:before {
-    content: "\e902";
+  content: "\e902";
 }
 .icon-config:before {
-    content: "\e903";
+  content: "\e903";
 }
 .icon-delete:before {
-    content: "\e904";
+  content: "\e904";
 }
 .icon-detele-all:before {
-    content: "\e905";
+  content: "\e905";
 }
 .icon-download:before {
-    content: "\e906";
+  content: "\e906";
 }
 .icon-listview:before {
-    content: "\e907";
+  content: "\e907";
 }
 .icon-pause-deep:before {
-    content: "\e908";
+  content: "\e908";
 }
 .icon-pause-light:before {
-    content: "\e909";
+  content: "\e909";
 }
 .icon-people:before {
-    content: "\e90a";
+  content: "\e90a";
 }
 .icon-scheduled:before {
-    content: "\e90b";
+  content: "\e90b";
 }
 .icon-server:before {
-    content: "\e90c";
+  content: "\e90c";
 }
 .icon-settings:before {
-    content: "\e90d";
+  content: "\e90d";
 }
 .icon-start-all-light:before {
-    content: "\e90e";
+  content: "\e90e";
 }
 .icon-start-deep:before {
-    content: "\e90f";
+  content: "\e90f";
 }
 .icon-start-light:before {
-    content: "\e910";
+  content: "\e910";
 }
 .icon-upload:before {
-    content: "\e911";
+  content: "\e911";
+}
+.icon-drag_handle:before {
+  content: "\e25d";
+}
+.icon-keyboard_arrow_down:before {
+  content: "\e313";
+}
+.icon-keyboard_arrow_left:before {
+  content: "\e314";
+}
+.icon-keyboard_arrow_right:before {
+  content: "\e315";
+}
+.icon-keyboard_arrow_up:before {
+  content: "\e316";
 }
 

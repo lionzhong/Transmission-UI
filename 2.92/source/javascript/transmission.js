@@ -692,7 +692,7 @@ Transmission.prototype =
 				o = 'Transmission ' + this.serverVersion;
 				$('#about-dialog #about-title').html(o);
 				$('#about-dialog').dialog({
-					title: 'About',
+					title: '关于',
 					show: 'fade',
 					hide: 'fade'
 				});
@@ -1709,7 +1709,7 @@ Transmission.prototype =
 
 		s = stats["cumulative-stats"];
 		ratio = Math.ratio(s.uploadedBytes,s.downloadedBytes);
-		$('#stats-total-count').html(s.sessionCount + " times");
+		$('#stats-total-count').html(s.sessionCount + " 次");
 		$('#stats-total-uploaded').html(fmt.size(s.uploadedBytes));
 		$('#stats-total-downloaded').html(fmt.size(s.downloadedBytes));
 		$('#stats-total-ratio').html(fmt.ratioString(ratio));
@@ -1725,7 +1725,7 @@ Transmission.prototype =
 			close: $.proxy(this.onStatsDialogClosed,this),
 			show: 'fade',
 			hide: 'fade',
-			title: 'Statistics'
+			title: '统计'
 		});
 	},
 

@@ -227,7 +227,7 @@ function Inspector(controller) {
 					u += t.getUploadedEver();
 				}
 			}
-			str = fmt.size(u) + ' (Ratio: ' + fmt.ratioString( Math.ratio(u,d))+')';
+			str = fmt.size(u) + ' (分享率: ' + fmt.ratioString( Math.ratio(u,d))+')';
 		}
 		setTextContent(e.uploaded_lb, str);
 
@@ -299,7 +299,7 @@ function Inspector(controller) {
 			else if(d < 5)
 				str = 'Active now';
 			else
-				str = fmt.timeInterval(d) + ' ago';
+				str = fmt.timeInterval(d) + ' 之前';
 		}
 		setTextContent(e.last_activity_lb, str);
 
@@ -370,7 +370,7 @@ function Inspector(controller) {
 			str = none;
 		else {
 			baseline = torrents[0].getPrivateFlag();
-			str = baseline ? 'Private to this tracker -- DHT and PEX disabled' : 'Public torrent';
+			str = baseline ? '私有种子 -- DHT 和 PEX 已禁用' : '公开的种子';
 			for(i=0; t=torrents[i]; ++i) {
 				if(baseline != t.getPrivateFlag()) {
 					str = mixed;

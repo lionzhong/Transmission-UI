@@ -189,10 +189,10 @@ Transmission.fmt = (function()
 			    hours   = Math.floor ((seconds % 86400) / 3600),
 			    minutes = Math.floor ((seconds % 3600) / 60),
 			    seconds = Math.floor (seconds % 60),
-			    d = days    + ' ' + (days    > 1 ? 'days'    : 'day'),
-			    h = hours   + ' ' + (hours   > 1 ? 'hours'   : 'hour'),
-			    m = minutes + ' ' + (minutes > 1 ? 'minutes' : 'minute'),
-			    s = seconds + ' ' + (seconds > 1 ? 'seconds' : 'second');
+			    d = days    + ' ' + (days    > 1 ? '天'    : '天'),
+			    h = hours   + ' ' + (hours   > 1 ? '小时'   : '小时'),
+			    m = minutes + ' ' + (minutes > 1 ? '分钟' : '分钟'),
+			    s = seconds + ' ' + (seconds > 1 ? '秒' : '秒');
 
 			if (days) {
 				if (days >= 4 || !hours)

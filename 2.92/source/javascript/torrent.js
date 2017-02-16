@@ -268,16 +268,16 @@ Torrent.prototype =
 	getPercentDone: function() { return this.fields.percentDone; },
 	getStateString: function() {
 		switch(this.getStatus()) {
-			case Torrent._StatusStopped:        return this.isFinished() ? 'Seeding complete' : 'Paused';
-			case Torrent._StatusCheckWait:      return 'Queued for verification';
-			case Torrent._StatusCheck:          return 'Verifying local data';
-			case Torrent._StatusDownloadWait:   return 'Queued for download';
-			case Torrent._StatusDownload:       return 'Downloading';
-			case Torrent._StatusSeedWait:       return 'Queued for seeding';
-			case Torrent._StatusSeed:           return 'Seeding';
+			case Torrent._StatusStopped:        return this.isFinished() ? '做种完毕' : '已暂停';
+			case Torrent._StatusCheckWait:      return '验证排队';
+			case Torrent._StatusCheck:          return '正在验证本地数据';
+			case Torrent._StatusDownloadWait:   return '下载排队';
+			case Torrent._StatusDownload:       return '下载中';
+			case Torrent._StatusSeedWait:       return '做种排队';
+			case Torrent._StatusSeed:           return '做种';
 			case null:
-			case undefined:                     return 'Unknown';
-			default:                            return 'Error';
+			case undefined:                     return '未知';
+			default:                            return '错误';
 		}
 	},
 	seedRatioLimit: function(controller){
@@ -291,11 +291,11 @@ Torrent.prototype =
 		var str = this.getErrorString();
 		switch(this.getError()) {
 			case Torrent._ErrTrackerWarning:
-				return 'Tracker returned a warning: ' + str;
+				return 'Tracker返回了一个警告: ' + str;
 			case Torrent._ErrTrackerError:
-				return 'Tracker returned an error: ' + str;
+				return 'Tracker返回了一个错误: ' + str;
 			case Torrent._ErrLocalError:
-				return 'Error: ' + str;
+				return '错误: ' + str;
 			default:
 				return null;
 		}

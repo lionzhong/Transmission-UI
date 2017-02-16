@@ -61,7 +61,7 @@ TransmissionRemote.prototype =
 
 		dialog.confirm('连接失败',
 			'无法连接到服务器. 你可能需要通过刷新页面来重新连接。',
-			'查看详情',
+			'详情',
 			function() {
 				alert(remote._error);
 			},
