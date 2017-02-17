@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5be9f97-5afa-417b-bad7-ee74fce52ea7" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2.92/source/javascript/app.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2.92/source/javascript/require.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2.92/source/scss/jqueryui/_jqueryui.scss" afterPath="$PROJECT_DIR$/2.92/source/scss/jqueryui/_jqueryui.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2.92/source/scss/theme_vincent.scss" afterPath="$PROJECT_DIR$/2.92/source/scss/theme_vincent.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2.92/style/theme_vincent.css" afterPath="$PROJECT_DIR$/2.92/style/theme_vincent.css" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/2.92/javascript/app.js" afterPath="$PROJECT_DIR$/2.92/source/requirejs/app.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/2.92/javascript/require.js" afterPath="$PROJECT_DIR$/2.92/source/requirejs/require.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,8 +25,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/2.92/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="664">
-              <caret line="563" column="7" lean-forward="true" selection-start-line="563" selection-start-column="7" selection-end-line="563" selection-end-column="7" />
+            <state relative-caret-position="592">
+              <caret line="524" column="51" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="565" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -45,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="theme_vincent.scss" pinned="false" current-in-tab="false">
+      <file leaf-file-name="theme_vincent.scss" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/2.92/source/scss/theme_vincent.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="296">
+              <caret line="1110" column="29" lean-forward="false" selection-start-line="1110" selection-start-column="29" selection-end-line="1110" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -65,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_jqueryui.scss" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_jqueryui.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/2.92/source/scss/jqueryui/_jqueryui.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="1290">
+              <caret line="997" column="1" lean-forward="false" selection-start-line="997" selection-start-column="1" selection-end-line="997" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -87,6 +84,13 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>ui-bg_flat_75_ffffff_40x100.png</find>
+      <find>ui-icons_222222_256x240.png</find>
+      <find>filter_bar.png</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -95,6 +99,7 @@
       <list>
         <option value="$PROJECT_DIR$/2.92/style/theme_vincent.css" />
         <option value="$PROJECT_DIR$/2.92/source/scss/jqueryui/_jqueryui.scss" />
+        <option value="$PROJECT_DIR$/2.92/source/scss/theme_vincent.scss" />
       </list>
     </option>
   </component>
@@ -338,12 +343,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1487313648627</updated>
-      <workItem from="1487313650226" duration="775000" />
+      <workItem from="1487313650226" duration="1440000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="775000" />
+    <option name="totallyTimeSpent" value="1440000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -378,14 +383,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/2.92/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="664">
-          <caret line="563" column="7" lean-forward="true" selection-start-line="563" selection-start-column="7" selection-end-line="563" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/2.92/javascript/libs.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -402,10 +399,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2.92/source/scss/theme_vincent.scss">
+    <entry file="file://$PROJECT_DIR$/2.92/source/scss/jqueryui/_jqueryui.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="1290">
+          <caret line="997" column="1" lean-forward="false" selection-start-line="997" selection-start-column="1" selection-end-line="997" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/2.92/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="592">
+          <caret line="524" column="51" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="565" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -418,10 +423,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2.92/source/scss/jqueryui/_jqueryui.scss">
+    <entry file="file://$PROJECT_DIR$/2.92/source/scss/theme_vincent.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        <state relative-caret-position="296">
+          <caret line="1110" column="29" lean-forward="false" selection-start-line="1110" selection-start-column="29" selection-end-line="1110" selection-end-column="29" />
           <folding />
         </state>
       </provider>

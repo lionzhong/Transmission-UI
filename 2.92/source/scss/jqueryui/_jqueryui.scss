@@ -863,7 +863,7 @@ body .ui-tooltip {
 
 .ui-widget-content {
   border: 1px solid #aaa;
-  background: #fff url("../images/ui-bg_flat_75_ffffff_40x100.png") 50% 50% repeat-x;
+  background: #fff repeat-x;
   color: #222;
   a {
     color: #222;
@@ -990,11 +990,11 @@ body .ui-tooltip {
 .ui-icon {
   width: 16px;
   height: 16px;
-  background-image: url("../images/ui-icons_222222_256x240.png");
+  //background-image: url("../images/ui-icons_222222_256x240.png");
 }
 
 .ui-widget-content .ui-icon, .ui-widget-header .ui-icon {
-  background-image: url("../images/ui-icons_222222_256x240.png");
+  //background-image: url("../images/ui-icons_222222_256x240.png");
 }
 
 .ui-state-default .ui-icon {
