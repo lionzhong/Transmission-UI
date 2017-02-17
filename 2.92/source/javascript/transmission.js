@@ -1031,17 +1031,17 @@ Transmission.prototype =
 		if (torrents.length === 1)
 		{
 			var torrent = torrents[0],
-			    header = 'Remove ' + torrent.getName() + '?',
-			    message = 'Once removed, continuing the transfer will require the torrent file. Are you sure you want to remove it?';
-			dialog.confirm(header, message, 'Remove', function() {
+			    header = '移除 ' + torrent.getName() + '?',
+			    message = '一旦移除，继续下载时将会需要种子文件，你确定要移除任务吗？';
+			dialog.confirm(header, message, '移除', function() {
 				transmission.removeTorrents(torrents);
 			});
 		}
 		else
 		{
-			var header = 'Remove ' + torrents.length + ' transfers?',
-			    message = 'Once removed, continuing the transfers will require the torrent files. Are you sure you want to remove them?';
-			dialog.confirm(header, message, 'Remove', function() {
+			var header = '移除 ' + torrents.length + ' 传输任务?',
+			    message = '一旦移除，继续下载时将会需要种子文件，你确定要移除这些任务吗？';
+			dialog.confirm(header, message, '移除', function() {
 				transmission.removeTorrents(torrents);
 			});
 		}
@@ -1052,17 +1052,17 @@ Transmission.prototype =
 		if (torrents.length === 1)
 		{
 			var torrent = torrents[0],
-			    header = 'Remove ' + torrent.getName() + ' and delete data?',
-			    message = 'All data downloaded for this torrent will be deleted. Are you sure you want to remove it?';
-			dialog.confirm(header, message, 'Remove', function() {
+			    header = '移除 ' + torrent.getName() + ' 并删除数据?',
+			    message = '所有关于此种子的已下载数据将会被删除，你确定要删除吗？';
+			dialog.confirm(header, message, '移除', function() {
 				transmission.removeTorrentsAndData(torrents);
 			});
 		}
 		else
 		{
-			var header = 'Remove ' + torrents.length + ' transfers and delete data?',
-			    message = 'All data downloaded for these torrents will be deleted. Are you sure you want to remove them?';
-			dialog.confirm(header, message, 'Remove', function() {
+			var header = '移除 ' + torrents.length + ' 传输任务并删除数据?',
+			    message = '所有关于这些种子的已下载数据将会被删除，你确定要删除他们吗?';
+			dialog.confirm(header, message, '移除', function() {
 				transmission.removeTorrentsAndData(torrents);
 			});
 		}
@@ -1087,7 +1087,7 @@ Transmission.prototype =
 	renameSelectedTorrents: function() {
 		var torrents = this.getSelectedTorrents();
 		if (torrents.length != 1)
-			dialog.alert("Renaming", "You can rename only one torrent at a time.", "Ok");
+			dialog.alert("重命名", "一次只能重命名一个任务.", "Ok");
 		else
 			this.promptToRenameTorrent(torrents[0]);
 	},

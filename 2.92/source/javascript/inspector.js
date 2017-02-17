@@ -86,9 +86,9 @@ function Inspector(controller) {
 		var torrents = data.torrents,
 		    e = data.elements,
 		    fmt = Transmission.fmt,
-		    none = 'None',
-		    mixed = 'Mixed',
-		    unknown = 'Unknown',
+		    none = 'none',
+		    mixed = '已混合',
+		    unknown = '未知',
 		    isMixed, allPaused, allFinished,
 		    str,
 		    baseline, it, s, i, t,
@@ -133,9 +133,9 @@ function Inspector(controller) {
 			if( isMixed )
 				str = mixed;
 			else if( allFinished )
-				str = 'Finished';
+				str = '已结束';
 			else if( allPaused )
-				str = 'Paused';
+				str = '已暂停';
 			else
 				str = torrents[0].getStateString();
 		}
@@ -169,9 +169,9 @@ function Inspector(controller) {
 			if( !haveUnverified && !leftUntilDone )
 				str = fmt.size(haveVerified) + ' (100%)';
 			else if( !haveUnverified )
-				str = fmt.size(haveVerified) + ' of ' + fmt.size(sizeWhenDone) + ' (' + str +'%)';
+				str = fmt.size(haveVerified) + ' / ' + fmt.size(sizeWhenDone) + ' (' + str +'%)';
 			else
-				str = fmt.size(haveVerified) + ' of ' + fmt.size(sizeWhenDone) + ' (' + str +'%), ' + fmt.size(haveUnverified) + ' Unverified';
+				str = fmt.size(haveVerified) + ' / ' + fmt.size(sizeWhenDone) + ' (' + str +'%), ' + fmt.size(haveUnverified) + ' 未验证';
 		}
 		setTextContent(e.have_lb, str);
 
@@ -200,7 +200,7 @@ function Inspector(controller) {
 				f += t.getFailedEver();
 			}
 			if(f)
-				str = fmt.size(d) + ' (' + fmt.size(f) + ' corrupt)';
+				str = fmt.size(d) + ' (' + fmt.size(f) + ' 损坏)';
 			else
 				str = fmt.size(d);
 		}
@@ -297,7 +297,7 @@ function Inspector(controller) {
 			if(d < 0)
 				str = none;
 			else if(d < 5)
-				str = 'Active now';
+				str = '处于活跃中';
 			else
 				str = fmt.timeInterval(d) + ' 之前';
 		}
@@ -409,6 +409,73 @@ function Inspector(controller) {
 		//  origin
 		//
 
+        //转换时间中小时，分钟，秒小于10的时候拼接为00:00:00格式
+        var parseDate = function (YY, MM, DD) {
+            var $date = "";
+
+            if (YY === 0 && MM === 0 && DD === 0) {
+                $date = "";
+            } else {
+                if (YY < 10) {
+                    $date += "0" + YY;
+                } else {
+                    $date += YY;
+                }
+
+                if (MM < 10) {
+                    $date += "-0" + MM;
+                } else {
+                    $date += "-" + MM;
+                }
+
+                if (DD !== undefined) {
+                    if (DD < 10) {
+                        $date += "-0" + DD;
+                    } else {
+                        $date += "-" + DD;
+                    }
+                }
+            }
+            return $date;
+        };
+
+        //转换时间中小时，分钟，秒小于10的时候拼接为00:00:00格式
+        var parseTime = function (HH, MM, SS) {
+            var $time = "";
+
+            if (HH === 0 && MM === 0 && SS === 0) {
+                $time = "";
+            } else {
+                if (HH < 10) {
+                    $time += "0" + HH;
+                } else {
+                    $time += HH;
+                }
+
+                if (MM < 10) {
+                    $time += ":0" + MM;
+                } else {
+                    $time += ":" + MM;
+                }
+
+                if (SS !== undefined) {
+                    if (SS < 10) {
+                        $time += ":0" + SS;
+                    } else {
+                        $time += ":" + SS;
+                    }
+                }
+            }
+            return $time;
+        };
+
+        var parseFullDate = function (date, simple) {
+            var $date = new Date(date);
+            var fullDate = parseDate($date.getFullYear(), $date.getMonth() + 1, $date.getDate());
+            var fullTime = parseTime($date.getHours(), $date.getMinutes(), $date.getSeconds());
+            return simple !== true ? fullDate + " " + fullTime : fullDate;
+        };
+
 		if(torrents.length < 1)
 			str = none;
 		else {
@@ -429,11 +496,11 @@ function Inspector(controller) {
 			else if(empty_creator && empty_date)
 				str = unknown;
 			else if(empty_date && !empty_creator)
-				str = 'Created by ' + creator;
+				str = '创建自 ' + creator;
 			else if(empty_creator && !empty_date)
-				str = 'Created on ' + (new Date(date*1000)).toDateString();
+				str = '时间: ' + parseFullDate(date*1000);
 			else
-				str = 'Created by ' + creator + ' on ' + (new Date(date*1000)).toDateString();
+				str = '创建自 ' + creator + ' 时间: ' + parseFullDate(date*1000);
 		}
 		setTextContent(e.origin_lb, str);
 
@@ -641,32 +708,32 @@ function Inspector(controller) {
 		var timeUntilAnnounce, s = '';
 		switch (tracker.announceState) {
 			case Torrent._TrackerActive:
-				s = 'Announce in progress';
+				s = '发布正在进行中';
 				break;
 			case Torrent._TrackerWaiting:
 				timeUntilAnnounce = tracker.nextAnnounceTime - ((new Date()).getTime() / 1000);
 				if (timeUntilAnnounce < 0) {
 				    timeUntilAnnounce = 0;
 				}
-				s = 'Next announce in ' + Transmission.fmt.timeInterval(timeUntilAnnounce);
+				s = '下一次发布: ' + Transmission.fmt.timeInterval(timeUntilAnnounce);
 				break;
 			case Torrent._TrackerQueued:
-				s = 'Announce is queued';
+				s = '发布已排队';
 				break;
 			case Torrent._TrackerInactive:
 				s = tracker.isBackup ?
-				    'Tracker will be used as a backup' :
-				    'Announce not scheduled';
+				    'Tracker 将会被用作备份' :
+				    '发布未被计划';
 				break;
 			default:
-				s = 'unknown announce state: ' + tracker.announceState;
+				s = '未知发布状态: ' + tracker.announceState;
 		}
 		return s;
 	},
 
 	lastAnnounceStatus = function(tracker) {
 
-		var lastAnnounceLabel = 'Last Announce',
+		var lastAnnounceLabel = '最后一次发布',
 		    lastAnnounce = [ 'N/A' ],
 		lastAnnounceTime;
 
@@ -675,7 +742,7 @@ function Inspector(controller) {
 			if (tracker.lastAnnounceSucceeded) {
 				lastAnnounce = [ lastAnnounceTime, ' (got ',  Transmission.fmt.countString('peer','peers',tracker.lastAnnouncePeerCount), ')' ];
 			} else {
-				lastAnnounceLabel = 'Announce error';
+				lastAnnounceLabel = '发布错误';
 				lastAnnounce = [ (tracker.lastAnnounceResult ? (tracker.lastAnnounceResult + ' - ') : ''), lastAnnounceTime ];
 			}
 		}
@@ -684,7 +751,7 @@ function Inspector(controller) {
 
 	lastScrapeStatus = function(tracker) {
 
-		var lastScrapeLabel = 'Last Scrape',
+		var lastScrapeLabel = '最后一次削刮',
 		    lastScrape = 'N/A',
 		lastScrapeTime;
 
@@ -693,7 +760,7 @@ function Inspector(controller) {
 			if (tracker.lastScrapeSucceeded) {
 				lastScrape = lastScrapeTime;
 			} else {
-				lastScrapeLabel = 'Scrape error';
+				lastScrapeLabel = '削刮错误';
 				lastScrape = (tracker.lastScrapeResult ? tracker.lastScrapeResult + ' - ' : '') + lastScrapeTime;
 			}
 		}

@@ -215,9 +215,9 @@ TorrentRendererFull.prototype =
 	getProgressDetails: function(controller, t)
 	{
 		if (t.needsMetaData()) {
-			var MetaDataStatus = "retrieving";
+			var MetaDataStatus = "检索";
 			if (t.isStopped())
-				MetaDataStatus = "needs";
+				MetaDataStatus = "需要";
 			var percent = 100 * t.getMetadataPercentComplete();
 			return [ "磁性传输 - " + MetaDataStatus + " 元数据 (",
 			         Transmission.fmt.percentString(percent),
@@ -256,8 +256,7 @@ TorrentRendererFull.prototype =
 			if (eta < 0 || eta >= (999*60*60) /* arbitrary */)
 				c.push('未知剩余时间');
 			else
-				c.push(Transmission.fmt.timeInterval(t.getETA()),
-				       ' 剩余时间');
+				c.push('剩余时间 ',Transmission.fmt.timeInterval(t.getETA()));
 		}
 
 		return c.join('');

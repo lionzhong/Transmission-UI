@@ -77,7 +77,7 @@ Dialog.prototype = {
 			$('.dialog_container').hide();
 		setTextContent(this._heading[0], dialog_heading);
 		setTextContent(this._message[0], dialog_message);
-		setTextContent(this._cancel_button[0], cancel_button_label || 'Cancel');
+		setTextContent(this._cancel_button[0], cancel_button_label || '取消');
 		setTextContent(this._confirm_button[0], confirm_button_label);
 		this._confirm_button.show();
 		this._callback = callback;
