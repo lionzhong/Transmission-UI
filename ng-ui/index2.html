@@ -1,0 +1,42 @@
+<html ng-app="transmission">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AngularJS DEMO</title>
+    <link rel="stylesheet" href="style/css/transmission.css">
+</head>
+<body ng-controller="mainController">
+<div class="header">
+    <span class="logo"></span>
+    <span class="logo-with-text"></span>
+    <span class="icon-add"></span>
+    <span class="icon-delete"></span>
+    <span class="icon-start-light"></span>
+    <span class="icon-pause-light"></span>
+    <span class="icon-start-all-light"></span>
+    <span class="icon-pause-all-light"></span>
+</div>
+<ul class="torrent-list">
+    <li ng-repeat="item in data.torrent track by $index">
+        <div>{{item.name}}</div>
+        <div class="torrent-status"></div>
+        <div class="torrent-progess">
+            <div></div>
+        </div>
+        <div class="torrent-transform-data">
+
+        </div>
+    </li>
+</ul>
+<div class="torrent-detail">
+
+</div>
+<div class="footer">
+    <span class="icon-config"></span>
+    <span class="icon-settings"></span>
+    <span class="icon-scheduled"></span>
+    <span class="icon-listview"></span>
+    <span class="icon-info-black"></span>
+</div>
+<script src="libs/requirejs/require.js"  data-main="load.js"></script>
+</body>
+</html>

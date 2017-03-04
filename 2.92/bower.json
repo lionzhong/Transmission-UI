@@ -1,0 +1,25 @@
+{
+  "name": "2.92",
+  "homepage": "https://github.com/lionzhong/Transmission-UI",
+  "authors": [
+    "Vincent <lionzhong@gmail.com>"
+  ],
+  "description": "transmission 2.92",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "jquery": "^3.1.1"
+  },
+  "devDependencies": {
+    "jquery": "^3.1.1"
+  }
+}
