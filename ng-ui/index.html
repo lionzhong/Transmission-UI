@@ -15,19 +15,20 @@
     <span class="icon-start-all-light"></span>
     <span class="icon-pause-all-light"></span>
 </div>
-<ul class="torrent-list">
-    <li ng-repeat="item in data.torrent track by $index">
-        <div>{{item.name}}</div>
-        <div class="torrent-status"></div>
-        <div class="torrent-progess">
-            <div></div>
+<ul id="torrent-list" class="torrent-list">
+    <li ng-repeat="item in data.torrent track by $index" ng-class="parsTorrentClassName(item.status,$index)" ng-click="selectTorrent($index)">
+        <div class="name">{{item.name}}</div>
+        <div class="status" ng-bind-html="parseText.Status($index)">
+            <span>已暂停</span>
         </div>
-        <div class="torrent-transform-data">
-
+        <div class="progess-bar">
+            <div ng-style="{'width':item.percentDone < 1 ? item.percentDone * 100 + '%':100 + '%'}"></div>
+        </div>
+        <div class="transform-data" ng-bind-html="parseText.TransformData($index)">
         </div>
     </li>
 </ul>
-<div class="torrent-detail">
+<div id="torrent-detail" class="torrent-detail">
 
 </div>
 <div class="footer">
@@ -35,7 +36,7 @@
     <span class="icon-settings"></span>
     <span class="icon-scheduled"></span>
     <span class="icon-listview"></span>
-    <span class="icon-info-black"></span>
+    <span class="icon-info-black" ng-click="showDetail()"></span>
 </div>
 <script src="libs/requirejs/require.js"  data-main="load.js"></script>
 </body>

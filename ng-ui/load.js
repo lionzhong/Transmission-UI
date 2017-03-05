@@ -13,6 +13,7 @@ requirejs.config({
         "angular":'angular/angular',
         "angular-route":"angular/angular-route",
         "lodash":"lodash/dist/lodash",
+        "transmission":"transmission",
         "init":"../initConfig"
     },shim:{
         "angular":{
