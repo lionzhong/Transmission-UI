@@ -2,16 +2,16 @@
  * Created by vincent on 2017/3/4.
  */
 
-define("init", ["jquery", "angular", "lodash","transmission"], function ($, angular, _, tr) {
+define("init", ["jquery", "angular", "lodash", "transmission"], function ($, angular, _, tr) {
     "use strict";
+
     var app = angular.module("transmission", []);
 
     app.factory("ajaxService", ["$http", "$q", function ($http, $q) {
         var service = {};
 
-        function ajax(op) {
-            var deferred = $q.defer();
-
+        //获取参数
+        service.getParams = function () {
             var torrentParam = {
                 "arguments": {
                     "fields": [
@@ -47,6 +47,13 @@ define("init", ["jquery", "angular", "lodash","transmission"], function ($, angu
                 }
             };
 
+            return torrentParam;
+        };
+
+        function ajax(op) {
+            var deferred = $q.defer();
+
+            var torrentParam = service.getParams();
 
             deferred.promise = $http({
                 method: "POST",
@@ -78,41 +85,7 @@ define("init", ["jquery", "angular", "lodash","transmission"], function ($, angu
         };
 
         service.getTorrent = function (sessionId) {
-            var params = {
-                "arguments": {
-                    "fields": [
-                        "id",
-                        "addedDate",
-                        "name",
-                        "totalSize",
-                        "error",
-                        "errorString",
-                        "eta",
-                        "isFinished",
-                        "isStalled",
-                        "leftUntilDone",
-                        "metadataPercentComplete",
-                        "peersConnected",
-                        "peersGettingFromUs",
-                        "peersSendingToUs",
-                        "percentDone",
-                        "queuePosition",
-                        "rateDownload",
-                        "rateUpload",
-                        "recheckProgress",
-                        "seedRatioMode",
-                        "seedRatioLimit",
-                        "sizeWhenDone",
-                        "status",
-                        "trackers",
-                        "downloadDir",
-                        "uploadedEver",
-                        "uploadRatio",
-                        "webseedsSendingToUs"
-                    ]
-                }
-            };
-            return ajax({sessionId: sessionId, method: "torrent-get", param: params});
+            return ajax({sessionId: sessionId, method: "torrent-get", param: service.getParams()});
         };
 
         service.startTorrent = function (sessionId) {
@@ -127,8 +100,6 @@ define("init", ["jquery", "angular", "lodash","transmission"], function ($, angu
     }]);
 
     app.controller("mainController", ["$scope", "$http", "$q", "$sce", "ajaxService", function ($scope, $http, $q, $sce, ajaxService) {
-
-
 
         //获取session
         $scope.getSession = function (session) {
@@ -197,7 +168,7 @@ define("init", ["jquery", "angular", "lodash","transmission"], function ($, angu
             $scope.data.selectedIndex = index;
         };
 
-        //
+        //流量转换
         $scope.bytesConvert = function (bytes) {
             var op = {
                 "data": bytes,
@@ -339,8 +310,25 @@ define("init", ["jquery", "angular", "lodash","transmission"], function ($, angu
             var obj = $("#torrent-detail");
             var torrentList = $("#torrent-list");
 
-            obj.animate({"right":0},200);
-            torrentList.animate({"width":60 + "%"},200);
+
+        };
+
+        $scope.detail = {
+            "target" : $("#torrent-detail"),
+            "className" : "show",
+            "getData" : function () {
+                return $scope.data.torrent[$scope.data.selectedIndex];
+            },
+            "show" : function () {
+                $scope.detail.target.addClass($scope.detail.className);
+            },
+            "close" :function () {
+                $scope.detail.target.removeClass($scope.detail.className);
+            }
+        };
+
+        $scope.openCustomScrollbar = function () {
+            $('#torrent-list').scrollbar();
         };
 
         $scope.init = function () {
@@ -358,6 +346,8 @@ define("init", ["jquery", "angular", "lodash","transmission"], function ($, angu
                 torrent: "",
                 session: ""
             };
+
+            $scope.detailShow = true;
 
             //数据
             $scope.data = {
@@ -384,9 +374,11 @@ define("init", ["jquery", "angular", "lodash","transmission"], function ($, angu
             $scope.$on("getStatsDone", function () {
                 $scope.loopGetTorrentData();
             });
+
         };
 
         $scope.init();
+
     }]);
 
     return app;

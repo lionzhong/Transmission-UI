@@ -14,6 +14,8 @@ requirejs.config({
         "angular-route":"angular/angular-route.min",
         "lodash":"lodash/dist/lodash.min",
         "transmission":"transmission",
+        "perfectScroll":"perfect-scrollbar/perfect-scrollbar.jquery.min",
+        "jQueryScrollbar":"jQuery-Scrollbar/jquery.scrollbar.min",
         "init":"../initConfig"
     },shim:{
         "angular":{
