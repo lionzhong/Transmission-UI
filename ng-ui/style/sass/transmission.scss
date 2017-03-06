@@ -1,12 +1,19 @@
 @import "base/variables";
 @import "mixins/importMixins";
 @import "base/font";
-
+@import "modules/jQueryScrollbar";
 @include meyer-reset();
-
+.scrollbar-dynamic {
+  //max-height: 300px;
+  overflow: auto;
+}
 html,body{
   width: 100%;
   overflow: hidden;
+}
+
+.clearfix {
+  @include clearfix();
 }
 
 .bg-no-repeat{
@@ -93,6 +100,7 @@ html,body{
   }
 }
 
+/*torrent-list start*/
 .torrent-list{
   position: fixed;
   top: 56px;
@@ -185,20 +193,6 @@ html,body{
   }
 }
 
-.torrent-detail{
-  position: absolute;
-  top: 56px;
-  right: -40%;
-  bottom:0;
-  background-color: rgba(51,51,51,0.85);
-  width: 40%;
-  box-shadow: -5px 5px 20px rgba(51,51,51,0.75);
-  @media (max-width: 1024px) {
-    top: 48px;
-    bottom: 37px;
-  }
-}
-
 @keyframes downloading
 {
   0% {
@@ -209,5 +203,85 @@ html,body{
   }
   100% {
     background-color: $prime-blue;
+  }
+}
+/*torrent-list end*/
+
+.torrent-detail{
+  position: fixed;
+  top: 56px;
+  right: -570px;
+  bottom:0;
+  background-color: rgba(51,51,51,0.85);
+  opacity: 0;
+  width: 570px;
+  @include css3("transition",all 0.5s);
+  box-shadow: none;
+  &.show{
+    right: 0;
+    opacity: 1;
+    box-shadow: -5px 5px 20px rgba(51,51,51,0.75);
+  }
+  @media (max-width: 1024px) {
+    top: 48px;
+    bottom: 37px;
+    width: 100%;
+    right: 0;
+  }
+  >.icon-close{
+    color: $gray-100;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  >p{
+    text-align: center;
+    margin: 20px auto;
+    >span{
+      box-sizing: border-box;
+      display: inline-block;
+      border-radius: ceil($font-size-large*2.2);
+      font-size: ceil($font-size-large*1.58);
+      cursor: pointer;
+      margin: 0 15px;
+      color: $gray-70;
+      &:hover{
+        color: $gray-100;
+      }
+      &.selected{
+        color: $gray-100;
+        background-color: $prime-blue;
+      }
+    }
+  }
+  >ul{
+    //width: 200px;
+    margin: 20px auto;
+    @extend .clearfix;
+    border-radius: 5px;
+    text-align: center;
+    >li{
+      display: inline-block;
+      box-sizing: border-box;
+      width: 25%;
+      float: left;
+      color: $gray-70;
+      text-align: center;
+      @include css3("transition",all 0.5s);
+      >span{
+        border-radius: ceil($font-size-large*2.2);
+        padding: 0 10px;
+        font-size: ceil($font-size-large*1.58);
+        cursor: pointer;
+      }
+      &:hover{
+        color: $gray-100;
+      }
+      &.selected{
+        color: $gray-100;
+        background-color: $prime-blue;
+      }
+    }
   }
 }

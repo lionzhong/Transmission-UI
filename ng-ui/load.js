@@ -9,11 +9,13 @@
 requirejs.config({
     baseUrl: 'libs',
     paths: {
-        "jquery": 'jquery/dist/jquery',
-        "angular":'angular/angular',
-        "angular-route":"angular/angular-route",
-        "lodash":"lodash/dist/lodash",
+        "jquery": 'jquery/dist/jquery.min',
+        "angular":'angular/angular.min',
+        "angular-route":"angular/angular-route.min",
+        "lodash":"lodash/dist/lodash.min",
         "transmission":"transmission",
+        "perfectScroll":"perfect-scrollbar/perfect-scrollbar.jquery.min",
+        "jQueryScrollbar":"jQuery-Scrollbar/jquery.scrollbar.min",
         "init":"../initConfig"
     },shim:{
         "angular":{

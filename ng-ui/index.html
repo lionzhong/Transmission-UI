@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <title>AngularJS DEMO</title>
     <link rel="stylesheet" href="style/css/transmission.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body ng-controller="mainController">
 <div class="header">
@@ -18,26 +19,43 @@
 <ul id="torrent-list" class="torrent-list">
     <li ng-repeat="item in data.torrent track by $index" ng-class="parsTorrentClassName(item.status,$index)" ng-click="selectTorrent($index)">
         <div class="name">{{item.name}}</div>
-        <div class="status" ng-bind-html="parseText.Status($index)">
-            <span>已暂停</span>
-        </div>
+        <div class="status" ng-bind-html="parseText.Status($index)"></div>
         <div class="progess-bar">
             <div ng-style="{'width':item.percentDone < 1 ? item.percentDone * 100 + '%':100 + '%'}"></div>
         </div>
-        <div class="transform-data" ng-bind-html="parseText.TransformData($index)">
-        </div>
+        <div class="transform-data" ng-bind-html="parseText.TransformData($index)"></div>
     </li>
 </ul>
-<div id="torrent-detail" class="torrent-detail">
-
+<div id="torrent-detail" class="torrent-detail" ng-class="{'show':detailShow}">
+    <span class="icon-close" ng-click="detail.close()"></span>
+    <p>
+        <span class="icon-info-light selected"></span><span class="icon-people"></span><span class="icon-server"></span><span class="icon-checklist"></span>
+    </p>
+    <div>
+        <h2>name</h2>
+        <h3>活跃状态</h3>
+        <div class="table">
+            <table>
+                <tbody>
+                <tr>
+                    <th></th>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div></div>
+    <div></div>
+    <div></div>
 </div>
 <div class="footer">
     <span class="icon-config"></span>
     <span class="icon-settings"></span>
     <span class="icon-scheduled"></span>
     <span class="icon-listview"></span>
-    <span class="icon-info-black" ng-click="showDetail()"></span>
+    <span class="icon-info-black" ng-click="detail.show()"></span>
 </div>
-<script src="libs/requirejs/require.js"  data-main="load.js"></script>
+<script src="libs/requirejs/require.min.js"  data-main="load.js"></script>
 </body>
 </html>
