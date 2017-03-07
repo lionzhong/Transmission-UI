@@ -46,7 +46,7 @@ html,body{
   overflow: hidden;
   background-color: $gray-20;
   box-shadow: 0 5px 25px rgba(0,0,0,0.25);
-  z-index: 10;
+  z-index: 11;
   >[class^="icon-"], >[class*=" icon-"]{
     font-size: ceil($font-size-large*2.2);
     color: lighten($prime-blue,25%);
@@ -199,7 +199,7 @@ html,body{
   }
   @media (max-width: 1024px) {
     top: 48px;
-    bottom: 37px;
+    bottom: 46px;
   }
 }
 
@@ -219,7 +219,7 @@ html,body{
 
 .torrent-detail{
   position: fixed;
-  z-index: 11;
+  z-index: 10;
   top: 56px;
   right: -570px;
   bottom:0;
@@ -235,9 +235,10 @@ html,body{
   }
   @media (max-width: 1024px) {
     top: 48px;
-    bottom: 37px;
+    bottom: 46px;
+    right: -100%;
     width: 100%;
-    right: 0;
+    background-color: rgba(51,51,51,1);
   }
   >.icon-close{
     color: $gray-100;
