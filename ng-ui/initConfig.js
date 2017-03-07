@@ -10,64 +10,21 @@ define("init", ["jquery", "angular", "lodash", "transmission"], function ($, ang
     app.factory("ajaxService", ["$http", "$q", function ($http, $q) {
         var service = {};
 
-        //获取参数
-        service.getParams = function () {
-            var torrentParam = {
-                "arguments": {
-                    "fields": [
-                        "id",
-                        "addedDate",
-                        "name",
-                        "totalSize",
-                        "error",
-                        "errorString",
-                        "eta",
-                        "isFinished",
-                        "isStalled",
-                        "leftUntilDone",
-                        "metadataPercentComplete",
-                        "peersConnected",
-                        "peersGettingFromUs",
-                        "peersSendingToUs",
-                        "percentDone",
-                        "queuePosition",
-                        "rateDownload",
-                        "rateUpload",
-                        "recheckProgress",
-                        "seedRatioMode",
-                        "seedRatioLimit",
-                        "sizeWhenDone",
-                        "status",
-                        "trackers",
-                        "downloadDir",
-                        "uploadedEver",
-                        "uploadRatio",
-                        "webseedsSendingToUs"
-                    ]
-                }
-            };
-
-            return torrentParam;
-        };
-
         function ajax(op) {
             var deferred = $q.defer();
 
-            var torrentParam = service.getParams();
-
             deferred.promise = $http({
                 method: "POST",
-                url: "/transmission/rpc",
+                url: "/transmission/rpc" + (op.url !== undefined ? op.url:""),
                 headers: op.sessionId !== undefined ? {"X-Transmission-Session-Id": op.sessionId} : {},
                 data: (function () {
                     var param = {};
-                    switch (op.method) {
+                    switch (op.param.method) {
                         case "torrent-get":
-                            torrentParam.method = op.method;
-                            param = torrentParam;
+                            param = op.param;
                             break;
                         default:
-                            param = {method: op.method};
+                            param = op.param;
                             break;
                     }
                     return param;
@@ -77,23 +34,185 @@ define("init", ["jquery", "angular", "lodash", "transmission"], function ($, ang
         }
 
         service.getSession = function (sessionId) {
-            return ajax({sessionId: sessionId, method: "session-get"});
+            return ajax({
+                sessionId: sessionId,
+                param: {
+                    method: "session-get"
+                },
+                url:"?type=getSession"
+            });
         };
 
         service.getSessionStats = function (sessionId) {
-            return ajax({sessionId: sessionId, method: "session-stats"});
+            return ajax({
+                sessionId: sessionId,
+                param: {
+                    method: "session-stats"
+                },
+                url:"?type=getSessionStats"
+            });
         };
 
         service.getTorrent = function (sessionId) {
-            return ajax({sessionId: sessionId, method: "torrent-get", param: service.getParams()});
+            return ajax({
+                sessionId: sessionId,
+                param: {
+                    method: "torrent-get",
+                    arguments:{
+                        "fields": [
+                            "id",
+                            "addedDate",
+                            "name",
+                            "totalSize",
+                            "error",
+                            "errorString",
+                            "eta",
+                            "isFinished",
+                            "isStalled",
+                            "leftUntilDone",
+                            "metadataPercentComplete",
+                            "peersConnected",
+                            "peersGettingFromUs",
+                            "peersSendingToUs",
+                            "percentDone",
+                            "queuePosition",
+                            "rateDownload",
+                            "rateUpload",
+                            "recheckProgress",
+                            "seedRatioMode",
+                            "seedRatioLimit",
+                            "sizeWhenDone",
+                            "status",
+                            "trackers",
+                            "downloadDir",
+                            "uploadedEver",
+                            "uploadRatio",
+                            "webseedsSendingToUs"
+                        ]
+                    }
+                },
+                url:"?type=getTorrent"
+            });
+        };
+
+        service.getActiveTorrent = function (sessionId) {
+            return ajax({
+                sessionId: sessionId,
+                param: {
+                    method: "torrent-get",
+                    arguments:{
+                        fields:[
+                            "id",
+                            "error",
+                            "errorString",
+                            "eta",
+                            "isFinished",
+                            "isStalled",
+                            "leftUntilDone",
+                            "metadataPercentComplete",
+                            "peersConnected",
+                            "peersGettingFromUs",
+                            "peersSendingToUs",
+                            "percentDone",
+                            "queuePosition",
+                            "rateDownload",
+                            "rateUpload",
+                            "recheckProgress",
+                            "seedRatioMode",
+                            "seedRatioLimit",
+                            "sizeWhenDone",
+                            "status",
+                            "trackers",
+                            "downloadDir",
+                            "uploadedEver",
+                            "uploadRatio",
+                            "webseedsSendingToUs"
+                        ],
+                        ids:"recently-active"
+                    }
+                },
+                url:"?type=getActiveTorrent"
+            });
+        };
+
+        service.getFullDetail = function (sessionId,ids) {
+            return ajax({
+                sessionId: sessionId,
+                param: {
+                    "method": "torrent-get",
+                    "arguments": {
+                        "fields": [
+                            "id",
+                            "activityDate",
+                            "corruptEver",
+                            "desiredAvailable",
+                            "downloadedEver",
+                            "fileStats",
+                            "haveUnchecked",
+                            "haveValid",
+                            "peers",
+                            "startDate",
+                            "trackerStats",
+                            "comment",
+                            "creator",
+                            "dateCreated",
+                            "files",
+                            "hashString",
+                            "isPrivate",
+                            "pieceCount",
+                            "pieceSize"
+                        ],
+                        "ids": ids
+                    }
+                },
+                url:"?type=getFullDetail"
+            });
+        };
+
+        service.getDetail = function (sessionId,ids) {
+            return ajax({
+                sessionId: sessionId,
+                param: {
+                    "method": "torrent-get",
+                    "arguments": {
+                        "fields": [
+                            "id",
+                            "activityDate",
+                            "corruptEver",
+                            "desiredAvailable",
+                            "downloadedEver",
+                            "fileStats",
+                            "haveUnchecked",
+                            "haveValid",
+                            "peers",
+                            "startDate",
+                            "trackerStats"
+                        ],
+                        "ids": ids
+                    }
+                },
+                url:"?type=getDetail"
+            });
         };
 
         service.startTorrent = function (sessionId) {
-            return ajax({sessionId: sessionId, method: "torrent-start"});
+            return ajax({
+                sessionId: sessionId,
+                param: {
+                    method: "torrent-start"
+                },
+                url:"?type=startTorrent"
+            });
         };
 
         service.stopTorrent = function (sessionId) {
-            return ajax({sessionId: sessionId, method: "torrent-stop"});
+            return ajax({
+                sessionId: sessionId,
+                param: {
+                    method: "torrent-stop"
+                },
+                url:"?type=stopTorrent"
+            });
         };
 
         return service;
@@ -127,12 +246,31 @@ define("init", ["jquery", "angular", "lodash", "transmission"], function ($, ang
             });
         };
 
-        //获取种子数据
+        //获取所有Torrent数据
         $scope.getTorrentData = function () {
             //获取session
-            ajaxService.getTorrent($scope.session).then(function (response) {
+            return ajaxService.getTorrent($scope.session).then(function (response) {
                 $scope.data.torrent = _.sortBy(response.data.arguments.torrents, function (item) {
                     return -item.addedDate;
+                });
+            }, function (reason) {
+                console.log("查询Torrent失败");
+            });
+        };
+
+        //获取正在活动的Torrent数据
+        $scope.getRecentlyActiveTorrentData = function () {
+            //获取活动中的torrent数据
+            ajaxService.getActiveTorrent($scope.session).then(function (response) {
+                //替换数据列表中对应的数据
+                _.each(response.data.arguments.torrents,function (value, index) {
+                    var $index = _.findIndex($scope.data.torrent,function (o) {
+                        return o.id === value.id;
+                    });
+
+                    if($index > -1){
+                        _.merge($scope.data.torrent[$index],value);
+                    }
                 });
             }, function (reason) {
                 console.log("查询Torrent失败");
@@ -149,10 +287,19 @@ define("init", ["jquery", "angular", "lodash", "transmission"], function ($, ang
 
         //循环获取种子数据
         $scope.loopGetTorrentData = function () {
-            $scope.getTorrentData();
-            $scope.pool.torrent = setInterval(function () {
-                $scope.getTorrentData();
-            }, $scope.loopFragment.torrent);
+            //get all torrent(list)
+            ajaxService.getTorrent($scope.session).then(function (response) {
+                $scope.data.torrent = _.sortBy(response.data.arguments.torrents, function (item) {
+                    return -item.addedDate;
+                });
+
+                //loop the active torrent
+                $scope.pool.torrent = setInterval(function () {
+                    $scope.getRecentlyActiveTorrentData();
+                }, $scope.loopFragment.torrent);
+            }, function (reason) {
+                console.log("查询Torrent失败");
+            });
         };
 
         //循环获取session数据
@@ -204,6 +351,20 @@ define("init", ["jquery", "angular", "lodash", "transmission"], function ($, ang
                 className += " selected";
             }
             return className;
+        };
+
+        //解析剩余时间
+        $scope.parseEta = function (eta) {
+            var str = "";
+            if(eta === -1){
+                str = "不可用";
+            }else if(eta === -2){
+                str = "无法预估";
+            }else{
+                str = tr.secondsToTime(eta);
+            }
+
+            return str;
         };
 
         //解析torrent列表文字
@@ -283,6 +444,9 @@ define("init", ["jquery", "angular", "lodash", "transmission"], function ($, ang
                                 html +=     $scope.bytesConvert(data.uploadedEver);
                                 html += "</span>";
                             }
+                            html += "<span>";
+                            html +=     "预估剩余时间：" + $scope.parseEta(data.eta);
+                            html += "</span>";
                         }
                         break;
                     case 6:
@@ -294,6 +458,9 @@ define("init", ["jquery", "angular", "lodash", "transmission"], function ($, ang
                         html += "<span>";
                         html +=     "分享率("+ tr.parseFloat2(data.uploadRatio) + "%)";
                         html += "</span>";
+                        html += "<span>";
+                        html +=     "预估剩余时间：" + $scope.parseEta(data.eta);
+                        html += "</span>";
                         break;
                     default:
                         // className = "seeding";
@@ -304,31 +471,33 @@ define("init", ["jquery", "angular", "lodash", "transmission"], function ($, ang
             }
         };
 
-        $scope.showDetail = function () {
-            var index = $scope.data.selectedIndex;
-            var data = $scope.data.torrent[index];
-            var obj = $("#torrent-detail");
-            var torrentList = $("#torrent-list");
-
-
-        };
-
         $scope.detail = {
             "target" : $("#torrent-detail"),
             "className" : "show",
-            "getData" : function () {
-                return $scope.data.torrent[$scope.data.selectedIndex];
+            "getDetail" : function (id) {
+                //获取明细
+
             },
             "show" : function () {
+                ajaxService.getFullDetail($scope.session,[$scope.data.torrent[$scope.data.selectedIndex].id]).then(function (response) {
+                    $scope.data.detail = response.data.arguments.torrents[0];
+
+                    $scope.pool.detail = setInterval(function () {
+                        ajaxService.getDetail($scope.session,[$scope.data.torrent[$scope.data.selectedIndex].id]).then(function ($response) {
+                            $scope.data.detail = _.merge($scope.data.detail,$response.data.arguments.torrents[0]);
+                        },function (reason) {
+                            console.log("维护明细数据失败");
+                        });
+                    }, $scope.loopFragment.detail);
+                },function (reason) {
+                    console.log("获取明细失败");
+                });
                 $scope.detail.target.addClass($scope.detail.className);
             },
             "close" :function () {
+                clearInterval($scope.pool.detail);
                 $scope.detail.target.removeClass($scope.detail.className);
             }
-        };
-
-        $scope.openCustomScrollbar = function () {
-            $('#torrent-list').scrollbar();
         };
 
         $scope.init = function () {
@@ -339,22 +508,25 @@ define("init", ["jquery", "angular", "lodash", "transmission"], function ($, ang
 
             $scope.loopFragment = {
                 torrent: 5000,
+                detail:5000,
                 session: 15000
             };
 
             $scope.pool = {
                 torrent: "",
-                session: ""
+                session: "",
+                detail: ""
             };
 
-            $scope.detailShow = true;
+            $scope.detailShow = false;
 
             //数据
             $scope.data = {
                 global: {},
                 torrent: {},
                 selectedIndex:"",
-                stats: {}
+                stats: {},
+                detail:{}
             };
 
             //连续获取seesion

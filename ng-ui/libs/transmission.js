@@ -248,6 +248,34 @@ define(["jquery", "lodash"], function ($, _) {
         return simple !== true ? fullDate + " " + fullTime : fullDate;
     };
 
+    var secondsToTime = function (second) {
+        if (!second) {
+            return 0;
+        }
+        var time = '';
+        if(second >= 24 * 3600 * 365){
+            time += parseInt(second / (24 * 3600 * 365)) + '年';
+            second %= 24 * 3600 * 365;
+        }
+
+        if (second >= 24 * 3600) {
+            time += parseInt(second / (24 * 3600)) + '天';
+            second %= 24 * 3600;
+        }
+        if (second >= 3600) {
+            time += parseInt(second / 3600) + '小时';
+            second %= 3600;
+        }
+        if (second >= 60) {
+            time += parseInt(second / 60) + '分钟';
+            second %= 60;
+        }
+        if (second > 0) {
+            time += second + '秒';
+        }
+        return time;
+    };
+
     //保留小数点后面两位并转化为浮点数字类型
     var parseFloat2 = function (num) {
         return parseFloat((parseZero(num)).toFixed(2));
@@ -446,6 +474,7 @@ define(["jquery", "lodash"], function ($, _) {
         "checkboxGroup": checkboxGroup,
         "autoSize": autosize,
         "initEchart": initEchart,
-        "colorGroup": colorGroup
+        "colorGroup": colorGroup,
+        "secondsToTime":secondsToTime
     };
 });
