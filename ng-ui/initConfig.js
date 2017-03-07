@@ -329,7 +329,7 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
             if(index === $scope.data.selectedIndex){
                 return false;
             }
-            
+
             $scope.data.selectedIndex = index;
             if($scope.detailShow === true){
                 $scope.detail.close();
