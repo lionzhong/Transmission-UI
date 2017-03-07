@@ -1,4 +1,5 @@
-<html ng-app="transmission">
+<!DOCTYPE html>
+<html>
 <head lang="en">
     <meta charset="UTF-8">
     <title>AngularJS DEMO</title>
@@ -16,7 +17,7 @@
     <span class="icon-start-all-light"></span>
     <span class="icon-pause-all-light"></span>
 </div>
-<ul id="torrent-list" class="torrent-list">
+<ul id="torrent-list" class="torrent-list" style="z-index: 999;">
     <li ng-repeat="item in data.torrent track by $index" ng-class="parsTorrentClassName(item.status,$index)" ng-click="selectTorrent($index)">
         <div class="name">{{item.name}}</div>
         <div class="status" ng-bind-html="parseText.Status($index)"></div>

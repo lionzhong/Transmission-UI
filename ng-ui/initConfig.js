@@ -2,12 +2,18 @@
  * Created by vincent on 2017/3/4.
  */
 
-define("init", ["jquery", "angular", "lodash", "transmission"], function ($, angular, _, tr) {
+define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], function ($, _, tr, angularAMD) {
     "use strict";
 
-    var app = angular.module("transmission", []);
+    var app = angular.module("transmission", ["ngTouch"]);
 
-    app.factory("ajaxService", ["$http", "$q", function ($http, $q) {
+    var $app = angularAMD.bootstrap(app);
+
+    $app.config(["$touchProvider", function($touchProvider) {
+        $touchProvider.ngClickOverrideEnabled([true]);
+    }]);
+
+    $app.factory("ajaxService", ["$http", "$q", function ($http, $q) {
         var service = {};
 
         function ajax(op) {
@@ -218,8 +224,16 @@ define("init", ["jquery", "angular", "lodash", "transmission"], function ($, ang
         return service;
     }]);
 
-    app.controller("mainController", ["$scope", "$http", "$q", "$sce", "ajaxService", function ($scope, $http, $q, $sce, ajaxService) {
+    $app.controller("mainController", ["$scope", "$http", "$q", "$sce", "ajaxService", function ($scope, $http, $q, $sce, ajaxService) {
 
+        $scope.c = 1;
+        $scope.test = [0,1,2,3,4,5,6];
+        $scope.tester = function ($event) {
+            $($event.currentTarget).css({"background-color":"#000"});
+        };
+        $scope.alertSomething = function() {
+            console.log('alerting');
+        };
         //获取session
         $scope.getSession = function (session) {
             //获取session
@@ -553,5 +567,5 @@ define("init", ["jquery", "angular", "lodash", "transmission"], function ($, ang
 
     }]);
 
-    return app;
+    return $app;
 });

@@ -11,23 +11,26 @@ requirejs.config({
     paths: {
         "jquery": 'jquery/dist/jquery.min',
         "angular":'angular/angular.min',
+        "angularAMD":'angularAMD/angularAMD',
         "angular-route":"angular/angular-route.min",
+        "angular-touch":"angular/angular-touch.min",
         "lodash":"lodash/dist/lodash.min",
         "transmission":"transmission",
         "perfectScroll":"perfect-scrollbar/perfect-scrollbar.jquery.min",
         "jQueryScrollbar":"jQuery-Scrollbar/jquery.scrollbar.min",
         "init":"../initConfig"
-    },shim:{
+    },
+    shim:{
         "angular":{
             exports:"angular"
         },
-        "angular-route":{
-            deps: ["angular"],
-            exports:"angular-route"
-        }
-    }
+        "angularAMD": ["angular"],
+        "angular-route":["angular"],
+        "angular-touch":["angular"]
+    },
+    deps:["init"]
 });
 
 // Start loading the main app file. Put all of
 // your application logic in there.
-requirejs(['init']);
+// requirejs(['init']);
