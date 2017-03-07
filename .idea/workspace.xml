@@ -2,23 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5be9f97-5afa-417b-bad7-ee74fce52ea7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ng-ui/libs/perfect-scrollbar/perfect-scrollbar.jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ng-ui/libs/perfect-scrollbar/perfect-scrollbar.jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ng-ui/libs/perfect-scrollbar/perfect-scrollbar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ng-ui/libs/perfect-scrollbar/perfect-scrollbar.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ng-ui/style/sass/modules/_jQueryScrollbar.scss" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ng-ui/style/css/maps/index.css.map" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ng-ui/style/css/fonts/transmission.eot" afterPath="$PROJECT_DIR$/ng-ui/style/css/fonts/transmission.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ng-ui/style/css/fonts/transmission.ttf" afterPath="$PROJECT_DIR$/ng-ui/style/css/fonts/transmission.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ng-ui/style/css/fonts/transmission.woff" afterPath="$PROJECT_DIR$/ng-ui/style/css/fonts/transmission.woff" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ng-ui/libs/angularAMD/angularAMD.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ng-ui/index.html" afterPath="$PROJECT_DIR$/ng-ui/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ng-ui/initConfig.js" afterPath="$PROJECT_DIR$/ng-ui/initConfig.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ng-ui/load.js" afterPath="$PROJECT_DIR$/ng-ui/load.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ng-ui/style/css/fonts/transmission.svg" afterPath="$PROJECT_DIR$/ng-ui/style/css/fonts/transmission.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ng-ui/style/css/transmission.css" afterPath="$PROJECT_DIR$/ng-ui/style/css/transmission.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ng-ui/style/sass/base/_font.scss" afterPath="$PROJECT_DIR$/ng-ui/style/sass/base/_font.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ng-ui/style/sass/transmission.scss" afterPath="$PROJECT_DIR$/ng-ui/style/sass/transmission.scss" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -36,29 +24,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ng-ui/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="18" column="42" lean-forward="false" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="transmission.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ng-ui/style/sass/transmission.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="7" column="17" lean-forward="true" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-              <folding>
-                <element signature="e#8576#9156#0" expanded="false" />
-                <element signature="e#9194#11037#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="_perfect-scrollbar.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ng-ui/style/sass/modules/_perfect-scrollbar.scss">
           <provider selected="true" editor-type-id="text-editor">
@@ -69,46 +34,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_font.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ng-ui/style/sass/base/_font.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="load.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ng-ui/load.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="22" />
+            <state relative-caret-position="765">
+              <caret line="35" column="23" lean-forward="true" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="perfect-scrollbar.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ng-ui/libs/perfect-scrollbar/perfect-scrollbar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="perfect-scrollbar.jquery.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ng-ui/libs/perfect-scrollbar/perfect-scrollbar.jquery.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -116,46 +47,94 @@
       <file leaf-file-name="initConfig.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ng-ui/initConfig.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="4" column="61" lean-forward="false" selection-start-line="4" selection-start-column="61" selection-end-line="4" selection-end-column="61" />
+            <state relative-caret-position="528">
+              <caret line="231" column="46" lean-forward="false" selection-start-line="231" selection-start-column="46" selection-end-line="231" selection-end-column="46" />
               <folding>
-                <element signature="e#277#3314#0" expanded="false" />
-                <element signature="e#361#1653#0" expanded="false" />
-                <element signature="e#1682#2562#0" expanded="false" />
-                <element signature="e#3453#13631#0" expanded="false" />
-                <element signature="e#3523#4067#0" expanded="false" />
-                <element signature="e#4130#4448#0" expanded="false" />
-                <element signature="e#4512#4883#0" expanded="false" />
-                <element signature="e#4948#5137#0" expanded="false" />
-                <element signature="e#5207#5401#0" expanded="false" />
-                <element signature="e#5476#5690#0" expanded="false" />
-                <element signature="e#5759#5817#0" expanded="false" />
-                <element signature="e#5882#6031#0" expanded="false" />
-                <element signature="e#6096#6147#0" expanded="false" />
-                <element signature="e#6233#6859#0" expanded="false" />
-                <element signature="e#6913#11682#0" expanded="false" />
-                <element signature="e#11725#11934#0" expanded="false" />
-                <element signature="e#11961#12421#0" expanded="false" />
+                <element signature="e#472#7691#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_jQueryScrollbar.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ng-ui/style/sass/modules/_jQueryScrollbar.scss">
+      <file leaf-file-name="bower.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ng-ui/bower.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3360">
-              <caret line="140" column="103" lean-forward="false" selection-start-line="140" selection-start-column="103" selection-end-line="140" selection-end-column="103" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="perfect-scrollbar.jquery.min.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ng-ui/libs/perfect-scrollbar/perfect-scrollbar.jquery.min.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ng-ui/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="424">
+              <caret line="20" column="89" lean-forward="false" selection-start-line="20" selection-start-column="89" selection-end-line="20" selection-end-column="89" />
+              <folding>
+                <element signature="n#style#0;n#ul#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="angular-route.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ng-ui/libs/angular/angular-route.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1488777980986" expanded="true" signature="17436:18183" ph="..." />
+                <marker date="1488777980986" expanded="true" signature="18723:18876" ph="{...}" />
+                <marker date="1488777980986" expanded="true" signature="18958:19067" ph="{...}" />
+                <marker date="1488777980986" expanded="true" signature="19152:19264" ph="{...}" />
+                <marker date="1488777980986" expanded="true" signature="19336:20094" ph="{...}" />
+                <marker date="1488777980986" expanded="true" signature="19403:19800" ph="{&quot;templateUrl&quot;: 'book.html'...}" />
+                <marker date="1488777980986" expanded="true" signature="19515:19785" ph="{...}" />
+                <marker date="1488777980986" expanded="true" signature="19614:19768" ph="{...}" />
+                <marker date="1488777980986" expanded="true" signature="19852:19959" ph="{&quot;templateUrl&quot;: 'chapter.html'...}" />
+                <marker date="1488777980986" expanded="true" signature="20252:20834" ph="{...}" />
+                <marker date="1488777980986" expanded="true" signature="36844:37558" ph="..." />
+                <marker date="1488777980986" expanded="true" signature="37169:37239" ph="..." />
+                <marker date="1488777980986" expanded="true" signature="37617:37722" ph="..." />
+                <marker date="1488777980986" expanded="true" signature="37784:37946" ph="..." />
+                <marker date="1488777980986" expanded="true" signature="38030:38216" ph="{...}" />
+                <marker date="1488777980986" expanded="true" signature="38240:38275" ph="{...}" />
+                <marker date="1488777980986" expanded="true" signature="38332:38630" ph="{...}" />
+                <marker date="1488777980986" expanded="true" signature="38663:38695" ph="{...}" />
+                <marker date="1488777980986" expanded="true" signature="38743:38772" ph="{...}" />
+                <marker date="1488777980986" expanded="true" signature="38820:38853" ph="{...}" />
+                <marker date="1488777980986" expanded="true" signature="38983:39566" ph="[...]" />
+                <marker date="1488777980986" expanded="true" signature="39079:39565" ph="{...}" />
+                <marker date="1488777980986" expanded="true" signature="39149:39293" ph="{&quot;templateUrl&quot;: 'book.html'...}" />
+                <marker date="1488777980986" expanded="true" signature="39348:39501" ph="{&quot;templateUrl&quot;: 'chapter.html'...}" />
+                <marker date="1488777980986" expanded="true" signature="39602:39845" ph="[...]" />
+                <marker date="1488777980986" expanded="true" signature="39705:39844" ph="{...}" />
+                <marker date="1488777980986" expanded="true" signature="39881:40020" ph="[...]" />
+                <marker date="1488777980986" expanded="true" signature="39930:40019" ph="{...}" />
+                <marker date="1488777980986" expanded="true" signature="40059:40204" ph="[...]" />
+                <marker date="1488777980986" expanded="true" signature="40111:40203" ph="{...}" />
+                <marker date="1488777980986" expanded="true" signature="40341:40869" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="angularAMD.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ng-ui/libs/angularAMD/angularAMD.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="264" column="24" lean-forward="false" selection-start-line="264" selection-start-column="24" selection-end-line="264" selection-end-column="24" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -163,7 +142,31 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="angular-touch.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ng-ui/libs/angular/angular-touch.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1488777981003" expanded="true" signature="11775:11813" ph="..." />
+                <marker date="1488777981003" expanded="true" signature="22953:23024" ph="..." />
+                <marker date="1488777981003" expanded="true" signature="23097:23218" ph="..." />
+                <marker date="1488777981003" expanded="true" signature="24128:24199" ph="..." />
+                <marker date="1488777981003" expanded="true" signature="24272:24393" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -172,7 +175,14 @@
       <find>filter_bar.png</find>
       <find>ajax</find>
       <find>arguments</find>
+      <find>'</find>
+      <find>load</find>
+      <find>tester</find>
+      <find>ng-app</find>
     </findStrings>
+    <replaceStrings>
+      <replace>&quot;</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -186,9 +196,13 @@
         <option value="$PROJECT_DIR$/ng-ui/style/sass/base/_font.scss" />
         <option value="$PROJECT_DIR$/ng-ui/style/sass/modules/perfect-scrollbar.css" />
         <option value="$PROJECT_DIR$/ng-ui/style/sass/modules/perfect-scrollbar.scss" />
-        <option value="$PROJECT_DIR$/ng-ui/load.js" />
         <option value="$PROJECT_DIR$/ng-ui/style/sass/transmission.scss" />
         <option value="$PROJECT_DIR$/ng-ui/style/sass/modules/_jQueryScrollbar.scss" />
+        <option value="$PROJECT_DIR$/ng-ui/libs/angularAMD/angularAMD.js" />
+        <option value="$PROJECT_DIR$/ng-ui/ctrl.js" />
+        <option value="$PROJECT_DIR$/ng-ui/index2.html" />
+        <option value="$PROJECT_DIR$/ng-ui/asd.html" />
+        <option value="$PROJECT_DIR$/ng-ui/load.js" />
         <option value="$PROJECT_DIR$/ng-ui/initConfig.js" />
         <option value="$PROJECT_DIR$/ng-ui/index.html" />
       </list>
@@ -247,72 +261,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Transmission-UI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Transmission-UI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ng-ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="style" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sass" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Transmission-UI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Transmission-UI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ng-ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="style" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sass" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Transmission-UI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Transmission-UI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ng-ui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="style" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -327,9 +275,11 @@
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\git\Transmission-UI\ng-ui" />
       <recent name="F:\git\Transmission-UI\ng-ui\style\sass\modules" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -409,12 +359,12 @@
       <option name="presentableId" value="Default" />
       <updated>1487313648627</updated>
       <workItem from="1487313650226" duration="2037000" />
-      <workItem from="1488778060356" duration="11972000" />
+      <workItem from="1488778060356" duration="31407000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14009000" />
+    <option name="totallyTimeSpent" value="33444000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -464,7 +414,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -626,7 +576,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -636,7 +586,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -646,7 +596,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -654,7 +604,7 @@
     <entry file="file://$PROJECT_DIR$/ng-ui/style/sass/transmission.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
-          <caret line="7" column="17" lean-forward="true" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <caret line="7" column="17" lean-forward="false" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
           <folding>
             <element signature="e#8576#9156#0" expanded="false" />
             <element signature="e#9194#11037#0" expanded="false" />
@@ -670,6 +620,94 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ng-ui/libs/angular/angular-route.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1488777980986" expanded="true" signature="17436:18183" ph="..." />
+            <marker date="1488777980986" expanded="true" signature="18723:18876" ph="{...}" />
+            <marker date="1488777980986" expanded="true" signature="18958:19067" ph="{...}" />
+            <marker date="1488777980986" expanded="true" signature="19152:19264" ph="{...}" />
+            <marker date="1488777980986" expanded="true" signature="19336:20094" ph="{...}" />
+            <marker date="1488777980986" expanded="true" signature="19403:19800" ph="{&quot;templateUrl&quot;: 'book.html'...}" />
+            <marker date="1488777980986" expanded="true" signature="19515:19785" ph="{...}" />
+            <marker date="1488777980986" expanded="true" signature="19614:19768" ph="{...}" />
+            <marker date="1488777980986" expanded="true" signature="19852:19959" ph="{&quot;templateUrl&quot;: 'chapter.html'...}" />
+            <marker date="1488777980986" expanded="true" signature="20252:20834" ph="{...}" />
+            <marker date="1488777980986" expanded="true" signature="36844:37558" ph="..." />
+            <marker date="1488777980986" expanded="true" signature="37169:37239" ph="..." />
+            <marker date="1488777980986" expanded="true" signature="37617:37722" ph="..." />
+            <marker date="1488777980986" expanded="true" signature="37784:37946" ph="..." />
+            <marker date="1488777980986" expanded="true" signature="38030:38216" ph="{...}" />
+            <marker date="1488777980986" expanded="true" signature="38240:38275" ph="{...}" />
+            <marker date="1488777980986" expanded="true" signature="38332:38630" ph="{...}" />
+            <marker date="1488777980986" expanded="true" signature="38663:38695" ph="{...}" />
+            <marker date="1488777980986" expanded="true" signature="38743:38772" ph="{...}" />
+            <marker date="1488777980986" expanded="true" signature="38820:38853" ph="{...}" />
+            <marker date="1488777980986" expanded="true" signature="38983:39566" ph="[...]" />
+            <marker date="1488777980986" expanded="true" signature="39079:39565" ph="{...}" />
+            <marker date="1488777980986" expanded="true" signature="39149:39293" ph="{&quot;templateUrl&quot;: 'book.html'...}" />
+            <marker date="1488777980986" expanded="true" signature="39348:39501" ph="{&quot;templateUrl&quot;: 'chapter.html'...}" />
+            <marker date="1488777980986" expanded="true" signature="39602:39845" ph="[...]" />
+            <marker date="1488777980986" expanded="true" signature="39705:39844" ph="{...}" />
+            <marker date="1488777980986" expanded="true" signature="39881:40020" ph="[...]" />
+            <marker date="1488777980986" expanded="true" signature="39930:40019" ph="{...}" />
+            <marker date="1488777980986" expanded="true" signature="40059:40204" ph="[...]" />
+            <marker date="1488777980986" expanded="true" signature="40111:40203" ph="{...}" />
+            <marker date="1488777980986" expanded="true" signature="40341:40869" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ng-ui/libs/angular/angular-touch.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1488777981003" expanded="true" signature="11775:11813" ph="..." />
+            <marker date="1488777981003" expanded="true" signature="22953:23024" ph="..." />
+            <marker date="1488777981003" expanded="true" signature="23097:23218" ph="..." />
+            <marker date="1488777981003" expanded="true" signature="24128:24199" ph="..." />
+            <marker date="1488777981003" expanded="true" signature="24272:24393" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ng-ui/libs/angularAMD/angularAMD.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="264" column="24" lean-forward="false" selection-start-line="264" selection-start-column="24" selection-end-line="264" selection-end-column="24" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ng-ui/ctrl.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ng-ui/initConfigbak.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="71">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ng-ui/index2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ng-ui/style/sass/modules/_perfect-scrollbar.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3552">
@@ -678,45 +716,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/ng-ui/asd.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ng-ui/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ng-ui/load.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="22" />
+        <state relative-caret-position="765">
+          <caret line="35" column="23" lean-forward="true" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ng-ui/initConfig.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="61" lean-forward="false" selection-start-line="4" selection-start-column="61" selection-end-line="4" selection-end-column="61" />
+        <state relative-caret-position="528">
+          <caret line="231" column="46" lean-forward="false" selection-start-line="231" selection-start-column="46" selection-end-line="231" selection-end-column="46" />
           <folding>
-            <element signature="e#277#3314#0" expanded="false" />
-            <element signature="e#361#1653#0" expanded="false" />
-            <element signature="e#1682#2562#0" expanded="false" />
-            <element signature="e#3453#13631#0" expanded="false" />
-            <element signature="e#3523#4067#0" expanded="false" />
-            <element signature="e#4130#4448#0" expanded="false" />
-            <element signature="e#4512#4883#0" expanded="false" />
-            <element signature="e#4948#5137#0" expanded="false" />
-            <element signature="e#5207#5401#0" expanded="false" />
-            <element signature="e#5476#5690#0" expanded="false" />
-            <element signature="e#5759#5817#0" expanded="false" />
-            <element signature="e#5882#6031#0" expanded="false" />
-            <element signature="e#6096#6147#0" expanded="false" />
-            <element signature="e#6233#6859#0" expanded="false" />
-            <element signature="e#6913#11682#0" expanded="false" />
-            <element signature="e#11725#11934#0" expanded="false" />
-            <element signature="e#11961#12421#0" expanded="false" />
+            <element signature="e#472#7691#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ng-ui/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="18" column="42" lean-forward="false" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="42" />
-          <folding />
+        <state relative-caret-position="424">
+          <caret line="20" column="89" lean-forward="false" selection-start-line="20" selection-start-column="89" selection-end-line="20" selection-end-column="89" />
+          <folding>
+            <element signature="n#style#0;n#ul#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,0 +1,19 @@
+{
+  "name": "ng-ui",
+  "homepage": "https://github.com/lionzhong/Transmission-UI",
+  "authors": [
+    "vincent"
+  ],
+  "description": "transmission ngui",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "lbs/",
+    "test",
+    "tests"
+  ]
+}
