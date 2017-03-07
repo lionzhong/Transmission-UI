@@ -9,7 +9,7 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
 
     var $app = angularAMD.bootstrap(app);
 
-    $app.config(["$touchProvider", function($touchProvider) {
+    $app.config(["$touchProvider", function ($touchProvider) {
         $touchProvider.ngClickOverrideEnabled([true]);
     }]);
 
@@ -21,7 +21,7 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
 
             deferred.promise = $http({
                 method: "POST",
-                url: "/transmission/rpc" + (op.url !== undefined ? op.url:""),
+                url: "/transmission/rpc" + (op.url !== undefined ? op.url : ""),
                 headers: op.sessionId !== undefined ? {"X-Transmission-Session-Id": op.sessionId} : {},
                 data: (function () {
                     var param = {};
@@ -45,7 +45,7 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
                 param: {
                     method: "session-get"
                 },
-                url:"?type=getSession"
+                url: "?type=getSession"
             });
         };
 
@@ -55,7 +55,7 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
                 param: {
                     method: "session-stats"
                 },
-                url:"?type=getSessionStats"
+                url: "?type=getSessionStats"
             });
         };
 
@@ -64,7 +64,7 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
                 sessionId: sessionId,
                 param: {
                     method: "torrent-get",
-                    arguments:{
+                    arguments: {
                         "fields": [
                             "id",
                             "addedDate",
@@ -97,7 +97,7 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
                         ]
                     }
                 },
-                url:"?type=getTorrent"
+                url: "?type=getTorrent"
             });
         };
 
@@ -106,8 +106,8 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
                 sessionId: sessionId,
                 param: {
                     method: "torrent-get",
-                    arguments:{
-                        fields:[
+                    arguments: {
+                        fields: [
                             "id",
                             "error",
                             "errorString",
@@ -134,14 +134,14 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
                             "uploadRatio",
                             "webseedsSendingToUs"
                         ],
-                        ids:"recently-active"
+                        ids: "recently-active"
                     }
                 },
-                url:"?type=getActiveTorrent"
+                url: "?type=getActiveTorrent"
             });
         };
 
-        service.getFullDetail = function (sessionId,ids) {
+        service.getFullDetail = function (sessionId, ids) {
             return ajax({
                 sessionId: sessionId,
                 param: {
@@ -171,11 +171,11 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
                         "ids": ids
                     }
                 },
-                url:"?type=getFullDetail"
+                url: "?type=getFullDetail"
             });
         };
 
-        service.getDetail = function (sessionId,ids) {
+        service.getDetail = function (sessionId, ids) {
             return ajax({
                 sessionId: sessionId,
                 param: {
@@ -197,7 +197,7 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
                         "ids": ids
                     }
                 },
-                url:"?type=getDetail"
+                url: "?type=getDetail"
             });
         };
 
@@ -207,7 +207,7 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
                 param: {
                     method: "torrent-start"
                 },
-                url:"?type=startTorrent"
+                url: "?type=startTorrent"
             });
         };
 
@@ -217,7 +217,7 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
                 param: {
                     method: "torrent-stop"
                 },
-                url:"?type=stopTorrent"
+                url: "?type=stopTorrent"
             });
         };
 
@@ -227,11 +227,11 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
     $app.controller("mainController", ["$scope", "$http", "$q", "$sce", "ajaxService", function ($scope, $http, $q, $sce, ajaxService) {
 
         $scope.c = 1;
-        $scope.test = [0,1,2,3,4,5,6];
+        $scope.test = [0, 1, 2, 3, 4, 5, 6];
         $scope.tester = function ($event) {
-            $($event.currentTarget).css({"background-color":"#000"});
+            $($event.currentTarget).css({"background-color": "#000"});
         };
-        $scope.alertSomething = function() {
+        $scope.alertSomething = function () {
             console.log('alerting');
         };
         //获取session
@@ -277,13 +277,13 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
             //获取活动中的torrent数据
             ajaxService.getActiveTorrent($scope.session).then(function (response) {
                 //替换数据列表中对应的数据
-                _.each(response.data.arguments.torrents,function (value, index) {
-                    var $index = _.findIndex($scope.data.torrent,function (o) {
+                _.each(response.data.arguments.torrents, function (value, index) {
+                    var $index = _.findIndex($scope.data.torrent, function (o) {
                         return o.id === value.id;
                     });
 
-                    if($index > -1){
-                        _.merge($scope.data.torrent[$index],value);
+                    if ($index > -1) {
+                        _.merge($scope.data.torrent[$index], value);
                     }
                 });
             }, function (reason) {
@@ -327,6 +327,10 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
         //选择某下载任务
         $scope.selectTorrent = function (index) {
             $scope.data.selectedIndex = index;
+            if($scope.detailShow === true){
+                $scope.detail.close();
+                $scope.detail.show();
+            }
         };
 
         //流量转换
@@ -344,7 +348,7 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
         };
 
         //解析下载任务的样式名
-        $scope.parsTorrentClassName = function (status,index) {
+        $scope.parsTorrentClassName = function (status, index) {
             var className = "";
             //4正在下载
             switch (status) {
@@ -361,7 +365,7 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
                     className = "seeding";
                     break;
             }
-            if(index === $scope.data.selectedIndex){
+            if (index === $scope.data.selectedIndex) {
                 className += " selected";
             }
             return className;
@@ -370,24 +374,59 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
         //解析剩余时间
         $scope.parseEta = function (eta) {
             var str = "";
-            if(eta === -1){
+            if (eta === -1) {
                 str = "不可用";
-            }else if(eta === -2){
+            } else if (eta === -2) {
                 str = "无法预估";
-            }else{
+            } else {
                 str = tr.secondsToTime(eta);
             }
 
             return str;
         };
 
+        $scope.parseFloat2 = function (num) {
+            return tr.parseFloat2(num);
+        };
+
+        //获取状态文本
+        $scope.getStatusText = function (op) {
+            var str = "";
+            switch (op.status){
+                case 0:
+                    if(op.metaComplete < 1){
+                        str = "磁性链接下载元数据中";
+                    }else{
+                        str = "已暂停";
+                    }
+                    break;
+                case 4:
+                    str = "下载中";
+                    break;
+                case 6:
+                    str = "做种中";
+                    break;
+            }
+
+            return str;
+        };
+
+        //获取运行时长
+        $scope.howLong = function (start) {
+            return $scope.parseEta(parseInt((new Date().getTime()) / 1000) - start);
+        };
+
+        $scope.getFullDate = function (ms) {
+            return tr.parseFullDate(ms);
+        };
+
         //解析torrent列表文字
         $scope.parseText = {
-            "Status":function (index) {
+            "Status": function (index) {
                 var data = $scope.data.torrent[index];
                 var html = "";
 
-                switch (data.status){
+                switch (data.status) {
                     case 0:
                         // className = "paused";
                         html += "已暂停";
@@ -396,17 +435,17 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
                         html += "下载自";
                         html += "<span>" + data.peersSendingToUs + "/" + data.peersConnected + "个用户</span>";
                         html += "<span class=\"icon-download\">";
-                        html +=     $scope.bytesConvert(data.rateDownload) + "/s";
+                        html += $scope.bytesConvert(data.rateDownload) + "/s";
                         html += "</span>";
                         html += "<span class=\"icon-upload\">";
-                        html +=     $scope.bytesConvert(data.rateUpload) + "/s";
+                        html += $scope.bytesConvert(data.rateUpload) + "/s";
                         html += "</span>";
                         break;
                     case 6:
                         html += "分享至";
                         html += "<span>" + data.peersGettingFromUs + "/" + data.peersConnected + "个用户</span>";
                         html += "<span class=\"icon-upload\">";
-                        html +=     $scope.bytesConvert(data.rateUpload) + "/s";
+                        html += $scope.bytesConvert(data.rateUpload) + "/s";
                         html += "</span>";
                         break;
                     default:
@@ -416,50 +455,50 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
 
                 return $sce.trustAsHtml(html);
             },
-            "TransformData":function (index) {
+            "TransformData": function (index) {
                 var data = $scope.data.torrent[index];
                 var html = "";
 
-                switch (data.status){
+                switch (data.status) {
                     case 0:
                         // className = "paused";
-                        if(data.metadataPercentComplete < 1){
+                        if (data.metadataPercentComplete < 1) {
                             html += "磁性链接";
                             html += "<span>";
-                            html +=     "下载元数据（" + (data.metadataPercentComplete < 1 ? tr.parseFloat2(data.metadataPercentComplete * 100) :"100") + "%）";
+                            html += "下载元数据（" + (data.metadataPercentComplete < 1 ? tr.parseFloat2(data.metadataPercentComplete * 100) : "100") + "%）";
                             html += "</span>";
-                        }else {
+                        } else {
                             html += "已下载";
                             html += "<span>";
-                            html +=     $scope.bytesConvert(data.totalSize * (data.percentDone < 1 ? data.percentDone : 1)) + "/" + $scope.bytesConvert(data.totalSize);
+                            html += $scope.bytesConvert(data.totalSize * (data.percentDone < 1 ? data.percentDone : 1)) + "/" + $scope.bytesConvert(data.totalSize);
                             html += "</span>";
                             html += "<span>";
-                            html +=     "(" + (data.percentDone < 1 ? tr.parseFloat2(data.percentDone * 100) : "100") + "%)";
+                            html += "(" + (data.percentDone < 1 ? tr.parseFloat2(data.percentDone * 100) : "100") + "%)";
                             html += "</span>";
                         }
                         break;
                     case 4:
                         // className = "downloading";,
-                        if(data.metadataPercentComplete < 1){
-                            html += "磁性链接<span> 下载元数据（" + (data.metadataPercentComplete < 1 ? tr.parseFloat2(data.metadataPercentComplete * 100) :"100") + "）</span>";
-                        }else{
+                        if (data.metadataPercentComplete < 1) {
+                            html += "磁性链接<span> 下载元数据（" + (data.metadataPercentComplete < 1 ? tr.parseFloat2(data.metadataPercentComplete * 100) : "100") + "）</span>";
+                        } else {
                             html += "已下载";
                             html += "<span>";
-                            html +=     $scope.bytesConvert(data.totalSize * (data.percentDone < 1 ? data.percentDone:1)) + "/" + $scope.bytesConvert(data.totalSize);
+                            html += $scope.bytesConvert(data.totalSize * (data.percentDone < 1 ? data.percentDone : 1)) + "/" + $scope.bytesConvert(data.totalSize);
                             html += "</span>";
                             html += "<span>";
-                            html +=     "(" + (data.percentDone < 1 ? tr.parseFloat2(data.percentDone * 100) :"100") + "%)";
+                            html += "(" + (data.percentDone < 1 ? tr.parseFloat2(data.percentDone * 100) : "100") + "%)";
                             html += "</span>";
-                            if(data.uploadedEver > 0){
+                            if (data.uploadedEver > 0) {
                                 html += "<span>";
-                                html +=     "已上传";
+                                html += "已上传";
                                 html += "</span>";
                                 html += "<span>";
-                                html +=     $scope.bytesConvert(data.uploadedEver);
+                                html += $scope.bytesConvert(data.uploadedEver);
                                 html += "</span>";
                             }
                             html += "<span>";
-                            html +=     "预估剩余时间：" + $scope.parseEta(data.eta);
+                            html += "预估剩余时间：" + $scope.parseEta(data.eta);
                             html += "</span>";
                         }
                         break;
@@ -467,13 +506,13 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
                         // className = "seeding";
                         html += "已上传";
                         html += "<span>";
-                        html +=     $scope.bytesConvert(data.uploadedEver) + "/" + $scope.bytesConvert(data.totalSize);
+                        html += $scope.bytesConvert(data.uploadedEver) + "/" + $scope.bytesConvert(data.totalSize);
                         html += "</span>";
                         html += "<span>";
-                        html +=     "分享率("+ tr.parseFloat2(data.uploadRatio) + "%)";
+                        html += "分享率(" + tr.parseFloat2(data.uploadRatio) + "%)";
                         html += "</span>";
                         html += "<span>";
-                        html +=     "预估剩余时间：" + $scope.parseEta(data.eta);
+                        html += "预估剩余时间：" + $scope.parseEta(data.eta);
                         html += "</span>";
                         break;
                     default:
@@ -486,31 +525,53 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
         };
 
         $scope.detail = {
-            "target" : $("#torrent-detail"),
-            "className" : "show",
-            "getDetail" : function (id) {
-                //获取明细
-
+            "target": $("#torrent-detail"),
+            "className": "show",
+            "tabNames": ["info", "peers", "tracker", "files"],
+            "tabSelect": function (index) {
+                $scope.detail.selectedTabIndex = index;
             },
-            "show" : function () {
-                ajaxService.getFullDetail($scope.session,[$scope.data.torrent[$scope.data.selectedIndex].id]).then(function (response) {
-                    $scope.data.detail = response.data.arguments.torrents[0];
+            "loaded" : false,
+            "torrentData":false,
+            "selectedTabIndex": 0,
+            "show": function () {
+                if ($scope.data.selectedIndex === "") {
+                    console.log("请选择一个传输任务");
+                } else {
+                    $scope.detailShow = $scope.detailShow !== true;
 
-                    $scope.pool.detail = setInterval(function () {
-                        ajaxService.getDetail($scope.session,[$scope.data.torrent[$scope.data.selectedIndex].id]).then(function ($response) {
-                            $scope.data.detail = _.merge($scope.data.detail,$response.data.arguments.torrents[0]);
-                        },function (reason) {
-                            console.log("维护明细数据失败");
+                    if ($scope.detailShow === true) {
+                        $scope.detail.torrentData = $scope.data.torrent[$scope.data.selectedIndex];
+                        $scope.ajaxPool = ajaxService.getFullDetail($scope.session, [$scope.data.torrent[$scope.data.selectedIndex].id]).then(function (response) {
+                            $scope.detail.loaded = true;
+
+                            $scope.data.detail = response.data.arguments.torrents[0];
+
+                            $scope.pool.detail = setInterval(function () {
+                                $scope.ajaxPool.fullDetail = ajaxService.getDetail($scope.session, [$scope.data.torrent[$scope.data.selectedIndex].id]).then(function ($response) {
+                                    $scope.data.detail = _.merge($scope.data.detail, $response.data.arguments.torrents[0]);
+                                }, function (reason) {
+                                    console.log("维护明细数据失败");
+                                });
+                            }, $scope.loopFragment.detail);
+                        }, function (reason) {
+                            console.log("获取明细失败");
                         });
-                    }, $scope.loopFragment.detail);
-                },function (reason) {
-                    console.log("获取明细失败");
-                });
-                $scope.detail.target.addClass($scope.detail.className);
+                    } else {
+                        $scope.detail.close();
+                    }
+                }
             },
-            "close" :function () {
+            "close": function () {
                 clearInterval($scope.pool.detail);
-                $scope.detail.target.removeClass($scope.detail.className);
+                $scope.detailShow = false;
+                $scope.detail.loaded = false;
+                var arr = [$scope.ajaxPool.fullDetail, $scope.ajaxPool.detail];
+                _.each(arr, function (value, index) {
+                    if (typeof value === "object" && typeof value.resolve === "function") {
+                        value.resolve();
+                    }
+                });
             }
         };
 
@@ -522,14 +583,20 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
 
             $scope.loopFragment = {
                 torrent: 5000,
-                detail:5000,
+                detail: 5000,
                 session: 15000
             };
 
+            //loop pool
             $scope.pool = {
                 torrent: "",
                 session: "",
                 detail: ""
+            };
+
+            $scope.ajaxPool = {
+                detail: {},
+                fullDetail: {}
             };
 
             $scope.detailShow = false;
@@ -538,9 +605,9 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
             $scope.data = {
                 global: {},
                 torrent: {},
-                selectedIndex:"",
+                selectedIndex: "",
                 stats: {},
-                detail:{}
+                detail: {}
             };
 
             //连续获取seesion
@@ -561,11 +628,24 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
                 $scope.loopGetTorrentData();
             });
 
+            $scope.tmpUrl = {
+                blankDetail : "blankdetail.html"
+            };
         };
 
         $scope.init();
 
     }]);
+
+    $app.directive('includeReplace', function () {
+        return {
+            require: 'ngInclude',
+            restrict: 'A', /* optional */
+            link: function (scope, el, attrs) {
+                el.replaceWith(el.children());
+            }
+        };
+    });
 
     return $app;
 });

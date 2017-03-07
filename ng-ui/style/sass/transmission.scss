@@ -1,12 +1,8 @@
 @import "base/variables";
 @import "mixins/importMixins";
 @import "base/font";
-@import "modules/jQueryScrollbar";
 @include meyer-reset();
-.scrollbar-dynamic {
-  //max-height: 300px;
-  overflow: auto;
-}
+
 html,body{
   width: 100%;
   overflow: hidden;
@@ -49,6 +45,8 @@ html,body{
   right: 0;
   overflow: hidden;
   background-color: $gray-20;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.25);
+  z-index: 10;
   >[class^="icon-"], >[class*=" icon-"]{
     font-size: ceil($font-size-large*2.2);
     color: lighten($prime-blue,25%);
@@ -77,24 +75,35 @@ html,body{
   bottom: auto;
   left: auto;
   right: 15px;
+  box-shadow:none;
   >[class^="icon-"], >[class*=" icon-"]{
     font-size: ceil($font-size-large*1.8);
     margin-left: 5px;
+    &.selected{
+      color: lighten($prime-blue,50%);
+      background-color: $prime-blue;
+    }
   }
   @media (max-width: 1024px) {
-    height: 37px;
-    background-color: $gray-98;
-    @include border("border-top");
-    padding: 5px;
+    box-shadow: 5px 0 25px rgba(0,0,0,0.25);
+    background-color: $gray-20;
+    //@include border("border-top");
+    padding: 0;
     top: auto;
     bottom: 0;
     left: 0;
     right: 0;
     height: auto;
+    text-align: center;
     >[class^="icon-"], >[class*=" icon-"]{
-      color: $toolbar-set;
-      &:hover{
+      padding: 10px 0;
+      border-radius: 0;
+      margin: 0;
+      color: lighten($prime-blue,25%);
+      width: 20%;
+      &:hover,&.selected{
         color: $gray-100;
+        background-color: lighten($gray-0,25%);
       }
     }
   }
@@ -102,6 +111,7 @@ html,body{
 
 /*torrent-list start*/
 .torrent-list{
+  z-index: 9;
   position: fixed;
   top: 56px;
   bottom: 0;
@@ -209,6 +219,7 @@ html,body{
 
 .torrent-detail{
   position: fixed;
+  z-index: 11;
   top: 56px;
   right: -570px;
   bottom:0;
@@ -235,52 +246,78 @@ html,body{
     top: 0;
     right: 0;
   }
-  >p{
+  >ul{
     text-align: center;
     margin: 20px auto;
-    >span{
-      box-sizing: border-box;
-      display: inline-block;
-      border-radius: ceil($font-size-large*2.2);
-      font-size: ceil($font-size-large*1.58);
+    width: 200px;
+    @extend .clearfix;
+    @include border("border-bottom");
+    >li{
+      width: 25%;
+      float: left;
       cursor: pointer;
-      margin: 0 15px;
-      color: $gray-70;
-      &:hover{
-        color: $gray-100;
+      padding-bottom: 10px;
+      position: relative;
+      top: 1px;
+      @include border("border-bottom");
+      @include css3("transition",all 0.3s);
+      >span{
+        border-radius: ceil($font-size-large*2.2);
+        font-size: ceil($font-size-large*1.58);
+        margin:0;
+        color: $gray-70;
+        &:hover{
+          color: $gray-100;
+        }
       }
       &.selected{
-        color: $gray-100;
-        background-color: $prime-blue;
+        @include border("border-bottom",1px,$prime-blue);
+        >span{
+          color: $gray-100;
+          background-color: $prime-blue;
+        }
       }
     }
   }
-  >ul{
-    //width: 200px;
-    margin: 20px auto;
-    @extend .clearfix;
-    border-radius: 5px;
-    text-align: center;
-    >li{
-      display: inline-block;
-      box-sizing: border-box;
-      width: 25%;
-      float: left;
-      color: $gray-70;
-      text-align: center;
-      @include css3("transition",all 0.5s);
-      >span{
-        border-radius: ceil($font-size-large*2.2);
-        padding: 0 10px;
-        font-size: ceil($font-size-large*1.58);
-        cursor: pointer;
-      }
-      &:hover{
-        color: $gray-100;
-      }
-      &.selected{
-        color: $gray-100;
-        background-color: $prime-blue;
+  >.deail-contents{
+    color: lighten($gray-0,75%);
+    padding: 0 50px;
+    font-size: $font-size-large;
+    position: absolute;
+    top: 74px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    >h2{
+      @include yahei;
+      font-size: ceil($font-size-large*1.58);
+      color: $gray-100;
+      margin-bottom: 20px;
+      word-break: keep-all;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
+    >h3{
+      font-size: $font-size-large;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .table{
+      margin-bottom: 20px;
+      >table{
+        width: 100%;
+        th{
+          width: 120px;
+          text-align: left;
+        }
+        th,td{
+          font-size: $font-size-base;
+          padding: 8px;
+        }
       }
     }
   }
