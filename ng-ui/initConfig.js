@@ -326,6 +326,10 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
 
         //选择某下载任务
         $scope.selectTorrent = function (index) {
+            if(index === $scope.data.selectedIndex){
+                return false;
+            }
+            
             $scope.data.selectedIndex = index;
             if($scope.detailShow === true){
                 $scope.detail.close();
