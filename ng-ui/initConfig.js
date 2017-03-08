@@ -695,6 +695,11 @@ define(["jquery", "localData", "lodash", "transmission", "angularAMD", "angular-
             if($scope.data.torrent.length === 0 || ids === undefined || ids.length === 0 || (ids.length === 1 && ids[0] === undefined)){
                 result =  false;
             }
+
+            if($(window).width() <= 1024){
+                $scope.consolePanel.status = false;
+            }
+
             return result;
         };
 
