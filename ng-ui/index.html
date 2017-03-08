@@ -27,7 +27,7 @@
         <div class="transform-data" ng-bind-html="parseText.TransformData($index)"></div>
     </li>
 </ul>
-<div id="torrent-detail" class="torrent-detail" ng-class="{'show':detailShow}">
+<div id="torrent-detail" class="torrent-detail" ng-class="{'show':detailShow}" ng-swipe-right="detail.close()">
     <span class="icon-close" ng-click="detail.close()"></span>
     <ul>
         <li ng-repeat="item in detail.tabNames track by $index" ng-class="{'selected':detail.selectedTabIndex === $index}" ng-click="detail.tabSelect($index)">
