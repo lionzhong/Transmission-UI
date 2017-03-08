@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style/css/transmission.css">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
-<body ng-controller="mainController" ng-swipe-left="swip.left()" ng-swipe-right="swip.right()">
+<body ng-controller="mainController" style="touch-action: none;" ng-swipe-left="swip.left()" ng-swipe-right="swip.right()">
 <div class="header mobile" ng-class="{'mobile-show':consolePanel.status}">
     <span class="logo">
         <span class="logo-img"></span>

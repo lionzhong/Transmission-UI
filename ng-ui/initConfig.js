@@ -3120,6 +3120,16 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
             $scope.mobileMode = false;
 
             $scope.modalUrl = "";
+
+            document.addEventListener('touchstart', function(event) {
+                // 判断默认行为是否可以被禁用
+                if (event.cancelable) {
+                    // 判断默认行为是否已经被禁用
+                    if (!event.defaultPrevented) {
+                        event.preventDefault();
+                    }
+                }
+            }, false);
         };
 
         $scope.init();
