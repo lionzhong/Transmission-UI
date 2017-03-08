@@ -547,7 +547,6 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
                     if ($scope.detailShow === true) {
                         $scope.detail.torrentData = $scope.data.torrent[$scope.data.selectedIndex];
                         $scope.ajaxPool = ajaxService.getFullDetail($scope.session, [$scope.data.torrent[$scope.data.selectedIndex].id]).then(function (response) {
-                            $scope.detail.loaded = true;
 
                             $scope.data.detail = response.data.arguments.torrents[0];
 
@@ -569,7 +568,6 @@ define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], func
             "close": function () {
                 clearInterval($scope.pool.detail);
                 $scope.detailShow = false;
-                $scope.detail.loaded = false;
                 var arr = [$scope.ajaxPool.fullDetail, $scope.ajaxPool.detail];
                 _.each(arr, function (value, index) {
                     if (typeof value === "object" && typeof value.resolve === "function") {

@@ -38,10 +38,9 @@
         </li>
     </ul>
     <div ng-include src="tmpUrl.blankDetail" include-replace></div>
-    <div class="deail-contents" ng-if="detail.loaded" ng-show="detail.selectedTabIndex === 0">
+    <div class="deail-contents" ng-if="detailShow" ng-show="detail.selectedTabIndex === 0">
         <h2>
-            <span ng-if="detail.loaded">{{detail.torrentData.name}}</span>
-            <span ng-if="detail.loaded">　</span>
+            <span>{{detail.torrentData.name}}</span>
         </h2>
         <h3>活跃状态</h3>
         <div class="table" ng-if="detailShow">
