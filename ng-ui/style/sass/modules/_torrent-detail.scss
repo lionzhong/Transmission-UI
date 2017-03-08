@@ -152,25 +152,65 @@
       }
     }
   }
-  >.tracker-list{
+  >.peer-list{
     >li{
       margin-bottom: 30px;
       >h3{
         font-weight: bold;
         color: $gray-100;
-        margin-bottom: 15px;
+        position: relative;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        @include border("border-bottom",1px,lighten($gray-0,35%));
+        >i{
+          font-weight: normal;
+          color: $gray-60;
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
       }
       >div{
-        margin-bottom: 10px;
-        font-size: $font-size-base;
-        @extend .clearfix;
+        position: relative;
+        >div{
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
+      }
+    }
+  }
+  >.tracker-list{
+    >li{
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      @include border("border-bottom",1px,lighten($gray-0,35%));
+      >h3{
+        font-size: $font-size-large;
+        font-weight: bold;
+        color: $gray-100;
+        line-height: 24px;
+        margin-bottom: 15px;
         >i{
-          float: right;
+          font-size: $font-size-base;
+          color: $gray-50;
+        }
+      }
+      >div{
+        position: relative;
+        >i,>span{
+          font-size: 13px;
+          line-height: 24px;
+        }
+        >i{
+          position: absolute;
+          right: 0;
+          top: 0;
         }
         >span{
           display: inline-block;
           @media (max-width: 1024px) {
-            width: 210px;
+            width: 330px;
             word-break: keep-all;
             white-space: nowrap;
             overflow: hidden;
@@ -185,43 +225,47 @@
     }
   }
   >.file-list{
-    @extend .clearfix;
     >li{
+      padding-bottom: 20px;
       margin-bottom: 20px;
-    }
-    .trigger{
-      display: inline-block;
-      float: right;
-      >span{
-        display: inline-block;
-        background-color: $gray-40;
-        @include css3("transition",all 0.3s);
-        font-size: ceil($font-size-large*1.28);
-        cursor: pointer;
-        padding: 3px;
-        &:hover{
-          background-color: lighten($gray-0,50%);
-        }
-        &.selected{
-          color: $gray-0;
-          background-color: $gray-100;
-        }
-        &:first-child{
-          border-radius: 5px 0 0 5px;
-        }
-        &:last-child{
-          border-radius: 0 5px 5px 0;
-        }
-      }
+      @include border("border-bottom",1px,lighten($gray-0,35%));
     }
     .name{
       line-height: 24px;
       word-break: break-all;
       white-space: normal;
-      //overflow: hidden;
-      //text-overflow: ellipsis;
-      //min-width: 0;
-      margin-right: 80px;
+    }
+    .size{
+      @extend .clearfix;
+      color: $gray-100;
+      line-height: 24px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      .trigger{
+        display: inline-block;
+        float: right;
+        >span{
+          display: inline-block;
+          background-color: $gray-40;
+          @include css3("transition",all 0.3s);
+          font-size: ceil($font-size-large*1.28);
+          cursor: pointer;
+          padding: 3px;
+          &:hover{
+            background-color: lighten($gray-0,50%);
+          }
+          &.selected{
+            color: $gray-0;
+            background-color: $gray-100;
+          }
+          &:first-child{
+            border-radius: 5px 0 0 5px;
+          }
+          &:last-child{
+            border-radius: 0 5px 5px 0;
+          }
+        }
+      }
     }
   }
 }

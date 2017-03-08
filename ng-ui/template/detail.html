@@ -86,91 +86,57 @@
         </table>
     </div>
 </div>
-<div class="deail-contents mobile-peer" ng-show="detail.selectedTabIndex === 1">
-    <div class="table mobile-peer-table">
-        <table>
-            <thead>
-            <tr>
-                <th>IP</th>
-                <th style="width: 70px;">上传</th>
-                <th style="width: 70px;">下载</th>
-                <th style="width: 40px;">%</th>
-                <th style="width: 40px;">状态</th>
-                <th>客户端</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-class="{'gray':false}">
-                <td>255.255.255.255</td>
-                <td>100 KB/s</td>
-                <td>100 KB/s</td>
-                <td>
-                    <span>100</span>%
-                </td>
-                <td>TDX</td>
-                <td>transmission 2.92</td>
-            </tr>
-            <tr ng-class="{'gray':false}">
-                <td>255.255.255.255</td>
-                <td>100 KB/s</td>
-                <td>100 KB/s</td>
-                <td>
-                    <span>100</span>%
-                </td>
-                <td>TDX</td>
-                <td>transmission 2.92</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+<div class="deail-contents" ng-show="detail.selectedTabIndex === 1">
+    <ul class="peer-list">
+        <li ng-repeat="item in data.detail.peers track by $index">
+            <h3>
+                {{item.address}}
+                <span ng-if="item.isEncrypted" class="icon-lock"></span>
+                <i>{{item.clientName}}</i>
+            </h3>
+            <div>
+                <span class="icon-upload"> {{bytesConvert(item.rateToClient)}} /s</span>
+                <span class="icon-download"> {{bytesConvert(item.rateToPeer)}} /s</span>
+                <span>{{item.flagStr}}</span>
+                <div>
+                    <span>完成度{{item.progress === 1 ? 100 : parseFloat2(item.progress * 100)}}%</span>
+                </div>
+            </div>
+        </li>
+    </ul>
 </div>
 <div class="deail-contents" ng-show="detail.selectedTabIndex === 2">
     <ul class="tracker-list">
-        <li ng-class="{'gray':false}">
-            <h3>udp:asdasdasd</h3>
+        <li ng-repeat="item in data.detail.trackerStats track by item.tier">
+            <h3>
+                {{item.announce}}
+                <i>等级{{item.tier}}</i>
+            </h3>
             <div>
-                <i>做种者：50000</i>
-                <span>最近一次发布：2017-5-5 00:00:00123123123123</span>
+                <i>做种者：{{item.seederCount}}</i>
+                <span>最近一次发布：{{getFullDate(item.lastAnnounceTime * 1000)}}</span>
             </div>
             <div>
-                <i>下载者：50000</i>
-                <span>　下一次发布：2017-5-5 00:00:00</span>
+                <i>下载者：{{item.leecherCount}}</i>
+                <span>　下一次发布：{{getFullDate(item.nextAnnounceTime * 1000)}}</span>
             </div>
             <div>
-                <i>下载次数：50000</i>
-                <span>最近一次削刮：2017-5-5 00:00:00</span>
-            </div>
-        </li>
-        <li ng-class="{'gray':false}">
-            <h3>udp:asdasdasd</h3>
-            <div>
-                <i>做种者：50000</i>
-                <span>最近一次发布：2017-5-5 00:00:00123123123123</span>
-            </div>
-            <div>
-                <i>下载者：50000</i>
-                <span>　下一次发布：2017-5-5 00:00:00</span>
-            </div>
-            <div>
-                <i>下载次数：50000</i>
-                <span>最近一次削刮：2017-5-5 00:00:00</span>
+                <i>下载次数：{{item.downloadCount}}</i>
+                <span>最近一次削刮：{{getFullDate(item.lastScrapeTime * 1000)}}</span>
             </div>
         </li>
     </ul>
 </div>
 <div class="deail-contents" ng-show="detail.selectedTabIndex === 3">
     <ul class="file-list">
-        <li>
-            <div class="trigger">
-                <span class="icon-expand_less"></span><span class="icon-drag_handle"></span><span class="icon-expand_more selected"></span>
+        <li ng-repeat="item in data.detail.files track by $index">
+            <div class="size">
+                <div class="trigger">
+                    <span class="icon-expand_less"></span><span class="icon-drag_handle"></span><span class="icon-expand_more selected"></span>
+                </div>
+                {{bytesConvert(item.bytesCompleted)}} / {{bytesConvert(item.length)}} ({{item.bytesCompleted === item.length ? 100:parseFloat2(item.bytesCompleted / item.length)}}%)
             </div>
-            <div class="name">fileName XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.mp4</div>
-        </li>
-        <li>
-            <div class="trigger">
-                <span class="icon-expand_less"></span><span class="icon-drag_handle"></span><span class="icon-expand_more selected"></span>
-            </div>
-            <div class="name">fileName XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.mp4</div>
+            <div class="name">{{item.name}}</div>
         </li>
     </ul>
 </div>

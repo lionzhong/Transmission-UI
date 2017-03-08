@@ -15,13 +15,13 @@
     <span class="icon-add">
         <i>添加任务</i>
     </span>
-    <span class="icon-delete">
+    <span class="icon-delete" ng-class="{'disabled':data.selectedIndex === ''}" ng-click="data.selectedIndex !== ''?removeFromList():false;">
         <i>删除</i>
     </span>
-    <span class="icon-start-light">
+    <span class="icon-start-light" ng-class="{'disabled':data.selectedIndex === ''}" ng-click="data.selectedIndex === ''?$event.target.disabled = true:true;">
         <i>开始</i>
     </span>
-    <span class="icon-pause-light">
+    <span class="icon-pause-light" ng-class="{'disabled':data.selectedIndex === ''}" ng-click="data.selectedIndex === ''?$event.target.disabled = true:true;">
         <i>暂停</i>
     </span>
     <span class="icon-start-all-light">
@@ -52,7 +52,7 @@
         </li>
     </ul>
     <h2>
-        <span ng-if="detail.status">{{detail.torrentData.name}}</span>
+        <span ng-if="detail.status" title="{{detail.torrentData.name}}">{{detail.torrentData.name}}</span>
     </h2>
     <div ng-include src="tmpUrl.blankDetail" ng-if="detail.status === false" include-replace></div>
     <div ng-include src="tmpUrl.detail" ng-if="detail.status === true" include-replace></div>
