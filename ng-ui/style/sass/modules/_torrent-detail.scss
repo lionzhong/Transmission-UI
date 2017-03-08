@@ -5,13 +5,13 @@
   right: -570px;
   bottom:0;
   background-color: rgba(51,51,51,0.85);
-  opacity: 0;
+  //opacity: 0;
   width: 570px;
   @include css3("transition",all 0.5s);
   box-shadow: none;
   &.show{
     right: 0;
-    opacity: 1;
+    //opacity: 1;
     box-shadow: -5px 5px 20px rgba(51,51,51,0.75);
   }
   @media (max-width: 1024px) {
@@ -22,6 +22,11 @@
     width: 100%;
     background-color: rgba(51,51,51,1);
     z-index: 12;
+    &.show{
+      right: 0;
+      //opacity: 1;
+      box-shadow: none;
+    }
   }
   >.icon-close{
     color: $gray-100;

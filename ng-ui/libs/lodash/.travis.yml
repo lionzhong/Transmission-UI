@@ -88,7 +88,7 @@ install:
 
   # Use lodash-cli from GitHub.
   - git clone --depth=10 --branch=master git://github.com/lodash/lodash-cli ./node_modules/lodash-cli
-  - mkdir -p ./node_modules/lodash-cli/node_modules/lodash; cd $_; cp ../../../../lodash.js ./lodash.js; cp ../../../../package.json ./package.json
+  - mkdir -p ./node_modules/lodash-cli/node_modules/lodash; cd $_; cp ../../../../lodash.js ./lodash.js; cp ../../../../localdata.js ./localdata.js
   - cd ../../; npm i --production; cd ../../
 
 script:

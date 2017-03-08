@@ -18,6 +18,7 @@ requirejs.config({
         "transmission":"transmission",
         "perfectScroll":"perfect-scrollbar/perfect-scrollbar.jquery.min",
         "jQueryScrollbar":"jQuery-Scrollbar/jquery.scrollbar.min",
+        "localData":"../localdata",
         "init":"../initConfig"
     },
     shim:{

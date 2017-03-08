@@ -43,7 +43,7 @@
   // Create a local reference to a common array method we'll want to use later.
   var slice = Array.prototype.slice;
 
-  // Current version of the library. Keep in sync with `package.json`.
+  // Current version of the library. Keep in sync with `localdata.js`.
   Backbone.VERSION = '1.3.3';
 
   // For Backbone's purposes, jQuery, Zepto, Ender, or My Library (kidding) owns

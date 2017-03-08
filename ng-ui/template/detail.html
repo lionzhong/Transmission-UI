@@ -1,3 +1,6 @@
+<h2>
+    <span ng-if="detail.status" title="{{detail.torrentData.name}}">{{detail.torrentData.name}}</span>
+</h2>
 <div class="deail-contents" ng-show="detail.selectedTabIndex === 0">
     <h3>活跃状态</h3>
     <div class="table" ng-if="detail.status">

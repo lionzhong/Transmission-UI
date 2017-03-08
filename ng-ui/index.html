@@ -15,19 +15,19 @@
     <span class="icon-add">
         <i>添加任务</i>
     </span>
-    <span class="icon-delete" ng-class="{'disabled':data.selectedIndex === ''}" ng-click="data.selectedIndex !== ''?removeFromList():false;">
+    <span class="icon-delete" ng-class="{'disabled':data.selectedIndex === ''}" ng-click="removeFromList([data.torrent[data.selectedIndex].id])">
         <i>删除</i>
     </span>
-    <span class="icon-start-light" ng-class="{'disabled':data.selectedIndex === ''}" ng-click="data.selectedIndex === ''?$event.target.disabled = true:true;">
+    <span class="icon-start-light" ng-class="{'disabled':data.selectedIndex === ''}" ng-click="startTransform([data.torrent[data.selectedIndex].id])">
         <i>开始</i>
     </span>
-    <span class="icon-pause-light" ng-class="{'disabled':data.selectedIndex === ''}" ng-click="data.selectedIndex === ''?$event.target.disabled = true:true;">
+    <span class="icon-pause-light" ng-class="{'disabled':data.selectedIndex === ''}" ng-click="pauseTransform([data.torrent[data.selectedIndex].id])">
         <i>暂停</i>
     </span>
-    <span class="icon-start-all-light">
+    <span class="icon-start-all-light" ng-class="{'disabled':data.torrent.length === 0}" ng-click="startTransform(data.ids)">
         <i>开始所有任务</i>
     </span>
-    <span class="icon-pause-all-light">
+    <span class="icon-pause-all-light" ng-class="{'disabled':data.torrent.length === 0}" ng-click="pauseTransform(data.ids)">
         <i>暂停所有任务</i>
     </span>
 </div>
@@ -51,11 +51,8 @@
             <span ng-if="$index === 3" class="icon-checklist"></span>
         </li>
     </ul>
-    <h2>
-        <span ng-if="detail.status" title="{{detail.torrentData.name}}">{{detail.torrentData.name}}</span>
-    </h2>
-    <div ng-include src="tmpUrl.blankDetail" ng-if="detail.status === false" include-replace></div>
-    <div ng-include src="tmpUrl.detail" ng-if="detail.status === true" include-replace></div>
+    <div ng-include src="tmpUrl.blankDetail" ng-if="data.selectedIndex === ''" include-replace></div>
+    <div ng-include src="tmpUrl.detail" ng-if="data.selectedIndex !== ''" include-replace></div>
 </div>
 <div class="footer">
     <span class="icon-settings"></span><span class="icon-scheduled"></span><span class="icon-listview"></span><span class="icon-info-black" ng-class="{'selected':detailShow}" ng-click="detail.show()"></span>

@@ -51,11 +51,15 @@ define(["jquery", "lodash"], function ($, _) {
                 break;
         }
 
-        ajax.success(function (response, status, headers, config) {
+        op.$q.when(ajax,function (response, status, headers, config) {
             dfd.resolve(response);
-        }).error(function (response, status) {
+        },function (response, status) {
             if (status !== 0) {
-                dfd.reject([op.errService ? op.errService : "saveServiceParams error", op.err]);
+                dfd.reject({
+                    errService:op.errService ? op.errService : "Service Error",
+                    err:op.err,
+                    response:response
+                });
             }
         });
 
