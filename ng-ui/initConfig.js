@@ -2,7 +2,7 @@
  * Created by vincent on 2017/3/4.
  */
 
-define(["jquery", "localData", "lodash", "transmission", "angularAMD", "angular-touch"], function ($, localData,  _, tr, angularAMD) {
+define(["jquery", "lodash", "transmission", "angularAMD", "angular-touch"], function ($, _, tr, angularAMD) {
     "use strict";
 
     var app = angular.module("transmission", ["ngTouch"]);
@@ -760,6 +760,16 @@ define(["jquery", "localData", "lodash", "transmission", "angularAMD", "angular-
             })
         };
 
+        $scope.consolePanel = {
+            status:false,
+            show:function () {
+                $scope.consolePanel.status = true;
+            },
+            close:function () {
+                $scope.consolePanel.status = false;
+            }
+        };
+
         $scope.init = function () {
             //数据
             $scope.globalData = {};
@@ -788,16 +798,6 @@ define(["jquery", "localData", "lodash", "transmission", "angularAMD", "angular-
                 fullDetail: {}
             };
 
-            $scope.consolePanel = {
-                status:false,
-                show:function () {
-                    $scope.consolePanel.status = true;
-                },
-                close:function () {
-                    $scope.consolePanel.status = false;
-                }
-            };
-
             //数据
             $scope.data = {
                 global: {},
@@ -808,17 +808,28 @@ define(["jquery", "localData", "lodash", "transmission", "angularAMD", "angular-
                 detail: {}
             };
 
-            $scope.localMode = false;
+            //load local data
+            $scope.localMode = true;
 
             if($scope.localMode === true){
-                $scope.data = {
-                    global: localData.global,
-                    torrent: localData.torrent,
-                    selectedIndex: localData.selectedIndex,
-                    stats: localData.stats,
-                    ids:localData.ids,
-                    detail: localData.detail
-                };
+            	var deferred = $q.defer();
+
+	        	require(["localData"],function(localData){
+	        		deferred.resolve(localData);
+	        	});
+
+	        	deferred.promise.then(function(response){
+	                $scope.data = {
+	                    global: response.global,
+	                    torrent: response.torrent,
+	                    selectedIndex: response.selectedIndex,
+	                    stats: response.stats,
+	                    ids:response.ids,
+	                    detail: response.detail
+	                };
+	        	}, function(reason){
+
+	        	});
             }
 
             //连续获取seesion
