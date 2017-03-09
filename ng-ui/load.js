@@ -8,10 +8,11 @@
 // directory.
 requirejs.config({
     baseUrl: 'libs',
+    waitSeconds : 30,
     paths: {
         "jquery": 'jquery/dist/jquery.min',
         "angular":'angular/angular.min',
-        "angularAMD":'angularAMD/angularAMD',
+        "angularAMD":'angularAMD/angularAMD.min',
         "angular-route":"angular/angular-route.min",
         "angular-touch":"angular/angular-touch.min",
         "lodash":"lodash/dist/lodash.min",
