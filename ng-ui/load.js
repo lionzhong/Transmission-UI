@@ -16,11 +16,11 @@ requirejs.config({
         "angular-route":"angular/angular-route.min",
         "angular-touch":"angular/angular-touch.min",
         "lodash":"lodash/dist/lodash.min",
-        "transmission":"transmission",
+        "transmission":"../dist/js/transmission.min",
         "perfectScroll":"perfect-scrollbar/perfect-scrollbar.jquery.min",
         "jQueryScrollbar":"jQuery-Scrollbar/jquery.scrollbar.min",
-        "localData":"../localdata",
-        "init":"../initConfig"
+        "localData":"../dist/js/localdata.min",
+        "init":"../dist/js/initConfig.min"
     },
     shim:{
         "angular":{
